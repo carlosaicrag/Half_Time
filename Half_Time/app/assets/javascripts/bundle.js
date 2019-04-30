@@ -314,7 +314,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var root = document.getElementById('root');
+  var root = document.getElementById('root'); // let preloadedState = undefined;
+  // if(window.currentUser){
+  //     preloadedState = {
+  //         session:{
+  //             currentUser: window.currentUser
+  //         }
+  //     }
+  // }
+  // const store = configureStore(preloadedState)
+
   var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
@@ -485,12 +494,8 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
-
       e.preventDefault();
-      this.props.createNewUser(this.state).then(function () {
-        return _this3.props.history.push("/");
-      });
+      this.props.createNewUser(this.state); // .then(() => this.props.history.push("/"))
     }
   }, {
     key: "render",
@@ -625,7 +630,7 @@ __webpack_require__.r(__webpack_exports__);
 //ajax request needed to signup a user
 var postUser = function postUser(user) {
   return $.ajax({
-    url: "/api/users",
+    url: "api/users",
     method: "POST",
     //Data is the information that we're sending to the database to create a new user
     data: {
@@ -636,7 +641,7 @@ var postUser = function postUser(user) {
 
 var postSession = function postSession(user) {
   return $.ajax({
-    url: "/api/session",
+    url: "api/session",
     method: "POST",
     data: {
       user: user
@@ -646,7 +651,7 @@ var postSession = function postSession(user) {
 
 var deleteSession = function deleteSession() {
   return $.ajax({
-    url: "/api/session",
+    url: "api/session",
     method: "DELETE"
   });
 };
