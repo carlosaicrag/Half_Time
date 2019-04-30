@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { createNewUser } from "../../actions/session"
+import { createNewUser } from "../actions/session"
 import Signup from "./signup"
 
 const mapStateToProps = state => {
