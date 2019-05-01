@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Splash = ({ currentUser, logout, openModal }) => {
-
     const sessionLinks = () => (
         <nav className ="login-signup">
 
@@ -11,10 +10,11 @@ const Splash = ({ currentUser, logout, openModal }) => {
     )
 
     const welcomeUser = (currentUser, logout) => {
-        <div className="header">
+        return(<div className="header">
             <h2 className="header-name">{currentUser.email}</h2>
-            <h2 className="header-button" onClick={logout}>Log Out</h2>
+            <button className="header-button" onClick={logout}>Log Out</button>
         </div>
+        )
     }
 
     return(

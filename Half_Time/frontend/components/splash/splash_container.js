@@ -4,9 +4,11 @@ import { logout } from '../../actions/session';
 import { openModal } from '../../actions/modal_actions';
 import Splash from './splash';
 
-const mapStateToProps = ({ session }) => ({
-    currentUser: session.currentUser
-})
+const mapStateToProps = (state) => {
+    return({
+        currentUser: state.session.currentUser
+    })
+}
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
