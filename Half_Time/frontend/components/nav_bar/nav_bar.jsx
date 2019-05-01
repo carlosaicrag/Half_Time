@@ -13,13 +13,13 @@ const NavBar = ({currentUser, logout}) => {
     ):(
         <div>
             <Link className="button" to="/signup">Sign Up</Link>
-            <Link className="button" to="/login">Log In</Link>
+            <Link className="button" to="/signin">Log In</Link>
         </div>
     );
 
     return(
         <header className="nav-bar">
-            <h2 className="nav-bar">HaltTime</h2>
+            <h2 className="nav-bar">HalfTime</h2>
             <div>
                 {display}
             </div>
