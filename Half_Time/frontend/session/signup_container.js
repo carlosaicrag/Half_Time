@@ -9,7 +9,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    createNewUser: formUser => dispatch(createNewUser(formUser))
+    action: formUser => dispatch(createNewUser(formUser))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

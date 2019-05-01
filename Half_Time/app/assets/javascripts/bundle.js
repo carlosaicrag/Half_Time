@@ -415,8 +415,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createNewUser: function createNewUser(formUser) {
-      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewUser"])(formUser));
+    action: function action(formUser) {
+      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["logIn"])(formUser));
     }
   };
 };
@@ -495,7 +495,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.createNewUser(this.state); // .then(() => this.props.history.push("/"))
+      this.props.action(this.state); // .then(() => this.props.history.push("/"))
     }
   }, {
     key: "render",
@@ -550,7 +550,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createNewUser: function createNewUser(formUser) {
+    action: function action(formUser) {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewUser"])(formUser));
     }
   };
@@ -26410,7 +26410,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
