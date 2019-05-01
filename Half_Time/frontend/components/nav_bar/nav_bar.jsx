@@ -19,8 +19,8 @@ const NavBar = ({currentUser, logout}) => {
 
     return(
         <header className="nav-bar">
-            <h2 className="nav-bar">HalfTime</h2>
-            <div>
+            <h2 className="title">HalfTime</h2>
+            <div className="login-signup-logout">
                 {display}
             </div>
         </header>
