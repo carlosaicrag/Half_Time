@@ -9,9 +9,12 @@ const App = () => (
     <div>
         <Modal />
         <header>
-            <Link to="/" className="header-link"/>
+            <Link to="/" className="header-link">
+                <h1>HalfTime</h1>
+            </Link>
             <SplashContainer />
         </header>
+        {/* <Route to="/users/:userId" component={UserShowContainer}></Route> */}
     </div>
 );
 
