@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { logout } from '../../actions/session';
 import { openModal } from '../../actions/modal_actions';
-import Splash from './splash';
+import Header from './header';
 
 const mapStateToProps = (state) => {
     return({
@@ -15,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
     openModal: modal => dispatch(openModal(modal))
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(Splash)
+export default connect(mapStateToProps,mapDispatchToProps)(Header)

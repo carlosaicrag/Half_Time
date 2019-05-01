@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Splash = ({ currentUser, logout, openModal }) => {
+const header = ({ currentUser, logout, openModal }) => {
     const sessionLinks = () => (
         <nav className ="login-signup">
 
@@ -22,4 +22,4 @@ const Splash = ({ currentUser, logout, openModal }) => {
     )
 }
 
-export default Splash;
+export default Header;
