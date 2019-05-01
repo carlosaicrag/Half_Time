@@ -23,16 +23,25 @@ class Signup extends React.Component {
     }
 
     handleSubmit(e) {
+        debugger
         e.preventDefault();
-        this.props.action(this.state)
-            .then(() => this.props.history.push(`/`))
+        this.props.closeModal();
+        this.props.action(this.state);
+            
     }
 
     render() {
         return (
-            <div className="session-form">
-                <h2>{this.props.formType}</h2>
-                <form onSubmit={this.handleSubmit}>
+            <div className="session-form-container">
+                <div className="session-header">
+                    <h2>{this.props.formType}</h2>
+                    <p>
+                        Sign in to get personalized story reccommendations, 
+                        follow authors and topics you love, and interact with stories
+                    </p>
+                </div>
+
+                <form className="session-form" onSubmit={this.handleSubmit}>
                     <label >Email
                         <input
                             type="text"
