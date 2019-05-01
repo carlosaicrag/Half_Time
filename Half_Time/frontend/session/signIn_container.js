@@ -4,7 +4,7 @@ import Signup from "./signup"
 
 const mapStateToProps = state => {
     return ({
-        formType: "Sign In"
+        formType: "Log In!"
     })
 }
 

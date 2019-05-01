@@ -31,7 +31,7 @@ class Signup extends React.Component {
     render() {
         return (
             <div className="session-form">
-                <h2>{this.props.formType}!</h2>
+                <h2>{this.props.formType}</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label >Email
                         <input
