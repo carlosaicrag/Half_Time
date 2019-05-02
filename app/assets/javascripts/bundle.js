@@ -263,8 +263,8 @@ var Header = function Header(_ref) {
 
   var welcomeUser = function welcomeUser(currentUser, logout) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "header"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      className: "login-signup"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "header-name"
     }, currentUser.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "header-button",

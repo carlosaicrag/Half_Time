@@ -1,0 +1,26 @@
+.header-name{
+    font-size: 13px;
+    color: #03a97d;
+    cursor: pointer;
+}
+
+.header-name:hover{
+    color: #01916b;
+    border-color: #01916b; 
+}
+
+.header-button{
+    height: 37px;
+    width: 105px;
+    border-radius: 3px;
+    border-color:#03a87c;
+    color:#03a87c;
+    background: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.header-button:hover{
+    color: #01916b;
+    border-color: #01916b;
+}

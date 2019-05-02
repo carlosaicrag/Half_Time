@@ -1,0 +1,53 @@
+.header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 445px;
+    // background: blue;
+    // width: 100%;
+}
+
+.login-signup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 164px;
+}
+
+.header-link{
+    display: block;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 30px;
+    outline: none;
+    color: black;
+    
+}
+
+.get-started{
+    height: 37px;
+    width: 105px;
+    border-radius: 3px;
+    border-color:#03a87c;
+    color:#03a87c;
+    background: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.get-started:hover{
+    color: #01916b;
+    border-color: #01916b;
+}
+
+.login-signup a{
+    font-size: 13px;
+    color: #03a97d;
+    cursor: pointer;
+}
+
+.login-signup a:hover{
+    color: #01916b;
+    border-color: #01916b;    
+}

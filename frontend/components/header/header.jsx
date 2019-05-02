@@ -11,8 +11,8 @@ const Header = ({ currentUser, logout, openModal }) => {
 
     const welcomeUser = (currentUser, logout) => {
         return(
-        <div className="header">
-            <h2 className="header-name">{currentUser.email}</h2>
+        <div className="login-signup">
+            <p className="header-name">{currentUser.email}</p>
             <button className="header-button" onClick={logout}>Log Out</button>
         </div>
         )
