@@ -49,7 +49,6 @@ class Signup extends React.Component {
     }
 
     render() {
-        debugger
         if(this.props.formType === "Welcome back."){
             return (
                 <div className="session-form-container">
