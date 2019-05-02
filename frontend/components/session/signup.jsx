@@ -32,7 +32,7 @@ class Signup extends React.Component {
     handleDemoUser(e){
         e.preventDefault();
 
-        let demoUser = {email:"carlos2",password:"password"}
+        let demoUser = { email: 'demo_user@appAcademy.io',password:"password"}
         this.props.action(demoUser).then(this.props.closeModal);
     }
 
