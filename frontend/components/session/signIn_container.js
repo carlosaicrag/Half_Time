@@ -5,7 +5,8 @@ import Signup from "./signup"
 
 const mapStateToProps = state => {
     return ({
-        formType: "Welcome back."
+        formType: "Welcome back.",
+        errors: state.errors.session
     })
 }
 

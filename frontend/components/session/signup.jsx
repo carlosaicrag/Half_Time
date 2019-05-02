@@ -23,11 +23,21 @@ class Signup extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
         e.preventDefault();
-        this.props.closeModal();
-        this.props.action(this.state);
-            
+        // this.props.closeModal();
+        this.props.action(this.state).then(this.props.closeModal);
+    }
+
+    rendererrors(){
+        return(
+            <ul>
+                {this.props.errors.map((error, i) => (
+                    <li key={`error-${i}`}>
+                        {error}
+                    </li>
+                ))}
+            </ul> 
+        )
     }
 
     render() {
@@ -63,6 +73,7 @@ class Signup extends React.Component {
                     {/* <input className="session-inputs" type="submit" value={this.props.formType}/> */}
                     <button className="form-button">{this.props.formType}</button>
                 </form>
+                {this.rendererrors()}
             </div>
         )
     }

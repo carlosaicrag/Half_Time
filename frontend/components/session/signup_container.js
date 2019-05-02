@@ -5,7 +5,8 @@ import Signup from "./signup"
 
 const mapStateToProps = state => {
     return({
-        formType: "Join Medium."
+        formType: "Join Medium.",
+        errors: state.errors.session
     })
 }
 

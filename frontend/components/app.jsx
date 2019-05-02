@@ -8,9 +8,9 @@ import HeaderContainer from "./header/header_container"
 const App = () => (
     <div>
         <Modal />
-        <header>
-            <Link to="/feed" className="header-link">
-                <h1>HalfTime</h1>
+        <header className="header">
+            <Link to="/" className="header-link">
+                HalfTime-The-Ocho
             </Link>
             <HeaderContainer />
         </header>
