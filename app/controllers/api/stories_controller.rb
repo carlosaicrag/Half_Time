@@ -25,7 +25,7 @@ class Api::StoriesController < ApplicationController
         if @story
             render "api/stories/show"
         else
-            render json: ["that story is not found sorry"], status 401
+            render json: ["that story was not found sorry"], status 401
         end
 
     end

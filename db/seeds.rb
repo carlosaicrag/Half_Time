@@ -6,4 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#Users
 User.create(email:'demo_user@appAcademy.io', password:"password")
+
+#stories 
+Story.create(title:"My First Story",body:"This is my first story!", author_id: 1)
