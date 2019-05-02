@@ -3,14 +3,13 @@ import React from 'react'
 const Header = ({ currentUser, logout, openModal }) => {
     const sessionLinks = () => (
         <nav className ="login-signup">
-
-            <button onClick={() => openModal("login")}>LogIn</button>
+            {/* <div>Become a member</div> */}
+            <a src="#" onClick={() => openModal("login")}>Log In</a>
             <button className="get-started"onClick={() => openModal("signup")}>Get Started</button>
         </nav>
     )
 
     const welcomeUser = (currentUser, logout) => {
-        debugger
         return(
         <div className="header">
             <h2 className="header-name">{currentUser.email}</h2>
@@ -18,7 +17,6 @@ const Header = ({ currentUser, logout, openModal }) => {
         </div>
         )
     }
-    debugger
     return(
         currentUser ? welcomeUser(currentUser,logout) : sessionLinks()
     )

@@ -2,19 +2,27 @@
     display:flex;
     justify-content: space-between;
     padding: 25px 445px;
-    background: blue;
+    // background: blue;
 }
 
 .login-signup{
-    background: green;
+    // background: green;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 165px;
+    width: 200px;
 }
 
 .header-link{
     display: block;
     background: pink;
     text-decoration: none;
+}
+
+.get-started{
+    height: 37px;
+    width: 105px;
+    border-radius: 5px;
+    border-color: aqua;
+    background: white;
 }

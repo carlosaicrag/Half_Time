@@ -10,6 +10,7 @@ class Signup extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDemoUser = this.handleDemoUser.bind(this);
     }
 
     //e is the event. e.target.value is the input value in the form. type is 
@@ -25,7 +26,14 @@ class Signup extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         // this.props.closeModal();
-        this.props.action(this.state).then(this.props.closeModal).push;
+        this.props.action(this.state).then(this.props.closeModal);
+    }
+
+    handleDemoUser(e){
+        e.preventDefault();
+
+        let demoUser = {email:"carlos2",password:"password"}
+        this.props.action(demoUser).then(this.props.closeModal);
     }
 
     renderErrors(){
@@ -41,40 +49,79 @@ class Signup extends React.Component {
     }
 
     render() {
-        return (
-            <div className="session-form-container">
-                <div className="session-header">
-                    <h2>{this.props.formType}</h2>
-                    <p>
-                        Sign in to get personalized story reccommendations, 
-                        follow authors and topics you love, and interact with stories
+        debugger
+        if(this.props.formType === "Welcome back."){
+            return (
+                <div className="session-form-container">
+                    <div className="session-header">
+                        <h2>{this.props.formType}</h2>
+                        <p>
+                            Sign in to get personalized story reccommendations,
+                            follow authors and topics you love, and interact with stories
                     </p>
-                </div>
+                    </div>
 
-                <form className="session-form" onSubmit={this.handleSubmit}>
-                    <label >
-                        <input
-                            className="session-inputs"
-                            type="text"
-                            value={this.state.email}
-                            onChange={this.handleInput("email")}
-                            placeholder="Email"
-                        />
-                    </label>
-                    <label >
-                        <input
-                            className="session-inputs"
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.handleInput("password")}
-                            placeholder="Password"
-                        />
-                    </label>
-                    <button className="form-button">{this.props.formType}</button>
-                </form>
-                {this.renderErrors()}
-            </div>
-        )
+                    <form className="session-form" onSubmit={this.handleSubmit}>
+                        <label >
+                            <input
+                                className="session-inputs"
+                                type="text"
+                                value={this.state.email}
+                                onChange={this.handleInput("email")}
+                                placeholder="Email"
+                            />
+                        </label>
+                        <label >
+                            <input
+                                className="session-inputs"
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.handleInput("password")}
+                                placeholder="Password"
+                            />
+                        </label>
+                        <button className="form-button">{this.props.formType}</button>
+                        <button className="form-button" onClick={this.handleDemoUser}>Demo User</button>
+                    </form>
+                    {this.renderErrors()}
+                </div>
+            )
+        }else{
+            return (
+                <div className="session-form-container">
+                    <div className="session-header">
+                        <h2>{this.props.formType}</h2>
+                        <p>
+                            Sign in to get personalized story reccommendations, 
+                            follow authors and topics you love, and interact with stories
+                        </p>
+                    </div>
+
+                    <form className="session-form" onSubmit={this.handleSubmit}>
+                        <label >
+                            <input
+                                className="session-inputs"
+                                type="text"
+                                value={this.state.email}
+                                onChange={this.handleInput("email")}
+                                placeholder="Email"
+                            />
+                        </label>
+                        <label >
+                            <input
+                                className="session-inputs"
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.handleInput("password")}
+                                placeholder="Password"
+                            />
+                        </label>
+                        <button className="form-button">{this.props.formType}</button>
+                    </form>
+                    {this.renderErrors()}
+                </div>
+            )
+        }
     }
 }
 

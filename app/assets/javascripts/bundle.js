@@ -176,7 +176,6 @@ var createNewUser = function createNewUser(formUser) {
 };
 var logIn = function logIn(formUser) {
   return function (dispatch) {
-    debugger;
     return Object(_utils_session__WEBPACK_IMPORTED_MODULE_0__["postSession"])(formUser).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
@@ -249,11 +248,12 @@ var Header = function Header(_ref) {
   var sessionLinks = function sessionLinks() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "login-signup"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      src: "#",
       onClick: function onClick() {
         return openModal("login");
       }
-    }, "LogIn"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, "Log In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "get-started",
       onClick: function onClick() {
         return openModal("signup");
@@ -262,7 +262,6 @@ var Header = function Header(_ref) {
   };
 
   var welcomeUser = function welcomeUser(currentUser, logout) {
-    debugger;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -273,7 +272,6 @@ var Header = function Header(_ref) {
     }, "Log Out"));
   };
 
-  debugger;
   return currentUser ? welcomeUser(currentUser, logout) : sessionLinks();
 };
 
@@ -510,6 +508,7 @@ function (_React$Component) {
       password: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleDemoUser = _this.handleDemoUser.bind(_assertThisInitialized(_this));
     return _this;
   } //e is the event. e.target.value is the input value in the form. type is 
   //value argument that gets passed into handleInput.  In our case it could be username, email, or password
@@ -531,7 +530,17 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault(); // this.props.closeModal();
 
-      this.props.action(this.state).then(this.props.closeModal).push;
+      this.props.action(this.state).then(this.props.closeModal);
+    }
+  }, {
+    key: "handleDemoUser",
+    value: function handleDemoUser(e) {
+      e.preventDefault();
+      var demoUser = {
+        email: "carlos2",
+        password: "password"
+      };
+      this.props.action(demoUser).then(this.props.closeModal);
     }
   }, {
     key: "renderErrors",
@@ -545,28 +554,58 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign in to get personalized story reccommendations, follow authors and topics you love, and interact with stories")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "session-form",
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-inputs",
-        type: "text",
-        value: this.state.email,
-        onChange: this.handleInput("email"),
-        placeholder: "Email"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "session-inputs",
-        type: "password",
-        value: this.state.password,
-        onChange: this.handleInput("password"),
-        placeholder: "Password"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "form-button"
-      }, this.props.formType)), this.renderErrors());
+      debugger;
+
+      if (this.props.formType === "Welcome back.") {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "session-form-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "session-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign in to get personalized story reccommendations, follow authors and topics you love, and interact with stories")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "session-form",
+          onSubmit: this.handleSubmit
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "session-inputs",
+          type: "text",
+          value: this.state.email,
+          onChange: this.handleInput("email"),
+          placeholder: "Email"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "session-inputs",
+          type: "password",
+          value: this.state.password,
+          onChange: this.handleInput("password"),
+          placeholder: "Password"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "form-button"
+        }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "form-button",
+          onClick: this.handleDemoUser
+        }, "Demo User")), this.renderErrors());
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "session-form-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "session-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign in to get personalized story reccommendations, follow authors and topics you love, and interact with stories")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "session-form",
+          onSubmit: this.handleSubmit
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "session-inputs",
+          type: "text",
+          value: this.state.email,
+          onChange: this.handleInput("email"),
+          placeholder: "Email"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "session-inputs",
+          type: "password",
+          value: this.state.password,
+          onChange: this.handleInput("password"),
+          placeholder: "Password"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "form-button"
+        }, this.props.formType)), this.renderErrors());
+      }
     }
   }]);
 
@@ -757,7 +796,6 @@ var _nullSession = {
     case _actions_session__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       //if this action is received then go aehad and return the current
       //user that was passed in as the payload
-      debugger;
       return Object.assign({}, {
         currentUser: action.user
       });

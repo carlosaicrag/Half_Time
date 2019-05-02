@@ -39,7 +39,6 @@ export const createNewUser = formUser => dispatch => {
 
 
 export const logIn = formUser => dispatch => {
-    debugger
     return(
         postSession(formUser).then(user => dispatch(receiveCurrentUser(user))
         ,err => (
