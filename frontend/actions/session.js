@@ -27,11 +27,6 @@ export const receiveErrors = errors => {
 
 
 //we are getting the dispatch in these action creators from the thunk middleware
-// export const createNewUser = formUser => dispatch => (
-//     postUser(formUser).then(user => dispatch(receiveCurrentUser(user))
-//     ),err => (
-//         dispatch(receiveErrors(err.responseJSON))
-// ));
 
 export const createNewUser = formUser => dispatch => {
     return(
@@ -42,10 +37,9 @@ export const createNewUser = formUser => dispatch => {
     )
 }
 
-// export const logIn = formUser => dispatch => postSession(formUser)
-//     .then(user => dispatch(receiveCurrentUser(user)));
 
 export const logIn = formUser => dispatch => {
+    debugger
     return(
         postSession(formUser).then(user => dispatch(receiveCurrentUser(user))
         ,err => (

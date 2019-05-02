@@ -10,9 +10,11 @@ const mapStateToProps = state => {
     })
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => {
+    return({
     action: formUser => dispatch(logIn(formUser)),
     closeModal: () => dispatch(closeModal())
-})
+    })
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

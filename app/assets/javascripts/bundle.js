@@ -164,11 +164,6 @@ var receiveErrors = function receiveErrors(errors) {
     errors: errors
   };
 }; //we are getting the dispatch in these action creators from the thunk middleware
-// export const createNewUser = formUser => dispatch => (
-//     postUser(formUser).then(user => dispatch(receiveCurrentUser(user))
-//     ),err => (
-//         dispatch(receiveErrors(err.responseJSON))
-// ));
 
 var createNewUser = function createNewUser(formUser) {
   return function (dispatch) {
@@ -178,11 +173,10 @@ var createNewUser = function createNewUser(formUser) {
       return dispatch(receiveErrors(err.responseJSON));
     });
   };
-}; // export const logIn = formUser => dispatch => postSession(formUser)
-//     .then(user => dispatch(receiveCurrentUser(user)));
-
+};
 var logIn = function logIn(formUser) {
   return function (dispatch) {
+    debugger;
     return Object(_utils_session__WEBPACK_IMPORTED_MODULE_0__["postSession"])(formUser).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
@@ -268,6 +262,7 @@ var Header = function Header(_ref) {
   };
 
   var welcomeUser = function welcomeUser(currentUser, logout) {
+    debugger;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -278,6 +273,7 @@ var Header = function Header(_ref) {
     }, "Log Out"));
   };
 
+  debugger;
   return currentUser ? welcomeUser(currentUser, logout) : sessionLinks();
 };
 
@@ -535,11 +531,11 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault(); // this.props.closeModal();
 
-      this.props.action(this.state).then(this.props.closeModal);
+      this.props.action(this.state).then(this.props.closeModal).push;
     }
   }, {
-    key: "rendererrors",
-    value: function rendererrors() {
+    key: "renderErrors",
+    value: function renderErrors() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "error-".concat(i)
@@ -570,7 +566,7 @@ function (_React$Component) {
         placeholder: "Password"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "form-button"
-      }, this.props.formType)), this.rendererrors());
+      }, this.props.formType)), this.renderErrors());
     }
   }]);
 
@@ -761,6 +757,7 @@ var _nullSession = {
     case _actions_session__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       //if this action is received then go aehad and return the current
       //user that was passed in as the payload
+      debugger;
       return Object.assign({}, {
         currentUser: action.user
       });

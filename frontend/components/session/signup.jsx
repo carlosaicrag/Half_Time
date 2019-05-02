@@ -25,10 +25,10 @@ class Signup extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         // this.props.closeModal();
-        this.props.action(this.state).then(this.props.closeModal);
+        this.props.action(this.state).then(this.props.closeModal).push;
     }
 
-    rendererrors(){
+    renderErrors(){
         return(
             <ul>
                 {this.props.errors.map((error, i) => (
@@ -70,10 +70,9 @@ class Signup extends React.Component {
                             placeholder="Password"
                         />
                     </label>
-                    {/* <input className="session-inputs" type="submit" value={this.props.formType}/> */}
                     <button className="form-button">{this.props.formType}</button>
                 </form>
-                {this.rendererrors()}
+                {this.renderErrors()}
             </div>
         )
     }

@@ -10,6 +10,7 @@ const Header = ({ currentUser, logout, openModal }) => {
     )
 
     const welcomeUser = (currentUser, logout) => {
+        debugger
         return(
         <div className="header">
             <h2 className="header-name">{currentUser.email}</h2>
@@ -17,7 +18,7 @@ const Header = ({ currentUser, logout, openModal }) => {
         </div>
         )
     }
-
+    debugger
     return(
         currentUser ? welcomeUser(currentUser,logout) : sessionLinks()
     )
