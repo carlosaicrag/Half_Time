@@ -1,6 +1,6 @@
 import React from 'react'
 
-const header = ({ currentUser, logout, openModal }) => {
+const Header = ({ currentUser, logout, openModal }) => {
     const sessionLinks = () => (
         <nav className ="login-signup">
 
