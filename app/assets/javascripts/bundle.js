@@ -381,6 +381,7 @@ __webpack_require__.r(__webpack_exports__);
 function Modal(_ref) {
   var modal = _ref.modal,
       closeModal = _ref.closeModal;
+  debugger;
 
   if (!modal) {
     return null;
@@ -489,6 +490,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
     }
   };
 };
@@ -548,7 +552,6 @@ function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemoUser = _this.handleDemoUser.bind(_assertThisInitialized(_this));
-    _this.changeModal = _this.changeModal.bind(_assertThisInitialized(_this));
     return _this;
   } //e is the event. e.target.value is the input value in the form. type is 
   //value argument that gets passed into handleInput.  In our case it could be username, email, or password
@@ -594,17 +597,14 @@ function (_React$Component) {
     }
   }, {
     key: "changeModal",
-    value: function changeModal(e, modalType) {
-      var _this3 = this;
-
-      e.preventDefault();
-      return function () {
-        return _this3.props.openModal(modalType);
-      };
+    value: function changeModal() {
+      this.props.closeModal();
     }
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       if (this.props.formType === "Welcome back.") {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "session-form-container"
@@ -634,7 +634,12 @@ function (_React$Component) {
           className: "modal-footer-signIn"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "switch-register-signUp"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          src: "#",
+          onClick: function onClick() {
+            return _this3.props.openModal("signup");
+          }
+        }, "Sign Up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "session-form-container"
@@ -661,7 +666,12 @@ function (_React$Component) {
           className: "modal-footer"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "switch-register"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          src: "#",
+          onClick: function onClick() {
+            return _this3.props.openModal("login");
+          }
+        }, "Log In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       }
     }
   }]);
@@ -706,8 +716,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
     },
-    openModal: function openModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])());
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
     }
   };
 };

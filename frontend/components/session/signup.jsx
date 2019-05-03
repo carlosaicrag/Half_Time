@@ -11,7 +11,6 @@ class Signup extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDemoUser = this.handleDemoUser.bind(this);
-        this.changeModal = this.changeModal.bind(this)
     }
 
     //e is the event. e.target.value is the input value in the form. type is 
@@ -49,11 +48,11 @@ class Signup extends React.Component {
         )
     }
 
-    changeModal(e,modalType){
-        e.preventDefault();
-    
-        return () => this.props.openModal(modalType)
+    changeModal(){
+        this.props.closeModal();
+        
     }
+
 
     render() {
         if(this.props.formType === "Welcome back."){
@@ -92,7 +91,7 @@ class Signup extends React.Component {
                     <div className="modal-footer-signIn">
                         <div className="switch-register-signUp">
                             <div >Don't have an account? </div>
-                            {/* <a href="#" onClick={this.changeModal("signup")}>Sign Up</a> */}
+                            <a src="#" onClick={() => this.props.openModal("signup")}>Sign Up</a>
                         </div>
                         <div>To make HalfTime work, we log user data and share it with service providers</div>
                     </div>
@@ -134,7 +133,7 @@ class Signup extends React.Component {
                     <div className="modal-footer">
                         <div className="switch-register">
                             <div >Already have an account? </div>
-                            {/* <a href="#" onClick={this.changeModal("login")}>Log In</a> */}
+                            <a src="#" onClick={() => this.props.openModal("login")}>Log In</a>
                         </div>
                         <div>To make HalfTime work, we log user data and share it with service providers</div>
                     </div>

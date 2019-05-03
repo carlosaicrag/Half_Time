@@ -5,13 +5,12 @@ import LoginFormContainer from '../session/signIn_container'
 import SignupFormContainer from '../session/signup_container';
 
 function Modal({ modal, closeModal }) {
-
+    debugger
     if (!modal) {
         return null;
     }
 
     let component;
-
     switch (modal) {
         case 'login':
             component = <LoginFormContainer />;
