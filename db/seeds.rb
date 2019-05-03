@@ -6,9 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#Users
-User.create(email:'demo_user@appAcademy.io', password:"password")
 
-#stories 
-Story.create(title:"My First Story",body:"This is my first story!", author_id: 1)
-Story.create(title:"My Second Story",body:"This is my second story!", author_id: 1)
+#seeding data with users and and their stories 
+User.destroy_all
+Story.destroy_all
+
+(1..10).each do |num|
+    User.create(email:Faker::Name.unique.name,password:"password")
+    rand(5...15).times do 
+        Story.create(title:Faker::Lorem.unique.sentence,body:Faker::Lorem.paragraph(10), author_id:num)
+    end
+end

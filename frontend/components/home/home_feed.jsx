@@ -12,7 +12,7 @@ class HomeFeed extends React.Component {
     }
 
     render(){
-        let stories = this.props.stories.map(story=>{
+        let stories = this.props.stories.map((story,idx)=>{
             return(
                 <StoryComponent 
                     key={story.id}
@@ -20,12 +20,10 @@ class HomeFeed extends React.Component {
                 />
             )
         })
-        console.log("hello")
-        console.log(stories)
-        console.log("goodbye")
-        // debugger
+        
         return(
             <div>
+                {/* <FeaturedStories stories={stories.slice(0, 5)} */}
                 <ul>
                     {stories}
                 </ul>

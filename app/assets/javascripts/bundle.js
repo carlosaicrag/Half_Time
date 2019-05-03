@@ -422,16 +422,12 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var stories = this.props.stories.map(function (story) {
+      var stories = this.props.stories.map(function (story, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_story__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: story.id,
           story: story
         });
       });
-      console.log("hello");
-      console.log(stories);
-      console.log("goodbye"); // debugger
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, stories));
     }
   }]);
@@ -860,7 +856,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var Story = function Story(props) {
   var story = props.story;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.body));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.body.slice(0, 100), "..."));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Story);
