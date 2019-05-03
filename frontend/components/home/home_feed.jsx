@@ -1,10 +1,10 @@
 import React from "react"
-import StoryComponent from "../story/story"
+import StoryHomeFeedComponent from "./story_home_feed"
+import FeaturedStories from "./featured_stories"
 
 class HomeFeed extends React.Component {
     constructor(props){
         super(props);
-        // debugger
     }
 
     componentDidMount(){
@@ -12,9 +12,9 @@ class HomeFeed extends React.Component {
     }
 
     render(){
-        let stories = this.props.stories.map((story,idx)=>{
+        let stories = this.props.stories.map((story)=>{
             return(
-                <StoryComponent 
+                <StoryHomeFeedComponent 
                     key={story.id}
                     story={story}
                 />
@@ -23,10 +23,8 @@ class HomeFeed extends React.Component {
         
         return(
             <div>
-                {/* <FeaturedStories stories={stories.slice(0, 5)} */}
-                <ul>
-                    {stories}
-                </ul>
+                <FeaturedStories stories={stories.slice(0, 5)}/>
+                {/* <UnFeaturedStories stories={stories.slice(5)}/> */}
             </div>
         )
     }

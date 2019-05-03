@@ -370,6 +370,50 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/home/featured_stories.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/home/featured_stories.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var FeaturedStories = function FeaturedStories(props) {
+  //these are story_home_feed components
+  var stories = props.stories;
+
+  var leftFeatured = function leftFeatured(story) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "left-featured"
+    }, story);
+  };
+
+  var rightFeatured = function rightFeatured(story) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "right-featured"
+    }, story);
+  };
+
+  var midFeatured = function midFeatured(stories) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "mid-featured"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, stories[1]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, stories[2]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, stories[3]));
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "featured"
+  }, leftFeatured(stories[0]), midFeatured(stories), rightFeatured(stories[stories.length - 1]));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FeaturedStories);
+
+/***/ }),
+
 /***/ "./frontend/components/home/home_feed.jsx":
 /*!************************************************!*\
   !*** ./frontend/components/home/home_feed.jsx ***!
@@ -381,7 +425,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _story_story__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../story/story */ "./frontend/components/story/story.jsx");
+/* harmony import */ var _story_home_feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./story_home_feed */ "./frontend/components/home/story_home_feed.jsx");
+/* harmony import */ var _featured_stories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./featured_stories */ "./frontend/components/home/featured_stories.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -403,6 +448,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var HomeFeed =
 /*#__PURE__*/
 function (_React$Component) {
@@ -411,7 +457,7 @@ function (_React$Component) {
   function HomeFeed(props) {
     _classCallCheck(this, HomeFeed);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(HomeFeed).call(this, props)); // debugger
+    return _possibleConstructorReturn(this, _getPrototypeOf(HomeFeed).call(this, props));
   }
 
   _createClass(HomeFeed, [{
@@ -422,13 +468,15 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var stories = this.props.stories.map(function (story, idx) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_story__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      var stories = this.props.stories.map(function (story) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: story.id,
           story: story
         });
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, stories));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        stories: stories.slice(0, 5)
+      }));
     }
   }]);
 
@@ -470,6 +518,30 @@ var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToBanana, mapDispatchToBanana)(_home_feed__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/home/story_home_feed.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/home/story_home_feed.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var StoryHomeFeed = function StoryHomeFeed(props) {
+  var story = props.story;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.body.slice(0, 100), "...")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);
 
 /***/ }),
 
@@ -838,30 +910,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_signup__WEBPACK_IMPORTED_MODULE_3__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/story/story.jsx":
-/*!*********************************************!*\
-  !*** ./frontend/components/story/story.jsx ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var Story = function Story(props) {
-  var story = props.story;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "story-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.body.slice(0, 100), "..."));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Story);
 
 /***/ }),
 
