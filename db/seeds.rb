@@ -11,3 +11,4 @@ User.create(email:'demo_user@appAcademy.io', password:"password")
 
 #stories 
 Story.create(title:"My First Story",body:"This is my first story!", author_id: 1)
+Story.create(title:"My Second Story",body:"This is my second story!", author_id: 1)

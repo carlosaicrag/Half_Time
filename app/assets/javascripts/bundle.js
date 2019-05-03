@@ -193,6 +193,37 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/stories_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/stories_actions.js ***!
+  \*********************************************/
+/*! exports provided: RECEIVE_STORY, fetchStory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORY", function() { return RECEIVE_STORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
+/* harmony import */ var _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/stories_util */ "./frontend/utils/stories_util.js");
+
+var RECEIVE_STORY = "RECEIVE_STORY";
+
+var receiveStory = function receiveStory(payload) {
+  return {
+    story: payload.story
+  };
+};
+
+var fetchStory = function fetchStory(id) {
+  return function (dispatch) {
+    return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["fetchStory"](id).then(function (story) {
+      return dispatch(receiveStory(story));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -705,10 +736,13 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _user_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_reducer */ "./frontend/reducers/user_reducer.js");
+/* harmony import */ var _stories_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stories_reducer */ "./frontend/reducers/stories_reducer.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _user_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _user_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  stories: _stories_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -857,6 +891,34 @@ var _nullSession = {
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/stories_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/stories_reducer.js ***!
+  \**********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/stories_actions */ "./frontend/actions/stories_actions.js");
+
+
+var StoryReducer = function StoryReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORY"]:
+      return action.story;
+
+    default:
+      return oldState;
+  }
+};
 
 /***/ }),
 
@@ -1010,6 +1072,25 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     url: "api/session",
     method: "DELETE"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/utils/stories_util.js":
+/*!****************************************!*\
+  !*** ./frontend/utils/stories_util.js ***!
+  \****************************************/
+/*! exports provided: fetchStory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
+var fetchStory = function fetchStory(id) {
+  return $.ajax({
+    method: "GET",
+    url: "api/stories/".concat(id)
   });
 };
 

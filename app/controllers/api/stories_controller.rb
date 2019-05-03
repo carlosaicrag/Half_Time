@@ -15,28 +15,29 @@ class Api::StoriesController < ApplicationController
         if @story.save!
             render "api/stories/show"
         else
-            render json: @story.errors.full_messages, status 402
+            render json: @story.errors.full_messages, status: 402
         end
     end
 
     def update 
         @story = current_user.stories.find_by(id: params[:id])
-
-        if @story
+        @story
+        if @story.update(story_params)
             render "api/stories/show"
         else
-            render json: ["that story was not found sorry"], status 401
+            render json: ["that story was not found sorry"], status: 401
         end
 
     end
 
     def destroy
-        @story = current_user.stories.find_by(id: params[:id])
+        debugger
+        @story = current_user.stories.find(params[:id])
         @story.destroy 
     end
 
     private
     def story_params 
-           params.require(:user).permit(:title,:body) 
+           params.require(:story).permit(:title,:body) 
     end
 end
