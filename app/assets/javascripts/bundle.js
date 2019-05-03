@@ -409,14 +409,9 @@ function (_React$Component) {
   _inherits(HomeFeed, _React$Component);
 
   function HomeFeed(props) {
-    var _this;
-
     _classCallCheck(this, HomeFeed);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(HomeFeed).call(this, props));
-    _this.state = _this.props.stories; // debugger
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(HomeFeed).call(this, props)); // debugger
   }
 
   _createClass(HomeFeed, [{
@@ -427,7 +422,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var stories = this.state.map(function (story) {
+      var stories = this.props.stories.map(function (story) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_story__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: story.id,
           story: story
@@ -465,7 +460,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToBanana = function mapStateToBanana(state) {
-  // debugger
   return {
     stories: Object.values(state.entities.stories)
   };
@@ -866,7 +860,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var Story = function Story(props) {
   var story = props.story;
-  debugger;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.body));
 };
 

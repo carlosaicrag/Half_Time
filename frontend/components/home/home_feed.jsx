@@ -4,7 +4,6 @@ import StoryComponent from "../story/story"
 class HomeFeed extends React.Component {
     constructor(props){
         super(props);
-        this.state = this.props.stories
         // debugger
     }
 
@@ -13,7 +12,7 @@ class HomeFeed extends React.Component {
     }
 
     render(){
-        let stories = this.state.map(story=>{
+        let stories = this.props.stories.map(story=>{
             return(
                 <StoryComponent 
                     key={story.id}
