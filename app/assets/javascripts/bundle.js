@@ -1081,12 +1081,19 @@ var deleteSession = function deleteSession() {
 /*!****************************************!*\
   !*** ./frontend/utils/stories_util.js ***!
   \****************************************/
-/*! exports provided: fetchStory */
+/*! exports provided: fetchStories, fetchStory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStories", function() { return fetchStories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
+var fetchStories = function fetchStories() {
+  return $.ajax({
+    method: "GET",
+    url: "api/stories"
+  });
+};
 var fetchStory = function fetchStory(id) {
   return $.ajax({
     method: "GET",
