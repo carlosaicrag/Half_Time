@@ -4,6 +4,7 @@ import HomeFeed from "./home_feed"
 
 
 const mapStateToBanana = state => {
+    // debugger
     return({
         stories: Object.values(state.entities.stories)        
     })

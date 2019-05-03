@@ -5,7 +5,6 @@ import {
 
 const StoryReducer = (oldState = {}, action) => {
     Object.freeze(oldState);
-
     switch (action.type) {
         case RECEIVE_STORIES:
             return action.stories
@@ -15,3 +14,5 @@ const StoryReducer = (oldState = {}, action) => {
             return oldState;
     }
 }
+
+export default StoryReducer;

@@ -5,7 +5,15 @@ export const RECEIVE_STORIES = "RECEIVE_STORIES"
 
 const receiveStory = (payload) => {
     return({
+        type: RECEIVE_STORY,
         story: payload.story
+    })
+}
+
+const receiveStories = (payload) => {
+    return ({
+        type: RECEIVE_STORIES,
+        stories: payload.stories
     })
 }
 
@@ -17,6 +25,6 @@ export const fetchStory = (id) => (dispatch) => {
 
 export const fetchStories = () => (dispatch) => {
     return(
-        StoriesUtil.fetchStories().then(stories => dispatch(receiveStory(stories)))
+        StoriesUtil.fetchStories().then(stories => dispatch(receiveStories(stories)))
     )
 }
