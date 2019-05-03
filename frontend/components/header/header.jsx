@@ -12,7 +12,7 @@ const Header = ({ currentUser, logout, openModal }) => {
     const welcomeUser = (currentUser, logout) => {
         return(
         <div className="login-signup">
-            <p className="header-name">{currentUser.email}</p>
+            {/* <p className="header-name">{currentUser.email}</p> */}
             <button className="header-button" onClick={logout}>Log Out</button>
         </div>
         )

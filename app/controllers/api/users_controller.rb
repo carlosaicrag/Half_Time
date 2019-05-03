@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
     def create 
         @user = User.new(user_params)
-        if @user.save!
+        if @user.save
             login(@user)
             # this is a route to the jbuilder which will render the json that will be sent to the frontend
             render "api/users/show"

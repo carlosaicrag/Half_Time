@@ -11,6 +11,7 @@ class Signup extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDemoUser = this.handleDemoUser.bind(this);
+        this.changeModal = this.changeModal.bind(this)
     }
 
     //e is the event. e.target.value is the input value in the form. type is 
@@ -40,12 +41,18 @@ class Signup extends React.Component {
         return(
             <ul>
                 {this.props.errors.map((error, i) => (
-                    <li key={`error-${i}`}>
+                    <li key={`error-${i}`} className="errors">
                         {error}
                     </li>
                 ))}
             </ul> 
         )
+    }
+
+    changeModal(e,modalType){
+        e.preventDefault();
+    
+        return () => this.props.openModal(modalType)
     }
 
     render() {
@@ -83,9 +90,9 @@ class Signup extends React.Component {
                         <button className="form-button" onClick={this.handleDemoUser}>Demo User</button>
                     </form>
                     <div className="modal-footer-signIn">
-                        <div className="switch-register">
+                        <div className="switch-register-signUp">
                             <div >Don't have an account? </div>
-                            <a href="#">Sign Up</a>
+                            {/* <a href="#" onClick={this.changeModal("signup")}>Sign Up</a> */}
                         </div>
                         <div>To make HalfTime work, we log user data and share it with service providers</div>
                     </div>
@@ -127,7 +134,7 @@ class Signup extends React.Component {
                     <div className="modal-footer">
                         <div className="switch-register">
                             <div >Already have an account? </div>
-                            <a href="#">Sign In</a>
+                            {/* <a href="#" onClick={this.changeModal("login")}>Log In</a> */}
                         </div>
                         <div>To make HalfTime work, we log user data and share it with service providers</div>
                     </div>

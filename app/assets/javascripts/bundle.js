@@ -305,9 +305,7 @@ var Header = function Header(_ref) {
   var welcomeUser = function welcomeUser(currentUser, logout) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "login-signup"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "header-name"
-    }, currentUser.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "header-button",
       onClick: logout
     }, "Log Out"));
@@ -550,6 +548,7 @@ function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemoUser = _this.handleDemoUser.bind(_assertThisInitialized(_this));
+    _this.changeModal = _this.changeModal.bind(_assertThisInitialized(_this));
     return _this;
   } //e is the event. e.target.value is the input value in the form. type is 
   //value argument that gets passed into handleInput.  In our case it could be username, email, or password
@@ -588,9 +587,20 @@ function (_React$Component) {
     value: function renderErrors() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "error-".concat(i)
+          key: "error-".concat(i),
+          className: "errors"
         }, error);
       }));
+    }
+  }, {
+    key: "changeModal",
+    value: function changeModal(e, modalType) {
+      var _this3 = this;
+
+      e.preventDefault();
+      return function () {
+        return _this3.props.openModal(modalType);
+      };
     }
   }, {
     key: "render",
@@ -623,10 +633,8 @@ function (_React$Component) {
         }, "Demo User")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "modal-footer-signIn"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "switch-register"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "#"
-        }, "Sign Up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
+          className: "switch-register-signUp"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "session-form-container"
@@ -653,9 +661,7 @@ function (_React$Component) {
           className: "modal-footer"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "switch-register"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "#"
-        }, "Sign In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       }
     }
   }]);
@@ -699,6 +705,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
+    },
+    openModal: function openModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])());
     }
   };
 };
@@ -988,7 +997,6 @@ var UserReducer = function UserReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       newState = Object.assign({}, oldState, _defineProperty({}, action.user.id, {
         id: action.user.id,
         email: action.user.email
