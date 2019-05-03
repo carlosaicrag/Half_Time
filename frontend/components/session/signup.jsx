@@ -52,8 +52,8 @@ class Signup extends React.Component {
         if(this.props.formType === "Welcome back."){
             return (
                 <div className="session-form-container">
-                    <div className="session-header">
-                        <h2>{this.props.formType}</h2>
+                    <div className="session-header-signIn">
+                        <div>{this.props.formType}</div>
                         <p>
                             Sign in to get personalized story reccommendations,
                             follow authors and topics you love, and interact with stories
@@ -82,6 +82,13 @@ class Signup extends React.Component {
                         <button className="form-button">{this.props.formType}</button>
                         <button className="form-button" onClick={this.handleDemoUser}>Demo User</button>
                     </form>
+                    <div className="modal-footer-signIn">
+                        <div className="switch-register">
+                            <div >Don't have an account? </div>
+                            <a href="#">Sign Up</a>
+                        </div>
+                        <div>To make HalfTime work, we log user data and share it with service providers</div>
+                    </div>
                     {this.renderErrors()}
                 </div>
             )
@@ -117,6 +124,13 @@ class Signup extends React.Component {
                         </label>
                         <button className="form-button">{this.props.formType}</button>
                     </form>
+                    <div className="modal-footer">
+                        <div className="switch-register">
+                            <div >Already have an account? </div>
+                            <a href="#">Sign In</a>
+                        </div>
+                        <div>To make HalfTime work, we log user data and share it with service providers</div>
+                    </div>
                     {this.renderErrors()}
                 </div>
             )

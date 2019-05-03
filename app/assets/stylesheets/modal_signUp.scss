@@ -1,0 +1,135 @@
+.modal-background {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(246, 246, 246, 0.7);
+    z-index: 10;
+}
+
+.modal-child {
+    background-image: url("https://cdn-images-1.medium.com/max/900/1*Cs2lqW1GyoPdYqs1U0Xudg.png");
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);
+    width: 900px;
+    height: 550px;
+}
+
+.session-header{
+    display: flex; 
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 370px;
+    height: 150px;
+    margin: 0 0 50px 0;
+}
+
+.session-header > *{
+    text-align: center;
+}
+
+.session-header :first-child{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: 500;
+    // background: red;
+}
+
+.session-header :nth-child(2){
+    // background:blue;
+    font-size: 19px;
+    font-family: sans-serif;
+    color: rgba(0,0,0,.76);
+    fill: rgba(0,0,0,.76)
+}
+
+.session-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // background: yellow;
+}
+
+.session-form{
+    display:flex;
+    flex-direction: column;
+}
+
+.session-form :nth-child(3){
+    margin: 20px 0px;
+}
+
+.session-form :nth-child(1){
+    margin-bottom: 10px;
+}
+
+.session-inputs{
+    width:300px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 17px;
+    color: rgba(0,0,0,.76);
+    fill: rgba(0,0,0,.76);
+    border: 1px solid rgba(185, 185, 185, 0.82);
+    text-indent: 10px;
+}
+
+.form-button{
+    border-radius: 5px;
+    font-size: 16px;
+    color: rgba(0,0,0,.76);
+    fill: rgba(0,0,0,.76);
+    height: 40px;
+    background: #168530c2;
+    color: #ffffffe2;
+}
+
+.modal-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 70px;
+}
+
+.switch-register{
+    width: 230px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.switch-register a{
+    text-decoration: none;
+    font-size: 15px;
+    color: #03a97d;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.modal-footer > :last-child{
+    text-align: center;
+    color: rgba(138, 138, 138, 0.82)
+}
+
+.modal-footer :first-child{
+    text-align: center;
+    color: rgba(138, 138, 138, 0.82)
+}
+
+::placeholder{
+    color: rgba(185, 185, 185, 0.82);
+}
+

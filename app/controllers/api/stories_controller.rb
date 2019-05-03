@@ -32,7 +32,6 @@ class Api::StoriesController < ApplicationController
     end
 
     def destroy
-        debugger
         @story = current_user.stories.find(params[:id])
         @story.destroy 
     end

@@ -197,16 +197,19 @@ var logout = function logout() {
 /*!*********************************************!*\
   !*** ./frontend/actions/stories_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_STORY, fetchStory */
+/*! exports provided: RECEIVE_STORY, RECEIVE_STORIES, fetchStory, fetchStories */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORY", function() { return RECEIVE_STORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORIES", function() { return RECEIVE_STORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStories", function() { return fetchStories; });
 /* harmony import */ var _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/stories_util */ "./frontend/utils/stories_util.js");
 
 var RECEIVE_STORY = "RECEIVE_STORY";
+var RECEIVE_STORIES = "RECEIVE_STORIES";
 
 var receiveStory = function receiveStory(payload) {
   return {
@@ -218,6 +221,13 @@ var fetchStory = function fetchStory(id) {
   return function (dispatch) {
     return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["fetchStory"](id).then(function (story) {
       return dispatch(receiveStory(story));
+    });
+  };
+};
+var fetchStories = function fetchStories() {
+  return function (dispatch) {
+    return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["fetchStories"]().then(function (stories) {
+      return dispatch(receiveStory(stories));
     });
   };
 };
@@ -589,8 +599,8 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "session-form-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "session-header"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign in to get personalized story reccommendations, follow authors and topics you love, and interact with stories")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "session-header-signIn"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign in to get personalized story reccommendations, follow authors and topics you love, and interact with stories")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           className: "session-form",
           onSubmit: this.handleSubmit
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -610,7 +620,13 @@ function (_React$Component) {
         }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "form-button",
           onClick: this.handleDemoUser
-        }, "Demo User")), this.renderErrors());
+        }, "Demo User")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-footer-signIn"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "switch-register"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#"
+        }, "Sign Up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "session-form-container"
@@ -633,7 +649,13 @@ function (_React$Component) {
           placeholder: "Password"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "form-button"
-        }, this.props.formType)), this.renderErrors());
+        }, this.props.formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-footer"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "switch-register"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#"
+        }, "Sign In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       }
     }
   }]);
@@ -665,7 +687,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    formType: "Join Medium.",
+    formType: "Join HalfTime.",
     errors: state.errors.session
   };
 };
@@ -912,6 +934,9 @@ var StoryReducer = function StoryReducer() {
   Object.freeze(oldState);
 
   switch (action.type) {
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORIES"]:
+      return action.stories;
+
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORY"]:
       return action.story;
 
