@@ -1,11 +1,11 @@
 import React from "react"
 
 const StoryHomeFeed = props => {
-    let { story } = props;
+    let { stories } = props;
+
     return (
-        <div className="story-home-feed">
-            <h1>{story.title}</h1>
-            <h1>{story.body.slice(0, 100)}...</h1>
+        <div className="unfeatured">
+            {stories}
         </div>
     )
 }

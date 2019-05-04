@@ -407,7 +407,7 @@ var FeaturedStories = function FeaturedStories(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "featured"
-  }, leftFeatured(stories[0]), midFeatured(stories), rightFeatured(stories[stories.length - 1]));
+  }, leftFeatured(stories[0]), midFeatured(stories.splice(1, 3)), rightFeatured(stories[stories.length - 1]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FeaturedStories);
@@ -427,6 +427,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _story_home_feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./story_home_feed */ "./frontend/components/home/story_home_feed.jsx");
 /* harmony import */ var _featured_stories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./featured_stories */ "./frontend/components/home/featured_stories.jsx");
+/* harmony import */ var _unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./unfeatured_stories */ "./frontend/components/home/unfeatured_stories.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -444,6 +445,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -476,6 +478,8 @@ function (_React$Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
         stories: stories.slice(0, 5)
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        stories: stories.slice(5)
       }));
     }
   }]);
@@ -538,7 +542,35 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
   var story = props.story;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, story.body.slice(0, 100), "...")));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-image-home-feed"
+  }, "image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, story.body.slice(0, 100), "...")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);
+
+/***/ }),
+
+/***/ "./frontend/components/home/unfeatured_stories.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/home/unfeatured_stories.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var StoryHomeFeed = function StoryHomeFeed(props) {
+  var stories = props.stories;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "unfeatured"
+  }, stories);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);

@@ -42,7 +42,7 @@ const FeaturedStories = props => {
     return (
         <div className="featured">
             {leftFeatured(stories[0])}
-            {midFeatured(stories)}
+            {midFeatured(stories.splice(1,3))}
             {rightFeatured(stories[stories.length-1])}
         </div>
     )
