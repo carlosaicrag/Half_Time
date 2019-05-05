@@ -407,7 +407,7 @@ var FeaturedStories = function FeaturedStories(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "featured"
-  }, leftFeatured(stories[0]), midFeatured(stories.splice(1, 3)), rightFeatured(stories[stories.length - 1]));
+  }, leftFeatured(stories[0]), midFeatured(stories), rightFeatured(stories[stories.length - 1]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FeaturedStories);
@@ -476,7 +476,9 @@ function (_React$Component) {
           story: story
         });
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "home-feed"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
         stories: stories.slice(0, 5)
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
         stories: stories.slice(5)
@@ -546,7 +548,11 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
     className: "story-image-home-feed"
   }, "image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, story.body.slice(0, 100), "...")));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-title-home-feed"
+  }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-body-home-feed"
+  }, story.body.slice(0, 100), "...")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);
@@ -625,11 +631,13 @@ function Modal(_ref) {
     className: "modal-background",
     onClick: closeModal
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cover"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-child",
     onClick: function onClick(e) {
       return e.stopPropagation();
     }
-  }, component));
+  }, component)));
 }
 
 var mapStateToProps = function mapStateToProps(state) {

@@ -23,7 +23,7 @@ class HomeFeed extends React.Component {
         })
         
         return(
-            <div>
+            <div className="home-feed">
                 <FeaturedStories stories={stories.slice(0, 5)}/>
                 <UnFeaturedStories stories={stories.slice(5)}/>
             </div>

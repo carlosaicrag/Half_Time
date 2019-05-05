@@ -7,7 +7,7 @@ const Header = ({ currentUser, logout, openModal }) => {
             <a src="#" onClick={() => openModal("login")}>Log In</a>
             <button className="get-started"onClick={() => openModal("signup")}>Get Started</button>
         </nav>
-    )
+)
 
     const welcomeUser = (currentUser, logout) => {
         return(
@@ -18,7 +18,7 @@ const Header = ({ currentUser, logout, openModal }) => {
         )
     }
     return(
-        currentUser ? welcomeUser(currentUser,logout) : sessionLinks()
+        currentUser ? welcomeUser(currentUser,logout) :sessionLinks() 
     )
 }
 

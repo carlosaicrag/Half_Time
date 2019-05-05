@@ -7,8 +7,8 @@ const StoryHomeFeed = props => {
             <div className="story-image-home-feed">image</div>
 
             <div className="story-details-home-feed">
-                <div>{story.title}</div>
-                <div>{story.body.slice(0, 100)}...</div>
+                <div className="story-details-title-home-feed">{story.title}</div>
+                <div className="story-details-body-home-feed">{story.body.slice(0, 100)}...</div>
             </div>
         </div>
     )
