@@ -8,7 +8,6 @@ function Modal({ modal, closeModal }) {
     if (!modal) {
         return null;
     }
-
     let component;
     switch (modal) {
         case 'login':
@@ -32,6 +31,7 @@ function Modal({ modal, closeModal }) {
 }
 
 const mapStateToProps = (state) => {
+    
     return {
         modal: state.ui.modal
     };

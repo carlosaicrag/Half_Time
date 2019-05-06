@@ -14,9 +14,12 @@ class StoryShow extends React.Component {
         if(!this.props.story) return null
 
         return(
-            <div>
-                <p>{this.props.story.title}</p>
-                <p>{this.props.story.body}</p>
+            <div className="story-show">
+                <div className="story-show-details-title">{this.props.story.title}</div>
+                <div className="story-show-author">profile picture</div>
+                <div className="story-show-image">image</div>
+                <div className="story-show-details-body">{this.props.story.body}</div>
+                <div className="comments">comments</div>
             </div>
         )
     }
