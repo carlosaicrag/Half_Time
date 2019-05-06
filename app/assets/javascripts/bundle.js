@@ -1057,7 +1057,22 @@ function (_React$Component) {
         className: "story-show-details-title"
       }, this.props.story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-author"
-      }, "profile picture"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "story-show-profile-pic"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "story-show-author-details"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "story-show-details-name-follow"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "story-show-name"
+      }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        src: "#",
+        className: "follow-button"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Follow"), " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "story-show-details-date-star"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "date"
+      }, "Date")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-image"
       }, "image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-body"

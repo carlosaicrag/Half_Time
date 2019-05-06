@@ -16,7 +16,22 @@ class StoryShow extends React.Component {
         return(
             <div className="story-show">
                 <div className="story-show-details-title">{this.props.story.title}</div>
-                <div className="story-show-author">profile picture</div>
+
+                <div className="story-show-author">
+                    <div className="story-show-profile-pic"></div>
+
+                    <div className="story-show-author-details">
+                        <div className="story-show-details-name-follow">
+                            <div className="story-show-name">Name</div>
+                            <a src="#" className="follow-button"> <div>Follow</div> </a>
+                        </div>
+                        <div className="story-show-details-date-star">
+                            <div className="date">Date</div>
+                            {/* <div className="star-logo">*</div> */}
+                        </div>
+                    </div>
+                </div>
+
                 <div className="story-show-image">image</div>
                 <div className="story-show-details-body">{this.props.story.body}</div>
                 <div className="comments">comments</div>
