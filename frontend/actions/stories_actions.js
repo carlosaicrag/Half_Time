@@ -6,7 +6,7 @@ export const RECEIVE_STORIES = "RECEIVE_STORIES"
 const receiveStory = (payload) => {
     return({
         type: RECEIVE_STORY,
-        story: payload.story
+        story: payload
     })
 }
 
