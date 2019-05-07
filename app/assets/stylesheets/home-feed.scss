@@ -26,45 +26,6 @@
 
 }
 
-.unfeatured .story-home-feed{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    align-content: space-between
-}
-
-.unfeatured .story-home-feed .story-image-home-feed{
-    background-color: yellow;
-    width: 150px;
-    height: 150px;
-    position: relative;
-    left: 30px;
-}
-
-.unfeatured .story-details-home-feed{
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    justify-content: space-between;
-    margin: 0 0 30px;
-    // background-color: red;
-    height: 150px;
-}
-
-.unfeatured .story-details-body-home-feed{
-    width: 450px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 13px;
-    color: rgba(138, 138, 138, 0.82);
-    position: relative;
-    bottom: 90px;
-}
-
-.unfeatured .story-details-title-home-feed{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 16px;
-}
-
 .story-details-home-feed{
     cursor:pointer; 
     text-decoration: none;
