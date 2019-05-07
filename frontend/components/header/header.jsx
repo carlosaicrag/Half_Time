@@ -1,19 +1,30 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const Header = ({ currentUser, logout, openModal }) => {
     const sessionLinks = () => (
         <nav className ="login-signup">
             {/* <div>Become a member</div> */}
-            <a src="#" onClick={() => openModal("login")}>Log In</a>
-            <button className="get-started"onClick={() => openModal("signup")}>Get Started</button>
+            <div className="login">
+                <a src="#" onClick={() => openModal("login")}>Log In</a>
+            </div>
+            <div className="get-started">
+                <a onClick={() => openModal("signup")}>Get Started</a>
+            </div>
         </nav>
 )
 
     const welcomeUser = (currentUser, logout) => {
         return(
         <div className="login-signup">
-            {/* <p className="header-name">{currentUser.email}</p> */}
-            <button className="header-button" onClick={logout}>Log Out</button>
+
+            <div className="login">
+                <a src="#" onClick={logout}>Log Out</a>
+            </div>
+
+            <div className="get-started">
+                <Link to="/new" className="create-story">Create Story</Link>
+            </div>
         </div>
         )
     }

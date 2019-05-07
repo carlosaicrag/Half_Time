@@ -11,7 +11,7 @@
 User.destroy_all
 Story.destroy_all
 
-User.create(email:carlos2,password="password")
+User.create(email:"carlos2",password:"password")
 
 (1..10).each do |num|
     User.create(email:Faker::Name.unique.name,password:"password")

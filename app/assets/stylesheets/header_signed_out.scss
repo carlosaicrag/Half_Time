@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 200px;
+    box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);;
     // background: blue;
     // width: 100%;
 }
@@ -11,7 +12,45 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 164px;
+    width: 250px;
+    // background-color: blue;
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37px;
+    width: 105px;
+    // background-color: red;
+    cursor: pointer;
+    border: 1px solid #03a87c;
+    border-radius: 3px;
+    color: #03a87c;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.get-started{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37px;
+    width: 105px;
+    // background-color: red;
+    cursor:pointer;
+    border: 1px solid #03a87c;
+    border-radius: 3px;
+    color: #03a87c;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.logout-create{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+    background-color: blue;
 }
 
 .header-link{
@@ -25,29 +64,19 @@
     
 }
 
-.get-started{
-    height: 37px;
-    width: 105px;
-    border-radius: 3px;
-    border-color:#03a87c;
-    color:#03a87c;
-    background: white;
-    font-size: 13px;
-    cursor: pointer;
-}
-
 .get-started:hover{
     color: #01916b;
     border-color: #01916b;
 }
 
-.login-signup a{
-    font-size: 13px;
-    color: #03a97d;
-    cursor: pointer;
+.login :hover{
+    color: #01916b;
+    border-color: #01916b;
 }
 
-.login-signup a:hover{
-    color: #01916b;
-    border-color: #01916b;    
+.create-story{
+    text-decoration: none;
+    color: #03a87c;
 }
+
+

@@ -1,0 +1,28 @@
+.create-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0 0 50px 0; 
+
+}
+.create-title{
+    width: 700px;
+    height: 50px;
+    font-size: 35px;
+    border: none;
+    text-indent: 5px;
+}
+
+.create-body{
+    width: 700px;
+    height: 500px;
+    font-size: 20px;
+    line-height: 1.6;
+    border: none;
+    text-indent: 5px;
+    text-decoration: none;
+    resize:none;
+}

@@ -197,7 +197,7 @@ var logout = function logout() {
 /*!*********************************************!*\
   !*** ./frontend/actions/stories_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_STORY, RECEIVE_STORIES, fetchStory, fetchStories */
+/*! exports provided: RECEIVE_STORY, RECEIVE_STORIES, fetchStory, fetchStories, createStory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -206,6 +206,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORIES", function() { return RECEIVE_STORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStories", function() { return fetchStories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStory", function() { return createStory; });
 /* harmony import */ var _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/stories_util */ "./frontend/utils/stories_util.js");
 
 var RECEIVE_STORY = "RECEIVE_STORY";
@@ -239,6 +240,13 @@ var fetchStories = function fetchStories() {
     });
   };
 };
+var createStory = function createStory(story) {
+  return function (dispatch) {
+    return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["createStory"](story).then(function (story) {
+      return dispatch(receiveStory(story));
+    });
+  };
+};
 
 /***/ }),
 
@@ -259,6 +267,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header/header_container */ "./frontend/components/header/header_container.js");
 /* harmony import */ var _components_home_home_feed_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/home/home_feed_container */ "./frontend/components/home/home_feed_container.js");
 /* harmony import */ var _components_story_story_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/story/story_container */ "./frontend/components/story/story_container.js");
+/* harmony import */ var _components_story_story_create_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/story/story_create_container */ "./frontend/components/story/story_create_container.js");
 
 
 
@@ -274,15 +283,18 @@ var App = function App() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/",
     className: "header-link"
-  }, "HalfTime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }, "HalfTime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
     component: _components_home_home_feed_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/new",
+    component: _components_story_story_create_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
     exact: true,
     path: "/:storyId",
     component: _components_story_story_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -300,6 +312,8 @@ var App = function App() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 var Header = function Header(_ref) {
@@ -310,26 +324,36 @@ var Header = function Header(_ref) {
   var sessionLinks = function sessionLinks() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "login-signup"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "login"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       src: "#",
       onClick: function onClick() {
         return openModal("login");
       }
-    }, "Log In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "get-started",
+    }, "Log In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "get-started"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       onClick: function onClick() {
         return openModal("signup");
       }
-    }, "Get Started"));
+    }, "Get Started")));
   };
 
   var welcomeUser = function welcomeUser(currentUser, logout) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "login-signup"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "header-button",
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "login"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      src: "#",
       onClick: logout
-    }, "Log Out"));
+    }, "Log Out")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "get-started"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/new",
+      className: "create-story"
+    }, "Create Story")));
   };
 
   return currentUser ? welcomeUser(currentUser, logout) : sessionLinks();
@@ -554,10 +578,13 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
   var story = props.story;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/".concat(story.id),
-    className: "story-image-home-feed"
-  }, "image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-image-home-feed-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "story-image-home-feed",
+    src: story.photoUrl,
+    alt: story.title
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/".concat(story.id),
     className: "story-details-home-feed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1000,6 +1027,142 @@ var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/story/story_create.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/story/story_create.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var StoryCreate =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(StoryCreate, _React$Component);
+
+  function StoryCreate(props) {
+    var _this;
+
+    _classCallCheck(this, StoryCreate);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(StoryCreate).call(this, props));
+    _this.state = _this.props.story;
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(StoryCreate, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault;
+      debugger;
+      this.props.createStory(this.state);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (!this.state) return null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "create-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "create-title",
+        type: "text",
+        value: this.state.title,
+        onChange: this.update("title"),
+        placeholder: "Title"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "create-body",
+        value: this.state.body,
+        onChange: this.update("body"),
+        placeholder: "Tell your story..."
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "get-started",
+        type: "submit"
+      }, "Submit"));
+    }
+  }]);
+
+  return StoryCreate;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryCreate);
+
+/***/ }),
+
+/***/ "./frontend/components/story/story_create_container.js":
+/*!*************************************************************!*\
+  !*** ./frontend/components/story/story_create_container.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _story_create__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./story_create */ "./frontend/components/story/story_create.jsx");
+/* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/stories_actions */ "./frontend/actions/stories_actions.js");
+
+
+
+
+var mapStateToBanana = function mapStateToBanana(state) {
+  var currentUserId = parseInt(state.session.currentUser.id);
+  return {
+    story: {
+      title: "",
+      body: "",
+      author_id: currentUserId
+    }
+  };
+};
+
+var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
+  return {
+    createStory: function createStory(story) {
+      return dispatch(Object(_actions_stories_actions__WEBPACK_IMPORTED_MODULE_2__["createStory"])(story));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToBanana, mapDispatchToBanana)(_story_create__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/story/story_show.jsx":
 /*!**************************************************!*\
   !*** ./frontend/components/story/story_show.jsx ***!
@@ -1072,9 +1235,11 @@ function (_React$Component) {
         className: "story-show-details-date-star"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date"
-      }, "Date")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "story-show-image"
-      }, "image"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Date")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "story-image-home-feed",
+        src: this.props.story.photoUrl,
+        alt: this.props.story.title
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-body"
       }, this.props.story.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments"
@@ -1570,13 +1735,14 @@ var deleteSession = function deleteSession() {
 /*!****************************************!*\
   !*** ./frontend/utils/stories_util.js ***!
   \****************************************/
-/*! exports provided: fetchStories, fetchStory */
+/*! exports provided: fetchStories, fetchStory, createStory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStories", function() { return fetchStories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStory", function() { return createStory; });
 var fetchStories = function fetchStories() {
   return $.ajax({
     method: "GET",
@@ -1587,6 +1753,15 @@ var fetchStory = function fetchStory(id) {
   return $.ajax({
     method: "GET",
     url: "api/stories/".concat(id)
+  });
+};
+var createStory = function createStory(story) {
+  return $.ajax({
+    method: "POST",
+    url: "api/stories/",
+    data: {
+      story: story
+    }
   });
 };
 

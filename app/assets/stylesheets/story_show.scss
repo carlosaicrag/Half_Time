@@ -27,11 +27,14 @@
     margin: 55px 0 0 0;
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.6;
 }
 
 .story-show .comments {
-    height: 100px;
+    height: 150px;
     width: 700px;
     background-color: black;
-    margin: 50px 0 0 0;
+    background: white;
+    margin: 50px 0 50px 0;
+    box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);
 }

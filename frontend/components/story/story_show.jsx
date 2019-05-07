@@ -32,7 +32,7 @@ class StoryShow extends React.Component {
                     </div>
                 </div>
 
-                <div className="story-show-image">image</div>
+                <img className="story-image-home-feed" src={this.props.story.photoUrl} alt={this.props.story.title} />
                 <div className="story-show-details-body">{this.props.story.body}</div>
                 <div className="comments">comments</div>
             </div>

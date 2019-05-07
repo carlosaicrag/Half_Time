@@ -28,3 +28,10 @@ export const fetchStories = () => (dispatch) => {
         StoriesUtil.fetchStories().then(stories => dispatch(receiveStories(stories)))
     )
 }
+
+export const createStory = (story) => (dispatch) => {
+    return(
+        StoriesUtil.createStory(story).then(story => dispatch(receiveStory(story)))
+    )
+}
+
