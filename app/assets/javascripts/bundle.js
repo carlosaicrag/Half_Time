@@ -287,7 +287,8 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _components_home_home_feed_container__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
+    exact: true,
     path: "/new",
     component: _components_story_story_create_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
@@ -578,13 +579,11 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
   var story = props.story;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "story-image-home-feed-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "story-image-home-feed",
     src: story.photoUrl,
     alt: story.title
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/".concat(story.id),
     className: "story-details-home-feed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1073,6 +1072,8 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(StoryCreate).call(this, props));
     _this.state = _this.props.story;
     _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.updateFile = _this.updateFile.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1086,11 +1087,51 @@ function (_React$Component) {
       };
     }
   }, {
+    key: "updateFile",
+    value: function updateFile(e) {
+      var _this3 = this;
+
+      var reader = new FileReader();
+      var file = e.currentTarget.files[0];
+
+      reader.onloadend = function () {
+        return _this3.setState({
+          imageUrl: reader.result,
+          imageFile: file
+        });
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({
+          imageUrl: "",
+          imageFile: null
+        });
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault;
-      debugger;
-      this.props.createStory(this.state);
+      var _this4 = this;
+
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append("story[title]", this.state.title);
+      formData.append("story[body]", this.state.body);
+
+      if (this.state.imageFile) {
+        formData.append("story[photo]", this.state.imageFile);
+      }
+
+      this.props.createStory(formData).then(function (story) {
+        _this4.props.history.push("/".concat(story.story.id));
+      });
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map((error, i)));
     }
   }, {
     key: "render",
@@ -1110,10 +1151,18 @@ function (_React$Component) {
         value: this.state.body,
         onChange: this.update("body"),
         placeholder: "Tell your story..."
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-submit-choose-file"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "get-started",
         type: "submit"
-      }, "Submit"));
+      }, "Submit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "upload-file"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        title: " ",
+        onChange: this.updateFile
+      }))));
     }
   }]);
 
@@ -1146,6 +1195,8 @@ var mapStateToBanana = function mapStateToBanana(state) {
     story: {
       title: "",
       body: "",
+      imageUrl: "",
+      imageFile: null,
       author_id: currentUserId
     }
   };
@@ -1236,7 +1287,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date"
       }, "Date")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "story-image-home-feed",
+        className: "story-show-image",
         src: this.props.story.photoUrl,
         alt: this.props.story.title
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1755,13 +1806,13 @@ var fetchStory = function fetchStory(id) {
     url: "api/stories/".concat(id)
   });
 };
-var createStory = function createStory(story) {
+var createStory = function createStory(formData) {
   return $.ajax({
     method: "POST",
     url: "api/stories/",
-    data: {
-      story: story
-    }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 

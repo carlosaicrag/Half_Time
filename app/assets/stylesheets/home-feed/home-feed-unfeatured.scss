@@ -5,11 +5,12 @@
     align-content: space-between
 }
 
-.unfeatured .story-home-feed .story-image-home-feed-container{
-    background-color: yellow;
+.unfeatured .story-home-feed .story-image-home-feed{
+    // background-color: yellow;
     width: 150px;
     height: 150px;
     position: relative;
+    object-fit: cover;
     left: 30px;
 }
 

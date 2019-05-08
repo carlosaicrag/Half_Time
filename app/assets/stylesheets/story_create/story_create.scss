@@ -26,3 +26,17 @@
     text-decoration: none;
     resize:none;
 }
+
+.create-submit-choose-file{
+    display: flex;
+    // background-color: black;
+    width: 400px;
+    justify-content: space-between;
+}
+
+.upload-file{
+    margin: auto;
+    // background-color:blue;
+    width: 200px;
+}
+

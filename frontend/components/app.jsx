@@ -18,7 +18,8 @@ const App = () => (
         </header>
         <Switch>
             <Route exact path="/" component={HomeFeedContainer}/>
-            <Route path="/new" component={CreateStoryContainer}/>
+            {/* <Route path="/new" component={CreateStoryContainer}/> */}
+            <ProtectedRoute exact path="/new" component={CreateStoryContainer}/>
             <ProtectedRoute exact path="/:storyId" component={StoryShowContainer}/>
         </Switch>
     </div>

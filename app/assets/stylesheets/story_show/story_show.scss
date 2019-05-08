@@ -10,7 +10,8 @@
 }
 
 .story-show-image{
-    height: 200px;
+    object-fit: cover;
+    height: 500px;
     width: 700px;
     background-color: yellow;
 }

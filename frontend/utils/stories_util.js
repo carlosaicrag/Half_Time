@@ -16,12 +16,14 @@ export const fetchStory = (id) => {
     )
 }
 
-export const createStory = (story) => {
+export const createStory = (formData) => {
     return(
         $.ajax({
             method:"POST",
             url:`api/stories/`,
-            data: {story}
+            data: formData,
+            contentType: false,
+            processData: false
         })
     )
 }

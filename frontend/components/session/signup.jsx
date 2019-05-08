@@ -50,7 +50,6 @@ class Signup extends React.Component {
 
     changeModal(){
         this.props.closeModal();
-        
     }
 
 

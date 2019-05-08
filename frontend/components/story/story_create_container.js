@@ -7,7 +7,7 @@ const mapStateToBanana = (state) => {
     let currentUserId = parseInt(state.session.currentUser.id);
 
     return({
-        story: {title:"", body:"",author_id:currentUserId}
+        story: {title:"", body:"",imageUrl: "", imageFile: null, author_id:currentUserId}
     })
 }
 
