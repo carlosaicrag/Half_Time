@@ -3,6 +3,7 @@ import {
     LOGOUT_CURRENT_USER, 
     RECEIVE_SESSION_ERRORS
 } from "../actions/session_actions"
+
 const UserReducer = (oldState={},action) => {
     Object.freeze(oldState);
     let newState; 

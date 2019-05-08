@@ -11,7 +11,8 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS"
 
 export const receiveCurrentUser = payload => ({
     type: RECEIVE_CURRENT_USER,
-    user: payload.user
+    user: payload.user,
+    stories: payload.stories
 })
 
 export const logoutCurrentUser = () => ({
