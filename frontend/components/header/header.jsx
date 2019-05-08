@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-const Header = ({ currentUser, logout, openModal }) => {
+const Header = ({ currentUser, logout, openModal,fetchUser }) => {
     const sessionLinks = () => (
         <nav className ="login-signup">
             {/* <div>Become a member</div> */}
@@ -25,6 +25,11 @@ const Header = ({ currentUser, logout, openModal }) => {
             <div className="get-started">
                 <Link to="/new" className="create-story">Create Story</Link>
             </div>
+
+            <div className="get-started">
+                <Link to={`users/${currentUser.id}`} onClick={() => fetchUser(currentUser.id)} className="create-story">Profile</Link>
+            </div>
+
         </div>
         )
     }

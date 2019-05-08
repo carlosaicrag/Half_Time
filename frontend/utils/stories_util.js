@@ -27,3 +27,12 @@ export const createStory = (formData) => {
         })
     )
 }
+
+export const deleteStory = (id) => {
+    return(
+        $.ajax({
+            method:"DELETE",
+            url:`api/stories/${id}`
+        })
+    )
+}

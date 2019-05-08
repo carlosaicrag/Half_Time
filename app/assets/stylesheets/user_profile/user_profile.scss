@@ -1,0 +1,69 @@
+.user-profile-stories-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+    // background-color: blue;
+    position: relative;
+    top: 300px;
+    margin:auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    .user-profile-title-container{
+        display:flex;
+        justify-content: flex-start;
+        margin: 0 0 100px 0;
+
+        .user-profile-title{
+            font-size: 30px;
+        }
+    }
+
+    .stories-user-profile-container{
+        
+        .story-user-profile{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            // background-color: black;
+            width:640px;
+            height:490px;
+            margin: 0 0 90px;
+            box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);;
+
+            .story-image-user-profile{
+                width: 600px;
+                height: 180px;
+                object-fit: cover;
+                margin: 80px 0 0 0;
+            }
+
+            .story-details-user-profile{
+                display: flex;
+                flex-direction: column;
+                margin: 40px 0 0 0;
+                // background-color: green;
+                position: relative;
+                width:100%;
+                left: 20px;
+                text-decoration: none;
+
+                .story-details-title-user-profile{
+                    font-size: 30px;
+                    color: black;
+                }
+
+                .story-details-body-user-profile{
+                    margin: 20px 0 0 0;
+                    color: rgba(138, 138, 138, 0.82); 
+                }
+
+                
+            }
+
+
+        }
+
+    }
+
+}

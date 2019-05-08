@@ -2,6 +2,8 @@ json.user do
     json.extract! @user, :id, :email
 end
 
-json.stories do 
+if @user.stories.length == 0 
+    json.stories ""
+else
     json.partial! "api/stories/index", stories:@user.stories
 end

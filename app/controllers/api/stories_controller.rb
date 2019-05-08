@@ -31,8 +31,10 @@ class Api::StoriesController < ApplicationController
     end
 
     def destroy
+
         @story = current_user.stories.find(params[:id])
         @story.destroy 
+        render "api/stories/show"
     end
 
     private

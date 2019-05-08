@@ -128,7 +128,7 @@ var closeModal = function closeModal() {
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, receiveCurrentUser, logoutCurrentUser, receiveErrors, createNewUser, logIn, logout */
+/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, RECEIVE_USER, receiveCurrentUser, logoutCurrentUser, receiveErrors, createNewUser, logIn, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -136,6 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentUser", function() { return receiveCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutCurrentUser", function() { return logoutCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
@@ -147,6 +148,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+var RECEIVE_USER = "RECEIVE_USER";
 var receiveCurrentUser = function receiveCurrentUser(payload) {
   return {
     type: RECEIVE_CURRENT_USER,
@@ -198,20 +200,25 @@ var logout = function logout() {
 /*!*********************************************!*\
   !*** ./frontend/actions/stories_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_STORY, RECEIVE_STORIES, fetchStory, fetchStories, createStory */
+/*! exports provided: RECEIVE_STORY, RECEIVE_STORIES, RECEIVE_USER_W_STORIES, REMOVE_STORY, fetchStory, fetchStories, createStory, deleteStory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORY", function() { return RECEIVE_STORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORIES", function() { return RECEIVE_STORIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_W_STORIES", function() { return RECEIVE_USER_W_STORIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_STORY", function() { return REMOVE_STORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStories", function() { return fetchStories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStory", function() { return createStory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteStory", function() { return deleteStory; });
 /* harmony import */ var _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/stories_util */ "./frontend/utils/stories_util.js");
 
 var RECEIVE_STORY = "RECEIVE_STORY";
 var RECEIVE_STORIES = "RECEIVE_STORIES";
+var RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES";
+var REMOVE_STORY = "REMOVE_STORY";
 
 var receiveStory = function receiveStory(payload) {
   return {
@@ -224,6 +231,13 @@ var receiveStories = function receiveStories(payload) {
   return {
     type: RECEIVE_STORIES,
     stories: payload.stories
+  };
+};
+
+var removeStory = function removeStory(story) {
+  return {
+    type: REMOVE_STORY,
+    storyId: story.id
   };
 };
 
@@ -248,6 +262,62 @@ var createStory = function createStory(story) {
     });
   };
 };
+var deleteStory = function deleteStory(id) {
+  return function (dispatch) {
+    return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["deleteStory"](id).then(function (story) {
+      return dispatch(removeStory(story));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/user_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/user_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_USER, REMOVE_USER, RECEIVE_USER_W_STORIES, receiveUser, fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_USER", function() { return REMOVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_W_STORIES", function() { return RECEIVE_USER_W_STORIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony import */ var _utils_users_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/users_util */ "./frontend/utils/users_util.js");
+/* harmony import */ var _session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_actions */ "./frontend/actions/session_actions.js");
+
+
+var RECEIVE_USER = "RECEIVE_CURRENT_USER";
+var REMOVE_USER = "REMOVE_USER";
+var RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES";
+var receiveUser = function receiveUser(payload) {
+  return {
+    type: RECEIVE_USER_W_STORIES,
+    user: payload.user,
+    stories: payload.stories
+  };
+}; // export const removeUser = (payload) => {
+//     return({
+//         type:REMOVE_USER,
+//         user: payload.user,
+//         stories: payload.stories,
+//     })
+// }
+
+var fetchUser = function fetchUser(id) {
+  return function (dispatch) {
+    return _utils_users_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](id).then(function (payload) {
+      return dispatch(receiveUser(payload));
+    });
+  };
+}; // export const deleteUser = (id) => (dispatch) => {
+//     return(
+//         UserUtils.deleteUser(id).then(user => dispatch())
+//     )
+// }
 
 /***/ }),
 
@@ -286,16 +356,14 @@ var App = function App() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/",
     className: "header-link"
-  }, "HalfTime"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }, "TheOcho"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
     component: _components_home_home_feed_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
-    exact: true,
     path: "/new",
     component: _components_story_story_create_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
-    exact: true,
     path: "/users/:userid",
     component: _user_user_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
@@ -327,7 +395,8 @@ __webpack_require__.r(__webpack_exports__);
 var Header = function Header(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout,
-      openModal = _ref.openModal;
+      openModal = _ref.openModal,
+      fetchUser = _ref.fetchUser;
 
   var sessionLinks = function sessionLinks() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -361,7 +430,15 @@ var Header = function Header(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/new",
       className: "create-story"
-    }, "Create Story")));
+    }, "Create Story")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "get-started"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "users/".concat(currentUser.id),
+      onClick: function onClick() {
+        return fetchUser(currentUser.id);
+      },
+      className: "create-story"
+    }, "Profile")));
   };
 
   return currentUser ? welcomeUser(currentUser, logout) : sessionLinks();
@@ -383,7 +460,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./header */ "./frontend/components/header/header.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header */ "./frontend/components/header/header.jsx");
+
 
 
 
@@ -402,11 +481,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
+    },
+    fetchUser: function fetchUser(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(user));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_header__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_header__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
@@ -583,14 +665,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var StoryHomeFeed = function StoryHomeFeed(props) {
-  var story = props.story;
+  var story = props.story,
+      deleteStory = props.deleteStory;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/".concat(story.id),
+    className: "story-image-home-feed-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "story-image-home-feed",
     src: story.photoUrl,
     alt: story.title
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/".concat(story.id),
     className: "story-details-home-feed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1312,6 +1398,73 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/user/story_user.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/user/story_user.jsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var StoryUser = function StoryUser(props) {
+  var story = props.story,
+      match = props.match,
+      deleteStory = props.deleteStory;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-user-profile"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "story-image-user-profile",
+    src: story.photoUrl,
+    alt: story.title
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/".concat(story.id),
+    className: "story-details-user-profile"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-title-user-profile"
+  }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-body-user-profile"
+  }, story.body.slice(0, 100), "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return deleteStory(story.id);
+    }
+  }, "delete")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryUser);
+
+/***/ }),
+
+/***/ "./frontend/components/user/story_user_container.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/user/story_user_container.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var StoryUserContainer = function StoryUserContainer(props) {
+  var stories = props.stories;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "stories-user-profile-container"
+  }, stories);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryUserContainer);
+
+/***/ }),
+
 /***/ "./frontend/components/user/user.jsx":
 /*!*******************************************!*\
   !*** ./frontend/components/user/user.jsx ***!
@@ -1323,6 +1476,8 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _story_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./story_user */ "./frontend/components/user/story_user.jsx");
+/* harmony import */ var _story_user_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./story_user_container */ "./frontend/components/user/story_user_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1343,6 +1498,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var User =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1354,19 +1511,50 @@ function (_React$Component) {
     _classCallCheck(this, User);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(User).call(this, props));
-    _this.state = _this.props.currentUser;
+    _this.state = {
+      currentUser: _this.props.currentUser,
+      loading: true
+    };
     return _this;
   }
 
   _createClass(User, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.props.fetchUser(this.state.currentUser.id).then(function () {
+        return _this2.setState({
+          loading: false
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      // let stories = this.state.map(story =>{
-      //     return(
-      //         this.state.stories;
-      //     )
-      // })
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello, ", this.state.email);
+      var _this3 = this;
+
+      if (this.state.loading) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "loading");
+      }
+
+      var stories = this.props.stories.map(function (story) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: story.id,
+          story: story,
+          match: _this3.props.match,
+          deleteStory: _this3.props.deleteStory
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-profile-stories-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-profile-title-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-profile-title"
+      }, "Your Stories")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        stories: stories
+      }));
     }
   }]);
 
@@ -1388,17 +1576,34 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./frontend/components/user/user.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/stories_actions */ "./frontend/actions/stories_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
     currentUser: state.session.currentUser,
-    stories: state.ent
+    stories: Object.values(state.entities.stories)
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps)(_user__WEBPACK_IMPORTED_MODULE_1__["default"]));
+var mapDispatchtoBanana = function mapDispatchtoBanana(dispatch) {
+  return {
+    fetchUser: function fetchUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(id));
+    },
+    deleteStory: function deleteStory(id) {
+      return dispatch(Object(_actions_stories_actions__WEBPACK_IMPORTED_MODULE_3__["deleteStory"])(id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchtoBanana)(_user__WEBPACK_IMPORTED_MODULE_1__["default"])));
 
 /***/ }),
 
@@ -1639,6 +1844,14 @@ var StoryReducer = function StoryReducer() {
       newState = Object.assign({}, oldState, _defineProperty({}, action.story.id, action.story));
       return newState;
 
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_STORY"]:
+      newState = Object.assign({}, oldState);
+      delete newState[action.storyId];
+      return newState;
+
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER_W_STORIES"]:
+      return action.stories;
+
     default:
       return oldState;
   }
@@ -1676,7 +1889,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -1688,7 +1901,7 @@ var UserReducer = function UserReducer() {
   var newState;
 
   switch (action.type) {
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER_W_STORIES"]:
       newState = Object.assign({}, oldState, _defineProperty({}, action.user.id, {
         id: action.user.id,
         email: action.user.email
@@ -1883,7 +2096,7 @@ var deleteSession = function deleteSession() {
 /*!****************************************!*\
   !*** ./frontend/utils/stories_util.js ***!
   \****************************************/
-/*! exports provided: fetchStories, fetchStory, createStory */
+/*! exports provided: fetchStories, fetchStory, createStory, deleteStory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1891,6 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStories", function() { return fetchStories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStory", function() { return createStory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteStory", function() { return deleteStory; });
 var fetchStories = function fetchStories() {
   return $.ajax({
     method: "GET",
@@ -1912,6 +2126,38 @@ var createStory = function createStory(formData) {
     processData: false
   });
 };
+var deleteStory = function deleteStory(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "api/stories/".concat(id)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/utils/users_util.js":
+/*!**************************************!*\
+  !*** ./frontend/utils/users_util.js ***!
+  \**************************************/
+/*! exports provided: fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+var fetchUser = function fetchUser(id) {
+  return $.ajax({
+    method: "GET",
+    url: "api/users/".concat(id)
+  });
+}; // export const deleteUser = (id) => {
+//     return(
+//         $.ajax({
+//             method:"DELETE",
+//             url: `api/users/${id}`
+//         })
+//     )
+// }
 
 /***/ }),
 

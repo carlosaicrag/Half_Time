@@ -13,15 +13,14 @@ const App = () => (
         <Modal />
         <header className="header">
             <Link to="/" className="header-link">
-                HalfTime
+                TheOcho
             </Link>
             <HeaderContainer />
         </header>
         <Switch>
             <Route exact path="/" component={HomeFeedContainer}/>
-            {/* <Route path="/new" component={CreateStoryContainer}/> */}
-            <ProtectedRoute exact path="/new" component={CreateStoryContainer}/>
-            <ProtectedRoute exact path="/users/:userid" component={UserContainer}/>
+            <ProtectedRoute path="/new" component={CreateStoryContainer}/>
+            <ProtectedRoute path="/users/:userid" component={UserContainer}/>
             <ProtectedRoute exact path="/:storyId" component={StoryShowContainer}/>
         </Switch>
     </div>
