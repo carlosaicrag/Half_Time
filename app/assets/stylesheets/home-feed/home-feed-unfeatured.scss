@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    align-content: space-between
+    align-content: space-between;
+    // background-color:yellow;
 }
 
 .unfeatured .story-home-feed .story-image-home-feed{
@@ -17,7 +18,7 @@
 .unfeatured .story-details-home-feed{
     display: flex;
     flex-direction: column;
-    height: 100px;
+    // height: 100px;
     justify-content: space-between;
     margin: 0 0 30px;
     // background-color: red;
@@ -30,10 +31,20 @@
     font-size: 13px;
     color: rgba(138, 138, 138, 0.82);
     position: relative;
-    bottom: 90px;
+    bottom: 20px;
+    text-decoration: none;
+    // background-color: yellow;
 }
 
 .unfeatured .story-details-title-home-feed{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
+    text-decoration: none;
+    color:black
+    // background-color:purple;
+}
+
+.unfeatured .story-details-user{
+    position: relative;
+    bottom: 40px;
 }

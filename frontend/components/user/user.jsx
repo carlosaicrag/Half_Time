@@ -1,15 +1,25 @@
 import React from 'react'
+import StoryCurrentUser from "./story_current_user"
 import StoryUser from "./story_user"
 import StoryUserContainer from "./story_user_container"
 
 class User extends React.Component{
     constructor(props){
         super(props)
-        this.state = {currentUser:this.props.currentUser,loading:true}
+        this.state = {user:this.props.user,loading:true,currentUser:this.props.currentUser}
     }
 
     componentDidMount(){
-        this.props.fetchUser(this.state.currentUser.id).then(() => this.setState({loading:false}));
+        let userId = this.props.match.params.userid;
+        this.props.fetchUser(userId).then(() => this.setState({loading:false}));
+    }
+
+    checkIfCurrentUser(){
+        if (this.props.user.id !== parseInt(this.props.currentUser.id)){
+            return false
+        }else{
+            return true;
+        } 
     }
 
     render(){
@@ -18,21 +28,44 @@ class User extends React.Component{
                 <h1>loading</h1>
             )
         }
-        let stories = this.props.stories.map(story =>{
-            return(
-                <StoryUser 
-                    key={story.id}
-                    story={story}
-                    match={this.props.match}
-                    deleteStory= {this.props.deleteStory}
-                />
-            )
+
+        let profileType;
+        if(this.checkIfCurrentUser()){
+            profileType = "Your Stories"
+
+        }else{
+
+            profileType = "Their Stories"
+        }
+        
+
+        let stories = this.props.stories.map(story => {
+            // let that=this;
+            if( () => this.checkIfCurrentUser()){
+                return (
+                    <StoryUser
+                        key={story.id}
+                        story={story}
+                        match={this.props.match}
+                    />
+                )
+            }else{
+                return(
+                    <StoryCurrentUser 
+                        key={story.id}
+                        story={story}
+                        match={this.props.match}
+                        deleteStory= {this.props.deleteStory}
+                    />
+                )
+            }
+
         })
 
         return(
             <div className="user-profile-stories-container">
                 <div className="user-profile-title-container">
-                    <div className="user-profile-title">Your Stories</div>
+                    <div className="user-profile-title">{profileType}</div>
                 </div>
 
                 <StoryUserContainer 

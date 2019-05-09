@@ -221,10 +221,10 @@ var RECEIVE_STORIES = "RECEIVE_STORIES";
 var RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES";
 var REMOVE_STORY = "REMOVE_STORY";
 
-var receiveStory = function receiveStory(payload) {
+var receiveStory = function receiveStory(story) {
   return {
     type: RECEIVE_STORY,
-    story: payload.story
+    story: story
   };
 };
 
@@ -688,11 +688,9 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
   var story = props.story,
       users = props.users;
   var user;
-  debugger;
 
   for (var i = 0; i < users.length; i++) {
     if (users[i].id === story.author_id) {
-      debugger;
       user = users[i];
     }
   }
@@ -706,16 +704,18 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
     className: "story-image-home-feed",
     src: story.photoUrl,
     alt: story.title
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/stories/".concat(story.id),
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/stories/".concat(story.id),
     className: "story-details-title-home-feed"
-  }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/stories/".concat(story.id),
     className: "story-details-body-home-feed"
-  }, story.body.slice(0, 100), "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "users/".concat(user.id)
-  }, user.email));
+  }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "users/".concat(user.id),
+    className: "story-details-user"
+  }, user.email)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);
@@ -1250,7 +1250,7 @@ function (_React$Component) {
       }
 
       this.props.action(formData, this.state.id).then(function (res) {
-        _this4.props.history.push("/".concat(res.story.id));
+        _this4.props.history.push("/stories/".concat(res.story.id));
       });
     }
   }, {
@@ -1523,10 +1523,10 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/user/story_user.jsx":
-/*!*************************************************!*\
-  !*** ./frontend/components/user/story_user.jsx ***!
-  \*************************************************/
+/***/ "./frontend/components/user/story_current_user.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/user/story_current_user.jsx ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1538,7 +1538,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var StoryUser = function StoryUser(props) {
+var StoryCurrentUser = function StoryCurrentUser(props) {
   var story = props.story,
       match = props.match,
       deleteStory = props.deleteStory;
@@ -1562,6 +1562,46 @@ var StoryUser = function StoryUser(props) {
   }, "delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/stories/".concat(story.id, "/edit")
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Update")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryCurrentUser);
+
+/***/ }),
+
+/***/ "./frontend/components/user/story_user.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/user/story_user.jsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var StoryUser = function StoryUser(props) {
+  var story = props.story;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-user-profile"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/stories/".concat(story.id),
+    className: "story-image-user-profile-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "story-image-user-profile",
+    src: story.photoUrl,
+    alt: story.title
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/stories/".concat(story.id),
+    className: "story-details-user-profile"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-title-user-profile"
+  }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-body-user-profile"
+  }, story.body.slice(0, 100), "...")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StoryUser);
@@ -1603,8 +1643,9 @@ var StoryUserContainer = function StoryUserContainer(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _story_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./story_user */ "./frontend/components/user/story_user.jsx");
-/* harmony import */ var _story_user_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./story_user_container */ "./frontend/components/user/story_user_container.jsx");
+/* harmony import */ var _story_current_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./story_current_user */ "./frontend/components/user/story_current_user.jsx");
+/* harmony import */ var _story_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./story_user */ "./frontend/components/user/story_user.jsx");
+/* harmony import */ var _story_user_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./story_user_container */ "./frontend/components/user/story_user_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1627,6 +1668,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var User =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1639,8 +1681,9 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(User).call(this, props));
     _this.state = {
-      currentUser: _this.props.currentUser,
-      loading: true
+      user: _this.props.user,
+      loading: true,
+      currentUser: _this.props.currentUser
     };
     return _this;
   }
@@ -1650,11 +1693,21 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchUser(this.state.currentUser.id).then(function () {
+      var userId = this.props.match.params.userid;
+      this.props.fetchUser(userId).then(function () {
         return _this2.setState({
           loading: false
         });
       });
+    }
+  }, {
+    key: "checkIfCurrentUser",
+    value: function checkIfCurrentUser() {
+      if (this.props.user.id !== parseInt(this.props.currentUser.id)) {
+        return false;
+      } else {
+        return true;
+      }
     }
   }, {
     key: "render",
@@ -1665,13 +1718,32 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "loading");
       }
 
+      var profileType;
+
+      if (this.checkIfCurrentUser()) {
+        profileType = "Your Stories";
+      } else {
+        profileType = "Their Stories";
+      }
+
       var stories = this.props.stories.map(function (story) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          key: story.id,
-          story: story,
-          match: _this3.props.match,
-          deleteStory: _this3.props.deleteStory
-        });
+        // let that=this;
+        if (function () {
+          return _this3.checkIfCurrentUser();
+        }) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            key: story.id,
+            story: story,
+            match: _this3.props.match
+          });
+        } else {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_current_user__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: story.id,
+            story: story,
+            match: _this3.props.match,
+            deleteStory: _this3.props.deleteStory
+          });
+        }
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile-stories-container"
@@ -1679,7 +1751,7 @@ function (_React$Component) {
         className: "user-profile-title-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile-title"
-      }, "Your Stories")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, profileType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         stories: stories
       }));
     }
@@ -1712,8 +1784,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var userId = ownProps.match.params.userid;
+  var user = state.entities.users[userId];
   return {
+    user: user,
     currentUser: state.session.currentUser,
     stories: Object.values(state.entities.stories)
   };

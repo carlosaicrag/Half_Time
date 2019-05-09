@@ -27,7 +27,6 @@ class StoryShow extends React.Component {
                         </div>
                         <div className="story-show-details-date-star">
                             <div className="date">Date</div>
-                            {/* <div className="star-logo">*</div> */}
                         </div>
                     </div>
                 </div>
