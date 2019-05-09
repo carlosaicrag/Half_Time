@@ -1510,9 +1510,7 @@ function (_React$Component) {
         alt: this.props.story.title
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-body"
-      }, this.props.story.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comments"
-      }, "comments"));
+      }, this.props.story.body));
     }
   }]);
 
