@@ -27,7 +27,7 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
             </div>
 
             <div className="get-started">
-                <Link to={`users/${currentUser.id}`} onClick={() => fetchUser(currentUser.id)} className="create-story">Profile</Link>
+                <Link to={`/users/${currentUser.id}`} onClick={() => fetchUser(currentUser.id)} className="create-story">Profile</Link>
             </div>
 
         </div>

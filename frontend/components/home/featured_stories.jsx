@@ -3,7 +3,6 @@ import React from "react"
 const FeaturedStories = props => {
     //these are story_home_feed components
     let { stories } = props;
-
     const leftFeatured = (story) => {
         return(
             <div className="left-featured">

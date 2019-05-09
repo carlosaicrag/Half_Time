@@ -18,10 +18,10 @@ class HomeFeed extends React.Component {
                 <StoryHomeFeedComponent 
                     key={story.id}
                     story={story}
+                    users={this.props.users}
                 />
             )
         })
-        
         return(
             <div className="home-feed">
                 <FeaturedStories stories={stories.slice(0, 5)}/>

@@ -36,3 +36,15 @@ export const deleteStory = (id) => {
         })
     )
 }
+
+export const updateStory = (formData,storyId) => {
+    return(
+        $.ajax({
+            method:"PATCH",
+            url:`api/stories/${storyId}`,
+            data: formData,
+            contentType: false,
+            processData: false
+        })
+    )
+}

@@ -8,14 +8,15 @@ export const REMOVE_STORY = "REMOVE_STORY"
 const receiveStory = (payload) => {
     return({
         type: RECEIVE_STORY,
-        story: payload
+        story: payload.story
     })
 }
 
 const receiveStories = (payload) => {
     return ({
         type: RECEIVE_STORIES,
-        stories: payload.stories
+        stories: payload.stories,
+        users: payload.users,
     })
 }
 
@@ -48,6 +49,12 @@ export const createStory = (story) => (dispatch) => {
 export const deleteStory = (id) => (dispatch) => {
     return(
         StoriesUtil.deleteStory(id).then(story => dispatch(removeStory(story)))
+    )
+}
+
+export const updateStory = (formData,storyId) => (dispatch) => {
+    return(
+        StoriesUtil.updateStory(formData,storyId).then((payload) => dispatch(receiveStory(payload)))
     )
 }
 

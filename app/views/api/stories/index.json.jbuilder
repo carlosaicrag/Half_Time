@@ -7,3 +7,11 @@
 # end
 
 json.partial! "api/stories/index", stories:@stories
+
+json.users do 
+    @stories.each do |story|
+        json.set! story.user.id do 
+            json.extract! story.user, :email,:id
+        end
+    end
+end

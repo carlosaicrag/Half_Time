@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import StoryCreate from "./story_create"
+import StoryForm from "./story_create"
 import { createStory } from "../../actions/stories_actions"
 
 
@@ -7,14 +7,15 @@ const mapStateToBanana = (state) => {
     let currentUserId = parseInt(state.session.currentUser.id);
 
     return({
-        story: {title:"", body:"",imageUrl: "", imageFile: null, author_id:currentUserId}
+        story: {title:"", body:"",imageUrl: "", imageFile: null, author_id:currentUserId},
+        formType: "Create"
     })
 }
 
 const mapDispatchToBanana = (dispatch) => {
     return({
-        createStory: (story) => dispatch(createStory(story))
+        action: (story) => dispatch(createStory(story))
     })
 }
 
-export default connect(mapStateToBanana,mapDispatchToBanana)(StoryCreate)
+export default connect(mapStateToBanana,mapDispatchToBanana)(StoryForm)

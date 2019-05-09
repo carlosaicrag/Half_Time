@@ -6,6 +6,7 @@ import HeaderContainer from "./header/header_container"
 import HomeFeedContainer from "../components/home/home_feed_container"
 import StoryShowContainer from "../components/story/story_container"
 import CreateStoryContainer from "../components/story/story_create_container"
+import EditStoryContainer from "../components/story/story_edit_container"
 import UserContainer from "./user/user_container"
 
 const App = () => (
@@ -21,7 +22,8 @@ const App = () => (
             <Route exact path="/" component={HomeFeedContainer}/>
             <ProtectedRoute path="/new" component={CreateStoryContainer}/>
             <ProtectedRoute path="/users/:userid" component={UserContainer}/>
-            <ProtectedRoute exact path="/:storyId" component={StoryShowContainer}/>
+            <ProtectedRoute path="/stories/:storyId/edit" component={EditStoryContainer}/>
+            <ProtectedRoute exact path="/stories/:storyId" component={StoryShowContainer}/>
         </Switch>
     </div>
 );

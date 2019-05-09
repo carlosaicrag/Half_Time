@@ -5,7 +5,8 @@ import HomeFeed from "./home_feed"
 
 const mapStateToBanana = state => {
     return({
-        stories: Object.values(state.entities.stories)        
+        stories: Object.values(state.entities.stories),
+        users: Object.values(state.entities.users)        
     })
 }
 
