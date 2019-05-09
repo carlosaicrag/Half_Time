@@ -19,6 +19,10 @@ class User < ApplicationRecord
         foreign_key: :author_id,
         class_name: "Story"
 
+    has_many :stories,
+        foreign_key: :user_id,
+        class_name: "Like"
+
     attr_reader :password
     after_initialize :ensure_session_token 
 

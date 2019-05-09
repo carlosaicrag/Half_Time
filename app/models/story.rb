@@ -15,5 +15,9 @@ class Story < ApplicationRecord
         foreign_key: :author_id,
         class_name: "User"
 
+    has_many :likes,
+        foreign_key: :story_id,
+        class_name: "Like"
+
     has_one_attached :photo
 end
