@@ -25,7 +25,7 @@ img_files = ["https://s3-us-west-1.amazonaws.com/halftime-seed-dev/abigail-keena
 "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/geoff-scott-124251-unsplash.jpg",
 "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/greyson-joralemon-546002-unsplash.jpg"]
 
-(1...10).each do |num|
+(1..10).each do |num|
     User.create(email:Faker::Name.unique.name,password:"password")
     story = Story.create(title:Faker::Lorem.unique.sentence,body:Faker::Lorem.paragraph(1000), author_id:num)
     file = open(img_files.shift)
