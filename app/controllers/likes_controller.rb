@@ -14,6 +14,6 @@ class LikesController < ApplicationController
 
     private 
     def likes_params
-        params.require.(:user).
+        # params.requiherokure.(:user).
     end
 end
