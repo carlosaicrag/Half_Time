@@ -13,6 +13,11 @@ class HomeFeed extends React.Component {
     }
 
     render(){
+
+        // if(this.props.stories.length === 0 ){
+        //     return null;
+        // }
+
         let stories = this.props.stories.map((story)=>{
             return(
                 <StoryHomeFeedComponent 

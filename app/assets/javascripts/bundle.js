@@ -610,6 +610,9 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      // if(this.props.stories.length === 0 ){
+      //     return null;
+      // }
       var stories = this.props.stories.map(function (story) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: story.id,
@@ -2109,6 +2112,7 @@ var UserReducer = function UserReducer() {
       return newState;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORIES"]:
+      debugger;
       return action.users;
 
     default:
