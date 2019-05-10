@@ -27,6 +27,7 @@ class HomeFeed extends React.Component {
                 />
             )
         })
+
         return(
             <div className="home-feed">
                 <FeaturedStories stories={stories.slice(0, 5)}/>

@@ -1704,7 +1704,9 @@ function (_React$Component) {
   }, {
     key: "checkIfCurrentUser",
     value: function checkIfCurrentUser() {
-      if (this.props.user.id !== parseInt(this.props.currentUser.id)) {
+      debugger;
+
+      if (this.props.match.params.userid !== this.props.currentUser.id) {
         return false;
       } else {
         return true;
@@ -1729,9 +1731,7 @@ function (_React$Component) {
 
       var stories = this.props.stories.map(function (story) {
         // let that=this;
-        if (function () {
-          return _this3.checkIfCurrentUser();
-        }) {
+        if (!_this3.checkIfCurrentUser()) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user__WEBPACK_IMPORTED_MODULE_2__["default"], {
             key: story.id,
             story: story,
@@ -2112,7 +2112,6 @@ var UserReducer = function UserReducer() {
       return newState;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORIES"]:
-      debugger;
       return action.users;
 
     default:
@@ -28130,7 +28129,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

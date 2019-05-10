@@ -15,7 +15,8 @@ class User extends React.Component{
     }
 
     checkIfCurrentUser(){
-        if (this.props.user.id !== parseInt(this.props.currentUser.id)){
+        debugger
+        if (this.props.match.params.userid !== this.props.currentUser.id){
             return false
         }else{
             return true;
@@ -41,7 +42,7 @@ class User extends React.Component{
 
         let stories = this.props.stories.map(story => {
             // let that=this;
-            if( () => this.checkIfCurrentUser()){
+            if( !this.checkIfCurrentUser()){
                 return (
                     <StoryUser
                         key={story.id}
@@ -61,7 +62,6 @@ class User extends React.Component{
             }
 
         })
-
         return(
             <div className="user-profile-stories-container">
                 <div className="user-profile-title-container">

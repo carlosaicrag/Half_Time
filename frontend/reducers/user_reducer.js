@@ -11,7 +11,6 @@ const UserReducer = (oldState={},action) => {
             newState = Object.assign({},oldState, {[action.user.id]:{id:action.user.id,email:action.user.email}})
             return newState
         case RECEIVE_STORIES:
-        debugger
             return action.users;
         default: 
             return oldState;
