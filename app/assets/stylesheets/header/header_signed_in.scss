@@ -1,46 +1,56 @@
-.header-name{
-    font-size: 13px;
-    color: #03a97d;
-    cursor: pointer;
-}
+.logout-create-story-profile{
+    display:flex;
+    justify-content: space-between;
+    // background-color: yellow;
+    width: 300px;
 
-.header-name:hover{
-    color: #01916b;
-    border-color: #01916b; 
-}
+    .logout-container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        color: #03a87c;
+        cursor: pointer;
+        // background-color: purple;
+    }
 
-.header-button{
-    height: 37px;
-    width: 105px;
-    border-radius: 3px;
-    border-color:#03a87c;
-    color:#03a87c;
-    background: white;
-    font-size: 13px;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-}
+    .logout:hover{
+        color:#018e68;
+    }
 
-.header-button:hover{
-    color: #01916b;
-    border-color: #01916b;
-}
+    .create-story{
+        text-decoration: none;
+        color:#03a87c;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        // background: gray;
+    }
 
-.header-create-link{
-    text-decoration: none;
-    font-size:13px;
-    text-align: center;
-}
+    .create-story:hover{
+        color:#018e68;
+    }
 
-.header-create-link-wrapper{
-    border: 1px solid #03a87c;
-    border-radius: 3px;
-    height: 37px;
-    width: 105px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    cursor: pointer;
+    .profile-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background-color:blue;
+        height: 37px;
+        width: 105px;
+        text-decoration: none;
+        border: 1px solid #03a87c;
+        border-radius: 3px;
+
+        .profile{
+            color: #03a87c;
+        }
+
+        .profile:hover{
+            color:#018e68
+        }
+    }
+
+    .profile-container:hover{
+        color: #018e68;
+    }
 }

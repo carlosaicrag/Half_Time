@@ -5,9 +5,18 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
     const sessionLinks = () => (
         <nav className ="login-signup">
             {/* <div>Become a member</div> */}
-            <div className="login">
-                <a src="#" onClick={() => openModal("login")}>Log In</a>
+            <div className="magnify-icon">
+                <i class="fas fa-search"></i>
             </div>
+
+            <div className="become-a-member">
+                Become a member
+            </div>
+
+            <div className="login">
+                <a src="#" onClick={() => openModal("login")}>Sign In</a>
+            </div>
+
             <div className="get-started">
                 <a onClick={() => openModal("signup")}>Get Started</a>
             </div>
@@ -16,20 +25,19 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
 
     const welcomeUser = (currentUser, logout) => {
         return(
-        <div className="login-signup">
+        <div className="logout-create-story-profile">
 
-            <div className="login">
-                <a src="#" onClick={logout}>Log Out</a>
+            <div className="logout-container">
+                <a src="#" className="logout" onClick={logout}>Log Out</a>
             </div>
 
-            <div className="get-started">
-                <Link to="/new" className="create-story">Create Story</Link>
-            </div>
+            <Link to="/new" className="create-story">Create Story</Link>
 
-            <div className="get-started">
-                <Link to={`/users/${currentUser.id}`} onClick={() => fetchUser(currentUser.id)} className="create-story">Profile</Link>
-            </div>
-
+            <Link to={`/users/${currentUser.id}`} onClick={() => fetchUser(currentUser.id)} className="profile-container">
+                <div className="profile">
+                    Profile
+                </div> 
+            </Link>
         </div>
         )
     }

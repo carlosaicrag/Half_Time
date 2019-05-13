@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Playfair Display', serif;
+
 }
 
 .featured{
@@ -16,14 +18,9 @@
     border-bottom: 1px solid lightgray
 }
 
-.unfeatured{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-content: space-between;
-    // background-color: green;
-    width: 1038px;
 
+.home-categories{
+    color: black;
 }
 
 .story-details-home-feed{

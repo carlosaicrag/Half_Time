@@ -1,50 +1,78 @@
-.unfeatured .story-home-feed{
+.unfeatured-container{
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    align-content: space-between;
-    // background-color:yellow;
-}
-
-.unfeatured .story-home-feed .story-image-home-feed{
-    // background-color: yellow;
-    width: 150px;
-    height: 150px;
-    position: relative;
-    object-fit: cover;
-    left: 30px;
-}
-
-.unfeatured .story-details-home-feed{
-    display: flex;
-    flex-direction: column;
-    // height: 100px;
+    // flex-direction: column;
+    justify-content: center;
     justify-content: space-between;
-    margin: 0 0 30px;
-    // background-color: red;
-    height: 150px;
+    // background-color: green;
+    width: 1038px;
+
+    .unfeatured-stories{
+        width:650px;
+        background-color: green;
+
+        .story-home-feed{
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            align-content: space-between;
+            // background-color:yellow;
+        }
+        
+        .story-home-feed .story-image-home-feed{
+            // background-color: yellow;
+            width: 150px;
+            height: 150px;
+            position: relative;
+            object-fit: cover;
+            left: 30px;
+        }
+        
+        .story-details-home-feed{
+            display: flex;
+            flex-direction: column;
+            // height: 100px;
+            justify-content: space-between;
+            margin: 0 0 30px;
+            // background-color: red;
+            height: 150px;
+        }
+        
+        .story-details-body-home-feed{
+            width: 450px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 13px;
+            color: rgba(138, 138, 138, 0.82);
+            position: relative;
+            bottom: 20px;
+            text-decoration: none;
+            // background-color: yellow;
+        }
+        
+        .story-details-title-home-feed{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 16px;
+            text-decoration: none;
+            color:black
+            // background-color:purple;
+        }
+        
+        .story-details-user{
+            position: relative;
+            bottom: 40px;
+        }
+    }
+
+    .unfeatured-popular{
+        width: 328px;
+        height:700px;
+        background-color: blue;
+
+        .title-container{
+            background-color:yellow;
+            font-size: 24px;
+            padding: 0 0 16px;
+            margin: 32px;
+        }
+    }
 }
 
-.unfeatured .story-details-body-home-feed{
-    width: 450px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 13px;
-    color: rgba(138, 138, 138, 0.82);
-    position: relative;
-    bottom: 20px;
-    text-decoration: none;
-    // background-color: yellow;
-}
-
-.unfeatured .story-details-title-home-feed{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 16px;
-    text-decoration: none;
-    color:black
-    // background-color:purple;
-}
-
-.unfeatured .story-details-user{
-    position: relative;
-    bottom: 40px;
-}

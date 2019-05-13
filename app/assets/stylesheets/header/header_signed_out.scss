@@ -3,80 +3,66 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 200px;
-    box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);;
-    // background: blue;
+    font-family: 'Playfair Display', serif;
+    // background-color: red;
     // width: 100%;
+
+    .login-signup{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 350px;
+        // background-color: blue;
+
+        .magnify-icon{
+            cursor: pointer;
+        }
+
+        .become-a-member{
+            // background-color:purple;
+            font-size: 16px;
+            color:rgba(165, 165, 165, 0.82);
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .become-a-member:hover{
+            color: rgba(94, 93, 93, 0.82)
+        }
+
+        .login{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: #03a87c;
+        }
+        
+        .login :hover{
+            color: #018e68;
+        }
+
+        .get-started{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 37px;
+            width: 105px;
+            // background-color: red;
+            cursor:pointer;
+            border: 1px solid #03a87c;
+            border-radius: 3px;
+            color: #03a87c;
+            // font-family: Georgia, 'Times New Roman', Times, serif;
+        
+        }
+
+        .get-started:hover{
+            color: #018e68;
+            border-color: #018e68;    
+        }
+    }
 }
 
-.login-signup{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 350px;
-    // background-color: blue;
-}
-
-.login{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 37px;
-    width: 105px;
-    // background-color: red;
-    cursor: pointer;
-    border: 1px solid #03a87c;
-    border-radius: 3px;
-    color: #03a87c;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.get-started{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 37px;
-    width: 105px;
-    // background-color: red;
-    cursor:pointer;
-    border: 1px solid #03a87c;
-    border-radius: 3px;
-    color: #03a87c;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-
-}
-
-.logout-create{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 250px;
-    background-color: blue;
-}
-
-.header-link{
-    display: block;
-    text-decoration: none;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: 30px;
-    outline: none;
-    color: black;
-    
-}
-
-.get-started:hover{
-    color: #01916b;
-    border-color: #01916b;
-}
-
-.login :hover{
-    color: #01916b;
-    border-color: #01916b;
-}
-
-.create-story{
-    text-decoration: none;
-    color: #03a87c;
-}
 
 

@@ -31,9 +31,9 @@ class User extends React.Component{
         }
 
         let profileType;
+        debugger
         if(this.checkIfCurrentUser()){
             profileType = "Your Stories"
-
         }else{
 
             profileType = "Their Stories"

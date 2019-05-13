@@ -4,17 +4,26 @@ import React from "react"
 class StoryShow extends React.Component {
     constructor(props){
         super(props)
+
+        this.handleLike = this.handleLike.bind(this)
     }
 
     componentDidMount(){
         this.props.fetchStory(this.props.match.params.storyId);
     }
 
+    handleLike(){
+        // let currentUser = this.props.story.authorId;
+        let storyId = this.props.story.id
+        this.props.createLike(storyId)
+    }
+
     render(){
         if(!this.props.story) return null
-
         return(
             <div className="story-show">
+                <div onClick={this.handleLike}>Like</div>
+
                 <div className="story-show-details-title">{this.props.story.title}</div>
 
                 <div className="story-show-author">
