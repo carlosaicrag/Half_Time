@@ -6,6 +6,7 @@ class StoryShow extends React.Component {
         super(props)
 
         this.handleLike = this.handleLike.bind(this)
+        this.liked = this.liked.bind(this)
     }
 
     componentDidMount(){
@@ -14,15 +15,38 @@ class StoryShow extends React.Component {
 
     handleLike(){
         // let currentUser = this.props.story.authorId;
-        let storyId = this.props.story.id
-        this.props.createLike(storyId)
+        let storyId = this.props.story.id;
+
+        if(this.liked()){
+            this.props.removeLike(storyId)
+        } else{
+            this.props.createLike(storyId)
+        }
+    }
+
+    liked(){
+        for(let i = 0; i < this.props.likes.length; i++){
+            if(this.props.likes[i].user_id === parseInt(this.props.currentUser.id)){
+                return true
+            }
+        }
+        return false
+
     }
 
     render(){
-        if(!this.props.story) return null
+        if(!this.props.story) return null;
+        let likeDescription; 
+
+        if(this.liked()){
+            likeDescription = "Unlike"
+        }else{
+            likeDescription = "like"
+        }
+
         return(
             <div className="story-show">
-                <div onClick={this.handleLike}>Like</div>
+                <div onClick={this.handleLike} >{likeDescription}</div>
 
                 <div className="story-show-details-title">{this.props.story.title}</div>
 

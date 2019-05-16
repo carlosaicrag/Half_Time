@@ -5,19 +5,16 @@ if(story.photo.attached?)
 else
     json.photoUrl ""    
 end
-
 if(story.likes.length != 0)
     json.likes do 
         story.likes.each do |like|
             json.set! like.id do
-                json.extract! like, :id, :user_id, :user_id 
+                json.extract! like, :id, :user_id, :story_id 
             end
 
         end
-    end
-    
+    end  
 else
-
-    return ""
+    json.likes ""
 
 end

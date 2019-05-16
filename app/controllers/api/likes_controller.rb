@@ -18,9 +18,10 @@ class Api::LikesController < ApplicationController
     end
 
     def destroy 
+
         @like = current_user.likes.find_by(story_id: params[:id]) 
         @like.destroy
-        render "api/stories/show"
+        render "api/likes/show"
     end
 
     private 

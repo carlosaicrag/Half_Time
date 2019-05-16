@@ -5,10 +5,11 @@ export const RECEIVE_STORIES = "RECEIVE_STORIES"
 export const RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES"
 export const REMOVE_STORY = "REMOVE_STORY"
 
-const receiveStory = (story) => {
+const receiveStory = (payload) => {
     return({
         type: RECEIVE_STORY,
-        story: story
+        story: payload.story,
+        likes: payload.story.likes
     })
 }
 

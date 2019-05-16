@@ -7,3 +7,12 @@ export const createLike = (storyId) =>{
         })
     )
 }
+
+export const removeLike = (storyId) =>{
+    return(
+        $.ajax({
+            method: "DELETE",
+            url:`api/likes/${storyId}`
+        })
+    )
+}

@@ -15,7 +15,6 @@ class User extends React.Component{
     }
 
     checkIfCurrentUser(){
-        debugger
         if (this.props.match.params.userid !== this.props.currentUser.id){
             return false
         }else{
@@ -31,7 +30,7 @@ class User extends React.Component{
         }
 
         let profileType;
-        debugger
+        
         if(this.checkIfCurrentUser()){
             profileType = "Your Stories"
         }else{

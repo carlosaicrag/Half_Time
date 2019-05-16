@@ -90,16 +90,19 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/likes_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_LIKE, createLike */
+/*! exports provided: RECEIVE_LIKE, REMOVE_LIKE, createLike, deleteLike */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKE", function() { return RECEIVE_LIKE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIKE", function() { return REMOVE_LIKE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLike", function() { return createLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLike", function() { return deleteLike; });
 /* harmony import */ var _utils_likes_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/likes_util */ "./frontend/utils/likes_util.js");
 
 var RECEIVE_LIKE = "RECEIVE_LIKE";
+var REMOVE_LIKE = "REMOVE_LIKE";
 
 var receiveLike = function receiveLike(like) {
   return {
@@ -110,10 +113,24 @@ var receiveLike = function receiveLike(like) {
   };
 };
 
+var removeLike = function removeLike(like) {
+  return {
+    type: REMOVE_LIKE,
+    likeId: like.id
+  };
+};
+
 var createLike = function createLike(like) {
   return function (dispatch) {
     return _utils_likes_util__WEBPACK_IMPORTED_MODULE_0__["createLike"](like).then(function (like) {
       return dispatch(receiveLike(like));
+    });
+  };
+};
+var deleteLike = function deleteLike(storyId) {
+  return function (dispatch) {
+    return _utils_likes_util__WEBPACK_IMPORTED_MODULE_0__["removeLike"](storyId).then(function (like) {
+      return dispatch(removeLike(like));
     });
   };
 };
@@ -255,10 +272,11 @@ var RECEIVE_STORIES = "RECEIVE_STORIES";
 var RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES";
 var REMOVE_STORY = "REMOVE_STORY";
 
-var receiveStory = function receiveStory(story) {
+var receiveStory = function receiveStory(payload) {
   return {
     type: RECEIVE_STORY,
-    story: story
+    story: payload.story,
+    likes: payload.story.likes
   };
 };
 
@@ -1269,8 +1287,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToBanana = function mapStateToBanana(state, ownProps) {
   var story = state.entities.stories[ownProps.match.params.storyId];
+  var likes = Object.values(state.entities.likes);
   return {
-    story: story
+    story: story,
+    likes: likes,
+    currentUser: state.session.currentUser
   };
 };
 
@@ -1281,6 +1302,9 @@ var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
     },
     createLike: function createLike(storyId) {
       return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_3__["createLike"])(storyId));
+    },
+    removeLike: function removeLike(storyId) {
+      return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_3__["deleteLike"])(storyId));
     }
   };
 };
@@ -1613,6 +1637,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(StoryShow).call(this, props));
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
+    _this.liked = _this.liked.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1626,17 +1651,41 @@ function (_React$Component) {
     value: function handleLike() {
       // let currentUser = this.props.story.authorId;
       var storyId = this.props.story.id;
-      this.props.createLike(storyId);
+
+      if (this.liked()) {
+        this.props.removeLike(storyId);
+      } else {
+        this.props.createLike(storyId);
+      }
+    }
+  }, {
+    key: "liked",
+    value: function liked() {
+      for (var i = 0; i < this.props.likes.length; i++) {
+        if (this.props.likes[i].user_id === parseInt(this.props.currentUser.id)) {
+          return true;
+        }
+      }
+
+      return false;
     }
   }, {
     key: "render",
     value: function render() {
       if (!this.props.story) return null;
+      var likeDescription;
+
+      if (this.liked()) {
+        likeDescription = "Unlike";
+      } else {
+        likeDescription = "like";
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.handleLike
-      }, "Like"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, likeDescription), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-title"
       }, this.props.story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-author"
@@ -1852,8 +1901,6 @@ function (_React$Component) {
   }, {
     key: "checkIfCurrentUser",
     value: function checkIfCurrentUser() {
-      debugger;
-
       if (this.props.match.params.userid !== this.props.currentUser.id) {
         return false;
       } else {
@@ -1870,7 +1917,6 @@ function (_React$Component) {
       }
 
       var profileType;
-      debugger;
 
       if (this.checkIfCurrentUser()) {
         profileType = "Your Stories";
@@ -2075,6 +2121,13 @@ var likesReducer = function likesReducer() {
       return newState;
 
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_STORY"]:
+      return action.likes;
+
+    case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LIKE"]:
+      newState = Object.assign({}, oldState);
+      delete newState[action.likeId];
+      return newState;
+
     default:
       return oldState;
   }
@@ -2374,12 +2427,13 @@ var thunk = function thunk(_ref) {
 /*!**************************************!*\
   !*** ./frontend/utils/likes_util.js ***!
   \**************************************/
-/*! exports provided: createLike */
+/*! exports provided: createLike, removeLike */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLike", function() { return createLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeLike", function() { return removeLike; });
 var createLike = function createLike(storyId) {
   return $.ajax({
     method: "POST",
@@ -2387,6 +2441,12 @@ var createLike = function createLike(storyId) {
     data: {
       storyId: storyId
     }
+  });
+};
+var removeLike = function removeLike(storyId) {
+  return $.ajax({
+    method: "DELETE",
+    url: "api/likes/".concat(storyId)
   });
 };
 
