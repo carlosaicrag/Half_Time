@@ -46,7 +46,11 @@ class StoryShow extends React.Component {
 
         return(
             <div className="story-show">
-                <div onClick={this.handleLike} >{likeDescription}</div>
+                <div onClick={this.handleLike} className="liked-container">
+                    <div className="liked">
+                        {likeDescription}
+                    </div>
+                </div>
 
                 <div className="story-show-details-title">{this.props.story.title}</div>
 
