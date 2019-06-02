@@ -2,14 +2,15 @@ import * as StoriesUtil from "../utils/stories_util"
 
 export const RECEIVE_STORY = "RECEIVE_STORY"
 export const RECEIVE_STORIES = "RECEIVE_STORIES"
-export const RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES"
 export const REMOVE_STORY = "REMOVE_STORY"
 
 const receiveStory = (payload) => {
     return({
         type: RECEIVE_STORY,
         story: payload.story,
-        likes: payload.story.likes
+        likes: payload.story.likes,
+        user: payload.story.user,
+        follows: payload.story.follows
     })
 }
 

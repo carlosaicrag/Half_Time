@@ -22,6 +22,22 @@ class User < ApplicationRecord
     has_many :likes,
         foreign_key: :user_id,
         class_name: "Like"
+    
+    has_many :followers_id,
+        foreign_key: :followee_id,
+        class_name: "Follow"
+
+    has_many :followees_id,
+        foreign_key: :follower_id,
+        class_name: "Follow"
+
+    has_many :followers, 
+        through: :followers_id,
+        source: :follower
+
+    has_many :followees, 
+        through: :followees_id, 
+        source: :followee
 
     attr_reader :password
     after_initialize :ensure_session_token 

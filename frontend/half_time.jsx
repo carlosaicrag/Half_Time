@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+    
     const store = configureStore(preloadedState)
     window.store = store
 

@@ -1,4 +1,5 @@
 import React from "react"
+import { timingSafeEqual } from "crypto";
 
 
 class StoryShow extends React.Component {
@@ -7,6 +8,8 @@ class StoryShow extends React.Component {
 
         this.handleLike = this.handleLike.bind(this)
         this.liked = this.liked.bind(this)
+        this.followed = this.followed.bind(this)
+        this.handleFollow = this.handleFollow.bind(this)
     }
 
     componentDidMount(){
@@ -24,9 +27,29 @@ class StoryShow extends React.Component {
         }
     }
 
+    handleFollow(){
+        let followeeId = this.props.story.authorId
+        if(this.followed()){
+            this.props.deleteFollow(followeeId)
+        }else{  
+            this.props.createFollow(followeeId)
+        }
+    }
+
+    followed(){
+        for(let i = 0; i < this.props.follows.length; i++){
+            if(this.props.follows[i].follower_id === parseInt(this.props.currentUser)){
+                return true
+            }
+        }
+
+        return false 
+    }
+
     liked(){
+        
         for(let i = 0; i < this.props.likes.length; i++){
-            if(this.props.likes[i].user_id === parseInt(this.props.currentUser.id)){
+            if(this.props.likes[i].user_id === parseInt(this.props.currentUser)){
                 return true
             }
         }
@@ -37,11 +60,18 @@ class StoryShow extends React.Component {
     render(){
         if(!this.props.story) return null;
         let likeDescription; 
+        let followDescription;
 
         if(this.liked()){
             likeDescription = "Unlike"
         }else{
             likeDescription = "like"
+        }
+
+        if(this.followed()){
+            followDescription = "Unfollow"
+        }else{
+            followDescription = "Follow"
         }
 
         return(
@@ -60,7 +90,7 @@ class StoryShow extends React.Component {
                     <div className="story-show-author-details">
                         <div className="story-show-details-name-follow">
                             <div className="story-show-name">Name</div>
-                            <a src="#" className="follow-button"> <div>Follow</div> </a>
+                            <div onClick={this.handleFollow} className="follow-button"><div>{followDescription}</div></div>
                         </div>
                         <div className="story-show-details-date-star">
                             <div className="date">Date</div>

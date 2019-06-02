@@ -10,6 +10,9 @@
 #
 
 class Like < ApplicationRecord
+    validates :story_id, presence:true
+    validates :user_id, presence:true
+
     belongs_to :user, 
         foreign_key: :user_id,
         class_name: "User"

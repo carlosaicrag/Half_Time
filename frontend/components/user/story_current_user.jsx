@@ -6,9 +6,9 @@ const StoryCurrentUser = (props) => {
     return(
         <div className="story-user-profile">
 
-
+        <Link to={`/stories/${story.id}`} className="story-image-user-profile-container">
             <img className="story-image-user-profile" src={story.photoUrl} alt={story.title} />
-
+        </Link>
 
             <Link to={`/${story.id}`} className="story-details-user-profile">
                 <div className="story-details-title-user-profile">{story.title}</div>

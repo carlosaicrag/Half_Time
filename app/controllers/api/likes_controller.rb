@@ -8,7 +8,6 @@ class Api::LikesController < ApplicationController
         @like = Like.new()
         @like.user_id = current_user.id
         @like.story_id = params[:storyId]
-
         if @like.save
             render "api/likes/show"
         else

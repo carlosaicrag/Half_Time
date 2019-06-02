@@ -3,7 +3,6 @@ import { receiveCurrentUser } from "./session_actions";
 export const RECEIVE_USER = "RECEIVE_CURRENT_USER";
 export const REMOVE_USER = "REMOVE_USER"
 export const RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES"
-export const RECEIVE_STORIES = "RECEIVE_STORIES"
 
 export const receiveUser = (payload) => {
     return({
