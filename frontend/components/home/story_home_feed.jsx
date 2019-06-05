@@ -4,13 +4,18 @@ import { Link } from "react-router-dom"
 const StoryHomeFeed = props => {
     let {story,users} = props;
     let user;
+    
     for(let i = 0; i < users.length; i++){
         if(users[i].id === story.author_id){
             user = users[i];
         }
     }
+    if (story.id === null){
+        return null
+    }
 
     return(
+        
         <div className="story-home-feed">
         
             <Link to={`/stories/${story.id}`} className="story-image-home-feed-container">

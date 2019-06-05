@@ -38,7 +38,6 @@ class User extends React.Component{
             profileType = "Their Stories"
         }
         
-
         let stories = this.props.stories.map(story => {
             // let that=this;
             if( !this.checkIfCurrentUser()){

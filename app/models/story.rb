@@ -21,5 +21,6 @@ class Story < ApplicationRecord
         foreign_key: :story_id,
         class_name: "Like"
 
+
     has_one_attached :photo
 end

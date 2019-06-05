@@ -3,6 +3,11 @@ import { Link } from "react-router-dom"
 
 const StoryCurrentUser = (props) => {
     let {story, match,deleteStory} = props;
+    
+    if(story===undefined){
+        return 
+    }
+
     return(
         <div className="story-user-profile">
 

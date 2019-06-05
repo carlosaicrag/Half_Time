@@ -86,6 +86,55 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/comments_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/comments_actions.js ***!
+  \**********************************************/
+/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, createComment, deleteComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT", function() { return RECEIVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT", function() { return REMOVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+/* harmony import */ var _utils_comments_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/comments_util */ "./frontend/utils/comments_util.js");
+
+var RECEIVE_COMMENT = "RECEIVE_COMMENT";
+var REMOVE_COMMENT = "REMOVE_COMMENT";
+
+var receiveComment = function receiveComment(comment) {
+  return {
+    type: RECEIVE_COMMENT,
+    comment: comment
+  };
+};
+
+var removeComment = function removeComment(comment) {
+  return {
+    type: REMOVE_COMMENT,
+    commentId: comment.Id
+  };
+};
+
+var createComment = function createComment(comment) {
+  return function (dispatch) {
+    _utils_comments_util__WEBPACK_IMPORTED_MODULE_0__["createComment"](comment).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var deleteComment = function deleteComment(commentId) {
+  return function (dispatch) {
+    _utils_comments_util__WEBPACK_IMPORTED_MODULE_0__["removeComment"](commentId).then(function (comment) {
+      return dispatch(removeComment(comment));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/follows_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/follows_actions.js ***!
@@ -400,12 +449,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_actions */ "./frontend/actions/session_actions.js");
 
 
-var RECEIVE_USER = "RECEIVE_CURRENT_USER";
+var RECEIVE_USER = "RECEIVE_USER";
 var REMOVE_USER = "REMOVE_USER";
 var RECEIVE_USER_W_STORIES = "RECEIVE_USER_W_STORIES";
 var receiveUser = function receiveUser(payload) {
   return {
-    type: RECEIVE_USER_W_STORIES,
+    type: RECEIVE_USER,
     user: payload.user,
     stories: payload.stories
   };
@@ -743,9 +792,10 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      // if(this.props.stories.length === 0 ){
-      //     return null;
-      // }
+      if (this.props.stories.length === 1) {
+        return null;
+      }
+
       var stories = this.props.stories.map(function (story) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: story.id,
@@ -829,6 +879,10 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
     if (users[i].id === story.author_id) {
       user = users[i];
     }
+  }
+
+  if (story.id === null) {
+    return null;
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1834,6 +1888,11 @@ var StoryCurrentUser = function StoryCurrentUser(props) {
   var story = props.story,
       match = props.match,
       deleteStory = props.deleteStory;
+
+  if (story === undefined) {
+    return;
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-user-profile"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -2142,6 +2201,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/comments_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/comments_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/stories_actions */ "./frontend/actions/stories_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var commentReducer = function commentReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var newState;
+
+  switch (action.type) {
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
+      return action.comment;
+
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
+      newState = Object.assign({}, oldState);
+      delete newState[action.commentId];
+      return newState;
+
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_STORY"]:
+      newState = Object.assign({}, oldState, _defineProperty({}, action.comment.id, {
+        body: action.comment.body,
+        user_id: action.comment.user_id,
+        story_id: action.comment.story_id
+      }));
+      return newState;
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (commentReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entitities_reducer.js":
 /*!*************************************************!*\
   !*** ./frontend/reducers/entitities_reducer.js ***!
@@ -2156,6 +2263,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stories_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stories_reducer */ "./frontend/reducers/stories_reducer.js");
 /* harmony import */ var _likes_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./likes_reducer */ "./frontend/reducers/likes_reducer.js");
 /* harmony import */ var _follows_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./follows_reducer */ "./frontend/reducers/follows_reducer.js");
+/* harmony import */ var _comments_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./comments_reducer */ "./frontend/reducers/comments_reducer.js");
+
 
 
 
@@ -2165,7 +2274,8 @@ __webpack_require__.r(__webpack_exports__);
   users: _user_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   stories: _stories_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  comments: _comments_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 }));
 
 /***/ }),
@@ -2430,7 +2540,9 @@ var _nullSession = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/stories_actions */ "./frontend/actions/stories_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2458,6 +2570,9 @@ var StoryReducer = function StoryReducer() {
       newState = Object.assign({}, oldState);
       delete newState[action.storyId];
       return newState;
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
+      return action.stories;
 
     default:
       return oldState;
@@ -2578,6 +2693,34 @@ var thunk = function thunk(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (thunk);
+
+/***/ }),
+
+/***/ "./frontend/utils/comments_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/utils/comments_util.js ***!
+  \*****************************************/
+/*! exports provided: createComment, removeComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeComment", function() { return removeComment; });
+var createComment = function createComment(comment) {
+  return $.ajax({
+    method: "POST",
+    url: "comments/".concat(comment.id),
+    data: "".concat(comment)
+  });
+};
+var removeComment = function removeComment(commentId) {
+  return $.ajax({
+    method: "DELETE",
+    url: "comments/".concat(commentId),
+    data: "".concat(commentId)
+  });
+};
 
 /***/ }),
 
@@ -47539,7 +47682,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

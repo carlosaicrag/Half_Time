@@ -1,9 +1,12 @@
 import {
     RECEIVE_STORY,
     RECEIVE_STORIES,
-    RECEIVE_USER_W_STORIES,
     REMOVE_STORY
 } from "../actions/stories_actions"
+
+import {
+    RECEIVE_USER
+} from "../actions/user_actions"
 
 const StoryReducer = (oldState = {}, action) => {
     Object.freeze(oldState);
@@ -19,6 +22,8 @@ const StoryReducer = (oldState = {}, action) => {
             newState = Object.assign({},oldState)
             delete newState[action.storyId]
             return newState;
+        case RECEIVE_USER:
+            return action.stories
         default:
             return oldState;
     }

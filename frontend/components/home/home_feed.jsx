@@ -15,19 +15,20 @@ class HomeFeed extends React.Component {
 
     render(){
 
-        // if(this.props.stories.length === 0 ){
-        //     return null;
-        // }
-
+        if(this.props.stories.length === 1){
+            return null;
+        }
+        
         let stories = this.props.stories.map((story)=>{
             return(
                 <StoryHomeFeedComponent 
-                    key={story.id}
-                    story={story}
-                    users={this.props.users}
+                key={story.id}
+                story={story}
+                users={this.props.users}
                 />
-            )
-        })
+                )
+            })
+            
 
         return(
             <div className="home-feed">

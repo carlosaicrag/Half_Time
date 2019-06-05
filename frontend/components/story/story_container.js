@@ -8,7 +8,6 @@ const mapStateToBanana = (state,ownProps) => {
     let story = state.entities.stories[ownProps.match.params.storyId]
     let likes = Object.values(state.entities.likes)
     let follows = Object.values(state.entities.follows)
-
     return({
         story:story,
         likes:likes,

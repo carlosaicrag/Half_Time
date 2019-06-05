@@ -21,7 +21,7 @@ class Api::StoriesController < ApplicationController
 
     def update 
         @story = current_user.stories.find_by(id: params[:id])
-        @story
+        
         if @story.update(story_params)
             render "api/stories/show"
         else
@@ -31,7 +31,6 @@ class Api::StoriesController < ApplicationController
     end
 
     def destroy
-
         @story = current_user.stories.find(params[:id])
         @story.destroy 
         render "api/stories/show"

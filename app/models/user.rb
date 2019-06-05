@@ -39,6 +39,10 @@ class User < ApplicationRecord
         through: :followees_id, 
         source: :followee
 
+    has_many :comments,
+        foreign_key: :user_id,
+        class_name: "Comment"
+
     attr_reader :password
     after_initialize :ensure_session_token 
 
