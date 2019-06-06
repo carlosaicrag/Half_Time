@@ -9,6 +9,7 @@ json.follows do
         json.partial! "api/follows/show", follow:follow
     end
 end
+
 if(story.photo.attached?)
     json.photoUrl url_for(story.photo)
 else
@@ -26,5 +27,17 @@ if(story.likes.length != 0)
     end  
 else
     json.likes ""
+end
+
+if(story.comments.length != 0)
+    json.comments do 
+        story.comments.each do |comment|
+            json.set! comment.id do 
+                json.extract! comment, :id,:user_id,:story_id
+            end
+        end
+    end
+else
+    json.comments ""
 end
 

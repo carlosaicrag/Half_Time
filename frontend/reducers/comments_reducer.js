@@ -18,11 +18,7 @@ const commentReducer = (oldState={},action) => {
             delete newState[action.commentId]
             return newState
         case RECEIVE_STORY:
-            newState = Object.assign({},oldState,{[action.comment.id]:
-                {body:action.comment.body,
-                user_id:action.comment.user_id,
-                story_id:action.comment.story_id}})
-            return newState
+            return action.comments
         default:
             return oldState
     }

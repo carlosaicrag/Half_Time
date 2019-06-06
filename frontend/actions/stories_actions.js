@@ -10,7 +10,8 @@ const receiveStory = (payload) => {
         story: payload.story,
         likes: payload.story.likes,
         user: payload.story.user,
-        follows: payload.story.follows
+        follows: payload.story.follows,
+        comments: payload.story.comments
     })
 }
 

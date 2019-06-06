@@ -1,9 +1,11 @@
-export const createComment = (comment) => {
+export const createComment = (commentData) => {
     return(
         $.ajax({
             method: "POST",
-            url: `comments/${comment.id}`,
-            data:`${comment}`
+            url: "api/comments/",
+            data: commentData,
+            contentType: false,
+            processData: false
         })
     )
 } 
@@ -12,7 +14,7 @@ export const removeComment = (commentId) => {
     return(
         $.ajax({
             method:"DELETE",
-            url: `comments/${commentId}`,
+            url: `api/comments/${commentId}`,
             data: `${commentId}`
         })
     )

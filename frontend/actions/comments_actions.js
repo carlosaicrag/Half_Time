@@ -18,9 +18,13 @@ const removeComment = (comment) => {
 }
 
 export const createComment = (comment) => (dispatch) => {
-    commentUtil.createComment(comment).then((comment) => dispatch(receiveComment(comment)))
+    return(
+        commentUtil.createComment(comment).then((comment) => dispatch(receiveComment(comment)))
+    )
 }
 
 export const deleteComment = (commentId) => (dispatch) => {
-    commentUtil.removeComment(commentId).then((comment) => dispatch(removeComment(comment)))
+    return(
+        commentUtil.removeComment(commentId).then((comment) => dispatch(removeComment(comment)))
+    )
 }

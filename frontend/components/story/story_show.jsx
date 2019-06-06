@@ -1,5 +1,7 @@
 import React from "react"
 import { timingSafeEqual } from "crypto";
+import CommentShow from "../comments/comment_show"
+import CommentCreate from "../comments/comment_create"
 
 
 class StoryShow extends React.Component {
@@ -59,6 +61,15 @@ class StoryShow extends React.Component {
 
     render(){
         if(!this.props.story) return null;
+
+        let comments = this.props.comments.map((comment) => {
+            return(
+                <CommentShow
+                    comment={comment}
+                />
+            )
+        })
+
         let likeDescription; 
         let followDescription;
 
@@ -100,6 +111,18 @@ class StoryShow extends React.Component {
 
                 <img className="story-show-image" src={this.props.story.photoUrl} alt={this.props.story.title} />
                 <div className="story-show-details-body">{this.props.story.body}</div>
+                
+                <CommentCreate 
+                    storyId = {this.props.story.id}
+                    currentUserId = {this.props.currentUser}
+                    action = {this.props.createComment}
+                    props = {this.props}
+                />
+
+                <div>
+                    {comments}
+                </div>
+
             </div>
         )
     }

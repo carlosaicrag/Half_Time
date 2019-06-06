@@ -8,6 +8,10 @@ import {
     RECEIVE_USER
 } from "../actions/user_actions"
 
+import {
+    RECEIVE_COMMENT
+}
+
 const StoryReducer = (oldState = {}, action) => {
     Object.freeze(oldState);
     let newState;
