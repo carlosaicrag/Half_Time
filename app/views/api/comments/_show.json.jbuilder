@@ -1,1 +1,1 @@
-json.extract! comment, :user_id, :story_id,:body
+json.extract! comment, :user_id, :story_id, :body

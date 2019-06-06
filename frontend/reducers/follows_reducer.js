@@ -16,10 +16,7 @@ const followsReducer = (oldState = {}, action) => {
             newState = Object.assign({},oldState,{[action.follow.id]: {follower_id:action.follow.follower_id, followee_id: action.follow.followee_id}})
             return newState
         case RECEIVE_STORY:
-            return action.story
-        case RECEIVE_FOLLOW:
-            newState = Object.assign({}, oldState, { [action.follow.id]: { follower_id: action.follow.follower_id, followee_id: action.follow.followee_id } })
-            return newState
+            return action.follows
         case REMOVE_FOLLOW:
             newState = Object.assign({},oldState)
             delete newState[action.follow.id]

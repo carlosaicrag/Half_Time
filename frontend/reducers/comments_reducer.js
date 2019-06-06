@@ -18,6 +18,7 @@ const commentReducer = (oldState={},action) => {
             delete newState[action.commentId]
             return newState
         case RECEIVE_STORY:
+            debugger
             return action.comments
         default:
             return oldState

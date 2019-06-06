@@ -613,14 +613,7 @@ function (_React$Component) {
       formData.append("comment[body]", this.state.body);
       formData.append("comment[user_id]", this.state.user_id);
       formData.append("comment[story_id]", this.state.story_id);
-      this.props.action(formData); // .then((res) => {
-      //     let that = this
-      //     debugger
-      //     this.props.props.history.push(`/stories/${res.comment.story_id}`)
-      // })
-      // this.props.action(formData, this.state.id).then((res) => {
-      //     this.props.history.push(`/stories/${res.story.id}`)
-      // })
+      this.props.action(formData);
     }
   }, {
     key: "render",
@@ -628,9 +621,9 @@ function (_React$Component) {
       if (!this.state) return null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
-        className: "create-form"
+        className: "create-comment-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "create-body",
+        className: "create-comment-body",
         type: "text",
         value: this.state.body,
         onChange: this.update("body"),
@@ -1956,6 +1949,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       if (!this.props.story) return null;
+      debugger;
       var comments = this.props.comments.map(function (comment) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_show__WEBPACK_IMPORTED_MODULE_2__["default"], {
           comment: comment
@@ -2008,12 +2002,14 @@ function (_React$Component) {
         alt: this.props.story.title
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-body"
-      }, this.props.story.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_create__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, this.props.story.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comments-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_create__WEBPACK_IMPORTED_MODULE_3__["default"], {
         storyId: this.props.story.id,
         currentUserId: this.props.currentUser,
         action: this.props.createComment,
         props: this.props
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comments));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comments)));
     }
   }]);
 
@@ -2386,6 +2382,7 @@ var commentReducer = function commentReducer() {
       return newState;
 
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_STORY"]:
+      debugger;
       return action.comments;
 
     default:
@@ -2481,14 +2478,7 @@ var followsReducer = function followsReducer() {
       return newState;
 
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_STORY"]:
-      return action.story;
-
-    case _actions_follows_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FOLLOW"]:
-      newState = Object.assign({}, oldState, _defineProperty({}, action.follow.id, {
-        follower_id: action.follow.follower_id,
-        followee_id: action.follow.followee_id
-      }));
-      return newState;
+      return action.follows;
 
     case _actions_follows_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_FOLLOW"]:
       newState = Object.assign({}, oldState);
@@ -2683,9 +2673,53 @@ var _nullSession = {
   !*** ./frontend/reducers/stories_reducer.js ***!
   \**********************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/carlosgarciajr/Desktop/Full_Stack_Project/frontend/reducers/stories_reducer.js: Unexpected token (15:0)\n\n\u001b[0m \u001b[90m 13 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 15 | \u001b[39m\u001b[36mconst\u001b[39m \u001b[33mStoryReducer\u001b[39m \u001b[33m=\u001b[39m (oldState \u001b[33m=\u001b[39m {}\u001b[33m,\u001b[39m action) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m    \u001b[33mObject\u001b[39m\u001b[33m.\u001b[39mfreeze(oldState)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 17 | \u001b[39m    let newState\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 18 | \u001b[39m\u001b[0m\n    at Object.raise (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:6322:17)\n    at Object.unexpected (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:7638:16)\n    at Object.expectContextual (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:7604:41)\n    at Object.parseImport (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:11107:12)\n    at Object.parseStatementContent (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:9861:27)\n    at Object.parseStatement (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:9763:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:10340:25)\n    at Object.parseBlockBody (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:10327:10)\n    at Object.parseTopLevel (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:9692:10)\n    at Object.parse (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:11209:17)\n    at parse (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/parser/lib/index.js:11245:38)\n    at parser (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at process.nextTick (/Users/carlosgarciajr/Desktop/Full_Stack_Project/node_modules/@babel/core/lib/transform.js:34:34)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/stories_actions */ "./frontend/actions/stories_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var StoryReducer = function StoryReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var newState;
+
+  switch (action.type) {
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORIES"]:
+      return action.stories;
+
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORY"]:
+      newState = Object.assign({}, oldState, _defineProperty({}, action.story.id, {
+        id: action.story.id,
+        body: action.story.body,
+        title: action.story.title,
+        photoUrl: action.story.photoUrl,
+        authorId: action.story.author_id
+      }));
+      return newState;
+
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_STORY"]:
+      newState = Object.assign({}, oldState);
+      delete newState[action.storyId];
+      return newState;
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
+      return action.stories;
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryReducer);
 
 /***/ }),
 

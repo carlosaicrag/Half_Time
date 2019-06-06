@@ -4,10 +4,16 @@ json.user do
     json.extract! story.user, :id, :email
 end
 
-json.follows do 
-    story.user.followers_id.each do |follow|
-        json.partial! "api/follows/show", follow:follow
+if(story.user.followers_id.length != 0)
+    json.follows do 
+        story.user.followers_id.each do |follow|
+            json.set! follow.id do 
+                json.partial! "api/follows/show", follow:follow
+            end
+        end
     end
+else
+    json.follows ""
 end
 
 if(story.photo.attached?)
@@ -33,7 +39,7 @@ if(story.comments.length != 0)
     json.comments do 
         story.comments.each do |comment|
             json.set! comment.id do 
-                json.extract! comment, :id,:user_id,:story_id
+                json.partial! "api/comments/show", comment:comment
             end
         end
     end

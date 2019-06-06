@@ -22,23 +22,15 @@ class CommentCreate extends React.Component{
         formData.append("comment[story_id]",this.state.story_id);
 
         this.props.action(formData)
-        // .then((res) => {
-        //     let that = this
-        //     debugger
-        //     this.props.props.history.push(`/stories/${res.comment.story_id}`)
-        // })
-
-        // this.props.action(formData, this.state.id).then((res) => {
-        //     this.props.history.push(`/stories/${res.story.id}`)
-        // })
     }
 
     render(){
+
         if (!this.state) return null;
 
         return(
-            <form onSubmit={this.handleSubmit} className="create-form">
-                <input className="create-body" type="text" value={this.state.body} onChange={this.update("body")} placeholder="Body" />
+            <form onSubmit={this.handleSubmit} className="create-comment-form">
+                <input className="create-comment-body" type="text" value={this.state.body} onChange={this.update("body")} placeholder="Body" />
                 <div className="create-submit-choose-file">
                     <button className="get-started" type="submit">Submit</button>
                 </div>

@@ -10,7 +10,7 @@ import {
 
 import {
     RECEIVE_COMMENT
-}
+} from "../actions/comments_actions"
 
 const StoryReducer = (oldState = {}, action) => {
     Object.freeze(oldState);
