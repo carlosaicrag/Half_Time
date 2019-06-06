@@ -4,7 +4,7 @@ const CommentShow = (props) => {
     let comment = props.comment
 
     return(
-        <div>
+        <div className="comment-show-container">
             <div>{comment.body}</div>
         </div>
     )

@@ -629,9 +629,9 @@ function (_React$Component) {
         onChange: this.update("body"),
         placeholder: "Body"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-submit-choose-file"
+        className: "create"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "get-started",
+        className: "get-started-comment",
         type: "submit"
       }, "Submit")));
     }
@@ -659,7 +659,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var CommentShow = function CommentShow(props) {
   var comment = props.comment;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comment.body));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "comment-show-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comment.body));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CommentShow);
@@ -1949,7 +1951,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       if (!this.props.story) return null;
-      debugger;
       var comments = this.props.comments.map(function (comment) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_show__WEBPACK_IMPORTED_MODULE_2__["default"], {
           comment: comment
@@ -2003,7 +2004,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-body"
       }, this.props.story.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comments-container"
+        className: "comments-conner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_create__WEBPACK_IMPORTED_MODULE_3__["default"], {
         storyId: this.props.story.id,
         currentUserId: this.props.currentUser,
@@ -2382,7 +2383,6 @@ var commentReducer = function commentReducer() {
       return newState;
 
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_STORY"]:
-      debugger;
       return action.comments;
 
     default:
