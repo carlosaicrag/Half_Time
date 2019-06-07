@@ -90,24 +90,26 @@
 /*!**********************************************!*\
   !*** ./frontend/actions/comments_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, createComment, deleteComment */
+/*! exports provided: RECEIVE_COMMENTS, REMOVE_COMMENT, createComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT", function() { return RECEIVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENTS", function() { return RECEIVE_COMMENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT", function() { return REMOVE_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
 /* harmony import */ var _utils_comments_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/comments_util */ "./frontend/utils/comments_util.js");
 
-var RECEIVE_COMMENT = "RECEIVE_COMMENT";
+var RECEIVE_COMMENTS = "RECEIVE_COMMENT";
 var REMOVE_COMMENT = "REMOVE_COMMENT";
 
-var receiveComment = function receiveComment(comment) {
+var receiveComment = function receiveComment(payload) {
+  debugger;
   return {
-    type: RECEIVE_COMMENT,
-    comment: comment
+    type: RECEIVE_COMMENTS,
+    comments: payload.story.comments,
+    story: payload.story
   };
 };
 
@@ -622,14 +624,13 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "create-comment-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "create-comment-body",
-        type: "text",
         value: this.state.body,
         onChange: this.update("body"),
-        placeholder: "Body"
+        placeholder: "Write a Response..."
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create"
+        className: "create-comment-submit-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "get-started-comment",
         type: "submit"
@@ -661,7 +662,11 @@ var CommentShow = function CommentShow(props) {
   var comment = props.comment;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "comment-show-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comment.body));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "comment-show-author-container"
+  }, "Author"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "comment-show-body"
+  }, comment.body));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CommentShow);
@@ -2010,7 +2015,9 @@ function (_React$Component) {
         currentUserId: this.props.currentUser,
         action: this.props.createComment,
         props: this.props
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comments)));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comments"
+      }, comments)));
     }
   }]);
 
@@ -2374,8 +2381,9 @@ var commentReducer = function commentReducer() {
   var newState;
 
   switch (action.type) {
-    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
-      return action.comment;
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENTS"]:
+      debugger;
+      return action.comments;
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
       newState = Object.assign({}, oldState);
@@ -2713,6 +2721,17 @@ var StoryReducer = function StoryReducer() {
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
       return action.stories;
+
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COMMENT"]:
+      debugger;
+      newState = Object.assign({}, oldState, _defineProperty({}, action.story.id, {
+        id: action.story.id,
+        body: action.story.body,
+        title: action.story.title,
+        photoUrl: action.story.photoUrl,
+        authorId: action.story.author_id
+      }));
+      return newState;
 
     default:
       return oldState;
@@ -18318,10 +18337,10 @@ utils.intFromLE = intFromLE;
 /*!********************************************!*\
   !*** ./node_modules/elliptic/package.json ***!
   \********************************************/
-/*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, dependencies, deprecated, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
+/*! exports provided: _args, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"elliptic@^6.0.0","_id":"elliptic@6.4.1","_inBundle":false,"_integrity":"sha512-BsXLz5sqX8OHcsh7CqBMztyXARmGQ3LWPtGjJi6DiJHq5C/qvi9P3OqgswKSDftbu8+IoI/QDTAm2fFnQ9SZSQ==","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"elliptic@^6.0.0","name":"elliptic","escapedName":"elliptic","rawSpec":"^6.0.0","saveSpec":null,"fetchSpec":"^6.0.0"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.1.tgz","_shasum":"c2d0b7776911b86722c632c3c06c60f2f819939a","_spec":"elliptic@^6.0.0","_where":"/Users/carlosgarciajr/Desktop/App_Academy/App_Academy_In_Person/Full_Stack_Project/Half_Time/node_modules/browserify-sign","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"bundleDependencies":false,"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"deprecated":false,"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.1"};
+module.exports = {"_args":[["elliptic@6.4.1","/Users/carlosgarciajr/Desktop/Half_Time"]],"_from":"elliptic@6.4.1","_id":"elliptic@6.4.1","_inBundle":false,"_integrity":"sha512-BsXLz5sqX8OHcsh7CqBMztyXARmGQ3LWPtGjJi6DiJHq5C/qvi9P3OqgswKSDftbu8+IoI/QDTAm2fFnQ9SZSQ==","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.1","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.1","saveSpec":null,"fetchSpec":"6.4.1"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.1.tgz","_spec":"6.4.1","_where":"/Users/carlosgarciajr/Desktop/Half_Time","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.1"};
 
 /***/ }),
 

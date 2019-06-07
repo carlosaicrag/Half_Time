@@ -1,7 +1,27 @@
 .create-comment-form{
-    background-color: green;
+    // background-color: green;
+    border-style: none; 
+    border-color: Transparent; 
+    overflow: auto;
     display: flex;
-    width: 500px;
-    height: 200px;
+    width: 600px;
+    height: 300px;
     flex-direction: column;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);
+
+    .create-comment-body{
+        height: 100%;
+        width:595px;
+        border-style: none; 
+        border-color: Transparent; 
+        overflow: auto;
+    }
+
+    .create-comment-submit-container{
+        display:flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
 }

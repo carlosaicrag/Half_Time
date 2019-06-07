@@ -1,5 +1,5 @@
 import {
-    RECEIVE_COMMENT, REMOVE_COMMENT
+    RECEIVE_COMMENTS, REMOVE_COMMENT
 } from "../actions/comments_actions"
 
 import {
@@ -11,8 +11,9 @@ const commentReducer = (oldState={},action) => {
     let newState;
 
     switch (action.type) {
-        case RECEIVE_COMMENT:
-            return action.comment
+        case RECEIVE_COMMENTS:
+            debugger
+            return action.comments
         case REMOVE_COMMENT:
             newState = Object.assign({},oldState)
             delete newState[action.commentId]

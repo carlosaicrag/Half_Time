@@ -30,8 +30,8 @@ class CommentCreate extends React.Component{
 
         return(
             <form onSubmit={this.handleSubmit} className="create-comment-form">
-                <input className="create-comment-body" type="text" value={this.state.body} onChange={this.update("body")} placeholder="Body" />
-                <div className="create">
+                <textarea className="create-comment-body" value={this.state.body} onChange={this.update("body")} placeholder="Write a Response..." />
+                <div className="create-comment-submit-container">
                     <button className="get-started-comment" type="submit">Submit</button>
                 </div>
             </form>

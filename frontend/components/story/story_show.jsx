@@ -120,7 +120,7 @@ class StoryShow extends React.Component {
                         props = {this.props}
                     />
 
-                    <div>
+                    <div className="comments">
                         {comments}
                     </div>
 

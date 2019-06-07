@@ -5,7 +5,8 @@ const CommentShow = (props) => {
 
     return(
         <div className="comment-show-container">
-            <div>{comment.body}</div>
+                <div className="comment-show-author-container">Author</div>
+                <div className="comment-show-body">{comment.body}</div>
         </div>
     )
 }

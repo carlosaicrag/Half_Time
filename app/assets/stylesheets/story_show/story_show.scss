@@ -1,7 +1,6 @@
 .story-show {
     display: flex;
     flex-direction: column;
-    // align-items: center;
     // background-color: green;
     position: relative;
     top: 100px;
@@ -10,7 +9,6 @@
 
     .story-show-details-title{
         font-size: 35px;
-        // font-family: Georgia, 'Times New Roman', Times, serif;
         // background-color:purple;
         height:50px;  
     }
@@ -25,7 +23,6 @@
     .story-show-details-body{
         margin: 55px 0 0 0;
         font-size: 20px;
-        // font-family: Georgia, 'Times New Roman', Times, serif;
         line-height: 1.6;
         // background-color: purple;
     }

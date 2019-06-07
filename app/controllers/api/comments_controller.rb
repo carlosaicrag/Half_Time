@@ -9,13 +9,13 @@ class Api::CommentsController < ApplicationController
         @comment.user_id = current_user.id
 
         if @comment.save!
-            render "api/comments/show"
+            @story = @comment.story
+            render "api/stories/show"
         else
             render json: @story.errors.full_messages, status: 402
         end
 
     end
-
     def update
         @comment = current_user.find(params[:id])
         

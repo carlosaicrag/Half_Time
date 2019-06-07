@@ -1,12 +1,14 @@
 import * as commentUtil from "../utils/comments_util"
 
-export const RECEIVE_COMMENT = "RECEIVE_COMMENT"
+export const RECEIVE_COMMENTS = "RECEIVE_COMMENT"
 export const REMOVE_COMMENT = "REMOVE_COMMENT"
 
-const receiveComment = (comment) => {
+const receiveComment = (payload) => {
+    debugger
     return({
-        type:RECEIVE_COMMENT,
-        comment: comment
+        type:RECEIVE_COMMENTS,
+        comments: payload.story.comments,
+        story: payload.story
     })
 }
 

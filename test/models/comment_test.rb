@@ -7,6 +7,7 @@
 #  body       :text             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  story_id   :integer
 #
 
 require 'test_helper'

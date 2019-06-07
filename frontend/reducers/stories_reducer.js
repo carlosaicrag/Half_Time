@@ -28,6 +28,10 @@ const StoryReducer = (oldState = {}, action) => {
             return newState;
         case RECEIVE_USER:
             return action.stories
+        case RECEIVE_COMMENT:
+            debugger
+            newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
+            return newState
         default:
             return oldState;
     }
