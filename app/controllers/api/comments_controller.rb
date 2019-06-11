@@ -20,6 +20,7 @@ class Api::CommentsController < ApplicationController
         @comment = current_user.find(params[:id])
         
         if @comment.update(@comment)
+            @story = @comment.story
             render "api/stories/show"
         else
             render json: ["that comment could not be found"], status: 401
@@ -27,9 +28,11 @@ class Api::CommentsController < ApplicationController
     end
 
     def destroy 
-        @comment = current_user.find(params[:id])
+
+        @comment = current_user.comments.find(params[:id])
         @comment.destroy
-        render "api/stories/show"
+        @story = @comment.story 
+        render "api/comments/show"
     end
 
     private

@@ -38,8 +38,17 @@ class StoryCreate extends React.Component{
         if (this.state.imageFile){
             formData.append("story[photo]",this.state.imageFile);
         }
+        let propss;
+
+        if (this.props.props === undefined){
+            propss = this.props
+        }else{
+            propss = this.props.props
+        }
+
         this.props.action(formData,this.state.id).then((res)=> {
-            this.props.history.push(`/stories/${res.story.id}`)
+            let that = this
+            propss.history.push(`/stories/${res.story.id}`)
         })
     }  
     

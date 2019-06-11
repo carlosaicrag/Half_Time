@@ -4,7 +4,7 @@ import { Redirect, Route, withRouter } from "react-router-dom"
 import { fetchStory } from "../../actions/stories_actions";
 import {createLike, deleteLike} from "../../actions/likes_actions";
 import {createFollow,deleteFollow} from "../../actions/follows_actions"
-import {createComment} from "../../actions/comments_actions"
+import {createComment, deleteComment} from "../../actions/comments_actions"
 
 const mapStateToBanana = (state,ownProps) => {
     let story = state.entities.stories[ownProps.match.params.storyId]
@@ -27,7 +27,8 @@ const mapDispatchToBanana = (dispatch) => {
         removeLike: (storyId) => dispatch(deleteLike(storyId)),
         createFollow: (followeeId) => dispatch(createFollow(followeeId)),
         deleteFollow: (followeeId) => dispatch(deleteFollow(followeeId)),
-        createComment: (comment) => dispatch(createComment(comment))
+        createComment: (comment) => dispatch(createComment(comment)),
+        deleteComment: (commentId) => dispatch(deleteComment(commentId))
     })
 }
 

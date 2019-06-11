@@ -26,7 +26,7 @@ const receiveStories = (payload) => {
 const removeStory = (story) => {
     return({
         type: REMOVE_STORY,
-        storyId: story.id
+        storyId: story.story.id
     })
 }
 

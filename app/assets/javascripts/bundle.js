@@ -105,7 +105,6 @@ var RECEIVE_COMMENTS = "RECEIVE_COMMENT";
 var REMOVE_COMMENT = "REMOVE_COMMENT";
 
 var receiveComment = function receiveComment(payload) {
-  debugger;
   return {
     type: RECEIVE_COMMENTS,
     comments: payload.story.comments,
@@ -113,10 +112,10 @@ var receiveComment = function receiveComment(payload) {
   };
 };
 
-var removeComment = function removeComment(comment) {
+var removeComment = function removeComment(payload) {
   return {
     type: REMOVE_COMMENT,
-    commentId: comment.Id
+    commentId: payload.id
   };
 };
 
@@ -392,7 +391,7 @@ var receiveStories = function receiveStories(payload) {
 var removeStory = function removeStory(story) {
   return {
     type: REMOVE_STORY,
-    storyId: story.id
+    storyId: story.story.id
   };
 };
 
@@ -531,7 +530,7 @@ var App = function App() {
     path: "/users/:userid",
     component: _user_user_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
-    path: "/stories/:storyId/edit",
+    path: "/stories/edit/:storyId",
     component: _components_story_story_edit_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_utils__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
     exact: true,
@@ -656,18 +655,73 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-var CommentShow = function CommentShow(props) {
-  var comment = props.comment;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "comment-show-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "comment-show-author-container"
-  }, "Author"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "comment-show-body"
-  }, comment.body));
-};
+
+var CommentShow =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CommentShow, _React$Component);
+
+  function CommentShow(props) {
+    var _this;
+
+    _classCallCheck(this, CommentShow);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CommentShow).call(this, props));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CommentShow, [{
+    key: "handleDelete",
+    value: function handleDelete() {
+      var commentId = this.props.comment.id;
+      this.props.deleteComment(commentId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var deleteDescription;
+
+      if (this.props.comment.user_id === parseInt(this.props.currentUserId)) {
+        deleteDescription = "Delete";
+      } else {
+        deleteDescription = " ";
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-show-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-show-author-container"
+      }, "Author"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-show-body"
+      }, this.props.comment.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-show-delete",
+        onClick: this.handleDelete
+      }, deleteDescription));
+    }
+  }]);
+
+  return CommentShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (CommentShow);
 
@@ -1008,7 +1062,7 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
   var user;
 
   for (var i = 0; i < users.length; i++) {
-    if (users[i].id === story.author_id) {
+    if (users[i].id === story.author_id || users[i].id === story.authorId) {
       user = users[i];
     }
   }
@@ -1557,6 +1611,9 @@ var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
     },
     createComment: function createComment(comment) {
       return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_6__["createComment"])(comment));
+    },
+    deleteComment: function deleteComment(commentId) {
+      return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_6__["deleteComment"])(commentId));
     }
   };
 };
@@ -1663,8 +1720,17 @@ function (_React$Component) {
         formData.append("story[photo]", this.state.imageFile);
       }
 
+      var propss;
+
+      if (this.props.props === undefined) {
+        propss = this.props;
+      } else {
+        propss = this.props.props;
+      }
+
       this.props.action(formData, this.state.id).then(function (res) {
-        _this4.props.history.push("/stories/".concat(res.story.id));
+        var that = _this4;
+        propss.history.push("/stories/".concat(res.story.id));
       });
     }
   }, {
@@ -1834,7 +1900,8 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_create__WEBPACK_IMPORTED_MODULE_2__["default"], {
         story: this.props.story,
         formType: this.props.formType,
-        action: this.props.action
+        action: this.props.action,
+        props: this.props
       }));
     }
   }]);
@@ -1955,10 +2022,14 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       if (!this.props.story) return null;
       var comments = this.props.comments.map(function (comment) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_show__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          comment: comment
+          comment: comment,
+          deleteComment: _this2.props.deleteComment,
+          currentUserId: _this2.props.currentUser
         });
       });
       var likeDescription;
@@ -2073,7 +2144,7 @@ var StoryCurrentUser = function StoryCurrentUser(props) {
       return deleteStory(story.id);
     }
   }, "delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/stories/".concat(story.id, "/edit")
+    to: "/stories/edit/".concat(story.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Update")));
 };
 
@@ -2382,7 +2453,6 @@ var commentReducer = function commentReducer() {
 
   switch (action.type) {
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENTS"]:
-      debugger;
       return action.comments;
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
@@ -2723,7 +2793,6 @@ var StoryReducer = function StoryReducer() {
       return action.stories;
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COMMENT"]:
-      debugger;
       newState = Object.assign({}, oldState, _defineProperty({}, action.story.id, {
         id: action.story.id,
         body: action.story.body,
@@ -2732,6 +2801,9 @@ var StoryReducer = function StoryReducer() {
         authorId: action.story.author_id
       }));
       return newState;
+    // case REMOVE_COMMENT:
+    //     newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
+    //     return newState
 
     default:
       return oldState;
@@ -2787,7 +2859,8 @@ var UserReducer = function UserReducer() {
 
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORY"]:
       newState = Object.assign({}, oldState, _defineProperty({}, action.user.id, {
-        email: action.user.email
+        email: action.user.email,
+        id: action.user.id
       }));
       return newState;
 

@@ -12,7 +12,6 @@ const commentReducer = (oldState={},action) => {
 
     switch (action.type) {
         case RECEIVE_COMMENTS:
-            debugger
             return action.comments
         case REMOVE_COMMENT:
             newState = Object.assign({},oldState)

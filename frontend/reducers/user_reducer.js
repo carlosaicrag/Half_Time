@@ -10,7 +10,7 @@ const UserReducer = (oldState={},action) => {
         case RECEIVE_STORIES:
             return action.users;
         case RECEIVE_STORY:
-            newState = Object.assign({}, oldState, { [action.user.id]: {email:action.user.email} })
+            newState = Object.assign({}, oldState, { [action.user.id]: {email:action.user.email,id:action.user.id} })
             return newState
         default: 
             return oldState;

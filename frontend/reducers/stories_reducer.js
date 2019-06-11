@@ -9,7 +9,7 @@ import {
 } from "../actions/user_actions"
 
 import {
-    RECEIVE_COMMENT
+    RECEIVE_COMMENT, REMOVE_COMMENT
 } from "../actions/comments_actions"
 
 const StoryReducer = (oldState = {}, action) => {
@@ -29,9 +29,11 @@ const StoryReducer = (oldState = {}, action) => {
         case RECEIVE_USER:
             return action.stories
         case RECEIVE_COMMENT:
-            debugger
             newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
             return newState
+        // case REMOVE_COMMENT:
+        //     newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
+        //     return newState
         default:
             return oldState;
     }

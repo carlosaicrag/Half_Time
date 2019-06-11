@@ -66,6 +66,8 @@ class StoryShow extends React.Component {
             return(
                 <CommentShow
                     comment={comment}
+                    deleteComment = {this.props.deleteComment}
+                    currentUserId = {this.props.currentUser}
                 />
             )
         })

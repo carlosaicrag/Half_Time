@@ -39,6 +39,7 @@ class EditStory extends React.Component{
                     story={this.props.story}
                     formType={this.props.formType}
                     action={this.props.action}
+                    props = {this.props}
                 />
             </div>
         )

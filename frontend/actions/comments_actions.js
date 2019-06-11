@@ -4,7 +4,6 @@ export const RECEIVE_COMMENTS = "RECEIVE_COMMENT"
 export const REMOVE_COMMENT = "REMOVE_COMMENT"
 
 const receiveComment = (payload) => {
-    debugger
     return({
         type:RECEIVE_COMMENTS,
         comments: payload.story.comments,
@@ -12,10 +11,10 @@ const receiveComment = (payload) => {
     })
 }
 
-const removeComment = (comment) => {
+const removeComment = (payload) => {
     return({
-        type:REMOVE_COMMENT,
-        commentId: comment.Id
+        type: REMOVE_COMMENT,
+        commentId: payload.id,
     })
 }
 

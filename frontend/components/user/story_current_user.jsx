@@ -24,7 +24,7 @@ const StoryCurrentUser = (props) => {
                 <div onClick={() => deleteStory(story.id)}>delete</div>
             </Link>
 
-            <Link to={`/stories/${story.id}/edit`}>
+            <Link to={`/stories/edit/${story.id}`}>
                 <div>Update</div>
             </Link>
 

@@ -6,14 +6,15 @@ const StoryHomeFeed = props => {
     let user;
     
     for(let i = 0; i < users.length; i++){
-        if(users[i].id === story.author_id){
+        if(users[i].id === story.author_id || users[i].id === story.authorId){
             user = users[i];
         }
     }
+
     if (story.id === null){
         return null
     }
-
+    
     return(
         
         <div className="story-home-feed">
