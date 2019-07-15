@@ -2,6 +2,7 @@ import React from 'react'
 import StoryCurrentUser from "./story_current_user"
 import StoryUser from "./story_user"
 import StoryUserContainer from "./story_user_container"
+import { PushSpinner } from "react-spinners-kit";
 
 class User extends React.Component{
     constructor(props){
@@ -11,11 +12,15 @@ class User extends React.Component{
 
     componentDidMount(){
         let userId = this.props.match.params.userid;
-        this.props.fetchUser(userId).then(() => this.setState({loading:false}));
+        this.props.fetchUser(userId)
+        // then(() => this.setState({ loading: false }));
+
+        setTimeout(() => {
+            this.setState({loading:false})
+        }, 2000)
     }
 
     checkIfCurrentUser(){
-        debugger
         let currentUserId;
 
         if (typeof(this.props.currentUser.id) === "number"){
@@ -24,7 +29,6 @@ class User extends React.Component{
             currentUserId = this.props.currentUser.id
         }  
 
-        debugger
         if (this.props.match.params.userid !== currentUserId){
             return false
         }else{
@@ -35,7 +39,13 @@ class User extends React.Component{
     render(){
         if(this.state.loading){
             return(
-                <h1>loading</h1>
+                <div className="user-loading-screen">
+                    <PushSpinner
+                        size={30}
+                        color="#686769"
+                        loading={this.state.loading}
+                        />
+                </div> 
             )
         }
 
