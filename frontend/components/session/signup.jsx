@@ -7,6 +7,8 @@ class Signup extends React.Component {
         this.state = {
             email: "",
             password: "",
+            signup: false,
+            signin: false,
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,6 +48,11 @@ class Signup extends React.Component {
                 ))}
             </ul> 
         )
+    }
+
+    componentDidUpdate(){
+        debugger
+        this.setState()
     }
 
     changeModal(){
@@ -90,7 +97,7 @@ class Signup extends React.Component {
                     <div className="modal-footer-signIn">
                         <div className="switch-register-signUp">
                             <div >Don't have an account? </div>
-                            <a src="#" onClick={() => this.props.openModal("signup")}>Sign Up</a>
+                            <a src="#" onClick={() => this.props.openModal("signup").then(this.setState())}>Sign Up</a>
                         </div>
                         <div>To make HalfTime work, we log user data and share it with service providers</div>
                     </div>
@@ -132,7 +139,7 @@ class Signup extends React.Component {
                     <div className="modal-footer">
                         <div className="switch-register">
                             <div >Already have an account? </div>
-                            <a src="#" onClick={() => this.props.openModal("login")}>Log In</a>
+                            <a src="#" onClick={() => this.props.openModal("login").then(this.setState())}>Log In</a>
                         </div>
                         <div>To make HalfTime work, we log user data and share it with service providers</div>
                     </div>

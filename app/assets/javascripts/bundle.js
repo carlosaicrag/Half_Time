@@ -933,6 +933,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _featured_stories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./featured_stories */ "./frontend/components/home/featured_stories.jsx");
 /* harmony import */ var _unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./unfeatured_stories */ "./frontend/components/home/unfeatured_stories.jsx");
 /* harmony import */ var _categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./categories */ "./frontend/components/home/categories.jsx");
+/* harmony import */ var react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-spinners-kit */ "./node_modules/react-spinners-kit/lib/index.js");
+/* harmony import */ var react_spinners_kit__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -957,26 +959,39 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var HomeFeed =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(HomeFeed, _React$Component);
 
   function HomeFeed(props) {
+    var _this;
+
     _classCallCheck(this, HomeFeed);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(HomeFeed).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HomeFeed).call(this, props));
+    _this.state = {
+      loading: true
+    };
+    return _this;
   }
 
   _createClass(HomeFeed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchStories();
+      var _this2 = this;
+
+      this.props.fetchStories().then(setTimeout(function () {
+        _this2.setState({
+          loading: false
+        });
+      }, 1000));
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       if (this.props.stories.length === 1) {
         return null;
@@ -986,9 +1001,20 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: story.id,
           story: story,
-          users: _this.props.users
+          users: _this3.props.users
         });
       });
+
+      if (this.state.loading) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-loading-screen"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__["PushSpinner"], {
+          size: 30,
+          color: "#686769",
+          loading: this.state.loading
+        }));
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-feed"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1374,7 +1400,9 @@ function (_React$Component) {
 
     _this.state = {
       email: "",
-      password: ""
+      password: "",
+      signup: false,
+      signin: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemoUser = _this.handleDemoUser.bind(_assertThisInitialized(_this));
@@ -1422,6 +1450,12 @@ function (_React$Component) {
       }));
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      debugger;
+      this.setState();
+    }
+  }, {
     key: "changeModal",
     value: function changeModal() {
       this.props.closeModal();
@@ -1463,7 +1497,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Don't have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           src: "#",
           onClick: function onClick() {
-            return _this3.props.openModal("signup");
+            return _this3.props.openModal("signup").then(_this3.setState());
           }
         }, "Sign Up")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       } else {
@@ -1495,7 +1529,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Already have an account? "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           src: "#",
           onClick: function onClick() {
-            return _this3.props.openModal("login");
+            return _this3.props.openModal("login").then(_this3.setState());
           }
         }, "Log In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "To make HalfTime work, we log user data and share it with service providers")), this.renderErrors());
       }
@@ -2279,13 +2313,11 @@ function (_React$Component) {
       var _this2 = this;
 
       var userId = this.props.match.params.userid;
-      this.props.fetchUser(userId); // then(() => this.setState({ loading: false }));
-
-      setTimeout(function () {
+      this.props.fetchUser(userId).then(setTimeout(function () {
         _this2.setState({
           loading: false
         });
-      }, 2000);
+      }, 1000));
     }
   }, {
     key: "checkIfCurrentUser",

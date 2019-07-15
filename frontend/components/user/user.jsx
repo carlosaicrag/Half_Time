@@ -12,12 +12,9 @@ class User extends React.Component{
 
     componentDidMount(){
         let userId = this.props.match.params.userid;
-        this.props.fetchUser(userId)
-        // then(() => this.setState({ loading: false }));
-
-        setTimeout(() => {
+        this.props.fetchUser(userId).then(setTimeout(() => {
             this.setState({loading:false})
-        }, 2000)
+        }, 1000))
     }
 
     checkIfCurrentUser(){
