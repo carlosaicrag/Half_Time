@@ -1119,9 +1119,7 @@ var UnfeaturedPopular = function UnfeaturedPopular(props) {
     className: "unfeatured-popular"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "title-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "title"
-  }, "Popular on TheOcho")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_popular_story__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_popular_story__WEBPACK_IMPORTED_MODULE_1__["default"], {
     author: stories
   })));
 };
@@ -2287,7 +2285,18 @@ function (_React$Component) {
   }, {
     key: "checkIfCurrentUser",
     value: function checkIfCurrentUser() {
-      if (this.props.match.params.userid !== this.props.currentUser.id) {
+      debugger;
+      var currentUserId;
+
+      if (typeof this.props.currentUser.id === "number") {
+        currentUserId = this.props.currentUser.id.toString();
+      } else {
+        currentUserId = this.props.currentUser.id;
+      }
+
+      debugger;
+
+      if (this.props.match.params.userid !== currentUserId) {
         return false;
       } else {
         return true;
@@ -47916,7 +47925,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

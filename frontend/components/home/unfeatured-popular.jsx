@@ -7,7 +7,7 @@ const UnfeaturedPopular = (props)=>{
     return(
         <div className="unfeatured-popular">
             <div className="title-container">
-                <div className="title">Popular on TheOcho</div>
+                {/* <div className="title">Popular on TheOcho</div> */}
             </div>
 
             <div>

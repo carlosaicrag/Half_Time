@@ -15,7 +15,17 @@ class User extends React.Component{
     }
 
     checkIfCurrentUser(){
-        if (this.props.match.params.userid !== this.props.currentUser.id){
+        debugger
+        let currentUserId;
+
+        if (typeof(this.props.currentUser.id) === "number"){
+            currentUserId = this.props.currentUser.id.toString()
+        }else{
+            currentUserId = this.props.currentUser.id
+        }  
+
+        debugger
+        if (this.props.match.params.userid !== currentUserId){
             return false
         }else{
             return true;
