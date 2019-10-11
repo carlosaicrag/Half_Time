@@ -3,6 +3,8 @@ import {
     LOGOUT_CURRENT_USER,
 } from "../actions/session_actions"
 
+
+
 //if we don't have a current user, this is what we will be returning 
 const _nullSession = {
     currentUser: null,

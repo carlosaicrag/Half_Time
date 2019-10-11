@@ -24,6 +24,7 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
 )
 
     const welcomeUser = (currentUser, logout) => {
+
         return(
         <div className="logout-create-story-profile">
 
@@ -38,6 +39,12 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
                     Profile
                 </div> 
             </Link>
+
+            <Link to={`/users/${currentUser.id}`} onClick={() => fetchUser(currentUser.id)} >
+                <img className="story-show-profile-pic" src={currentUser.photoUrl}/>
+            </Link>
+
+
         </div>
         )
     }

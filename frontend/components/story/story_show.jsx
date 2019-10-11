@@ -2,6 +2,7 @@ import React from "react"
 import { timingSafeEqual } from "crypto";
 import CommentShow from "../comments/comment_show"
 import CommentCreate from "../comments/comment_create"
+import { Link } from "react-router-dom"
 
 
 class StoryShow extends React.Component {
@@ -61,12 +62,13 @@ class StoryShow extends React.Component {
 
     render(){
         if(!this.props.story) return null;
-        
         let comments = this.props.comments.map((comment) => {
+            let commentAuthor = this.props.commentAuthors[comment.user_id]
             return(
                 <CommentShow
                     comment={comment}
                     deleteComment = {this.props.deleteComment}
+                    commentAuthor = {commentAuthor}
                     currentUserId = {this.props.currentUser}
                 />
             )
@@ -78,7 +80,7 @@ class StoryShow extends React.Component {
         if(this.liked()){
             likeDescription = "Unlike"
         }else{
-            likeDescription = "like"
+            likeDescription = "Like"
         }
 
         if(this.followed()){
@@ -86,7 +88,6 @@ class StoryShow extends React.Component {
         }else{
             followDescription = "Follow"
         }
-
         return(
             <div className="story-show">
                 <div onClick={this.handleLike} className="liked-container">
@@ -98,15 +99,19 @@ class StoryShow extends React.Component {
                 <div className="story-show-details-title">{this.props.story.title}</div>
 
                 <div className="story-show-author">
-                    <div className="story-show-profile-pic"></div>
+                    <Link to={`/users/${this.props.author.id}`}>
+                        <img className="story-show-profile-pic" src={`https://www.gravatar.com/avatar/${this.props.author.email}`}/>
+                    </Link> 
 
                     <div className="story-show-author-details">
                         <div className="story-show-details-name-follow">
-                            <div className="story-show-name">Name</div>
+                            <Link to={`/users/${this.props.author.id}`} className="story-show-user-name-link">
+                                <div className="story-show-name">{this.props.author.username}</div>
+                            </Link>
                             <div onClick={this.handleFollow} className="follow-button"><div>{followDescription}</div></div>
                         </div>
                         <div className="story-show-details-date-star">
-                            <div className="date">Date</div>
+                            <div className="date"></div>
                         </div>
                     </div>
                 </div>

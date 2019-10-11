@@ -2,7 +2,8 @@
     display:flex;
     justify-content: space-between;
     // background-color: yellow;
-    width: 300px;
+    width: 400px;
+    align-items: center;
 
     .logout-container{
         display:flex;
@@ -49,5 +50,17 @@
 
     .profile-container:hover{
         color: #018e68;
+    }
+
+    .story-show-profile-pic{
+        border-radius: 100%;
+        height: 50px;
+        width: 50px;
+        // background-color: purple;
+        border: 1px solid black;
+        text-align: center;
+        vertical-align: middle;
+        // position: relative;
+        // bottom: 8px;
     }
 }

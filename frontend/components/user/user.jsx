@@ -12,9 +12,10 @@ class User extends React.Component{
 
     componentDidMount(){
         let userId = this.props.match.params.userid;
-        this.props.fetchUser(userId).then(setTimeout(() => {
-            this.setState({loading:false})
-        }, 1000))
+        this.props.fetchUser(userId)
+        // .then(setTimeout(() => {
+        //     this.setState({loading:false})
+        // }, 1000))
     }
 
     checkIfCurrentUser(){
@@ -34,17 +35,17 @@ class User extends React.Component{
     }
 
     render(){
-        if(this.state.loading){
-            return(
-                <div className="user-loading-screen">
-                    <PushSpinner
-                        size={30}
-                        color="#686769"
-                        loading={this.state.loading}
-                        />
-                </div> 
-            )
-        }
+        // if(this.state.loading){
+        //     return(
+        //         <div className="user-loading-screen">
+        //             <PushSpinner
+        //                 size={30}
+        //                 color="#686769"
+        //                 loading={this.state.loading}
+        //                 />
+        //         </div> 
+        //     )
+        // }
 
         let profileType;
         

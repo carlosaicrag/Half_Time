@@ -11,11 +11,13 @@ export const RECEIVE_USER = "RECEIVE_USER"
 
 
 
-export const receiveCurrentUser = payload => ({
-    type: RECEIVE_CURRENT_USER,
-    user: payload.user,
-    stories: payload.stories
-})
+export const receiveCurrentUser = payload => {
+    return{
+        type: RECEIVE_CURRENT_USER,
+        user: payload.user,
+        stories: payload.stories
+    }
+}
 
 export const logoutCurrentUser = () => ({
     type: LOGOUT_CURRENT_USER,

@@ -11,12 +11,26 @@ const mapStateToBanana = (state,ownProps) => {
     let likes = Object.values(state.entities.likes)
     let follows = Object.values(state.entities.follows)
     let comments = Object.values(state.entities.comments)
+    let commentAuthors = Object.assign({},state.entities.users)
+    let author ="";
+    if(Object.keys(state.entities.users).length===0) {
+        author = ""
+    }else{
+        if(story.authorId === undefined){
+            author = state.entities.users[story.author_id]
+        }else{
+            author = state.entities.users[story.authorId]
+        }
+        
+    }
     return({
         story:story,
         likes:likes,
         follows:follows,
         comments: comments,
         currentUser: state.session.currentUser.id,
+        author: author,
+        commentAuthors:commentAuthors
     })
 }
 

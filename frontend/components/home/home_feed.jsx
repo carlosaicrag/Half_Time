@@ -12,9 +12,10 @@ class HomeFeed extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchStories().then(setTimeout(() => {
-            this.setState({ loading: false })
-        }, 1000))
+        this.props.fetchStories()
+        // .then(setTimeout(() => {
+        //     this.setState({ loading: false })
+        // }, 1000))
     }
 
     render(){
@@ -33,20 +34,20 @@ class HomeFeed extends React.Component {
                 )
             })
             
-        if (this.state.loading) {
-            return (
-                <div className="user-loading-screen">
-                    <PushSpinner
-                        size={30}
-                        color="#686769"
-                        loading={this.state.loading}
-                    />
-                </div>
-            )
-        }
+        // if (this.state.loading) {
+        //     return (
+        //         <div className="user-loading-screen">
+        //             <PushSpinner
+        //                 size={30}
+        //                 color="#686769"
+        //                 loading={this.state.loading}
+        //             />
+        //         </div>
+        //     )
+        // }
         return(
             <div className="home-feed">
-                <Categories></Categories>
+                {/* <Categories></Categories> */}
                 <FeaturedStories stories={stories.slice(0, 5)}/>
                 <UnFeaturedStories stories={stories.slice(5)}/>
             </div>

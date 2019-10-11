@@ -11,11 +11,10 @@
 User.destroy_all
 Story.destroy_all
 
-User.create!(email:"demo_user@appAcademy.io",password:"password")
 
 img_files = ["https://s3-us-west-1.amazonaws.com/halftime-seed-dev/abigail-keenan-7852-unsplash.jpg",
-    "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/ben-hershey-575578-unsplash.jpg",
-    "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/boxed-water-is-better-1464078-unsplash.jpg",
+"https://s3-us-west-1.amazonaws.com/halftime-seed-dev/ben-hershey-575578-unsplash.jpg",
+"https://s3-us-west-1.amazonaws.com/halftime-seed-dev/boxed-water-is-better-1464078-unsplash.jpg",
 "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/chander-r-1555168-unsplash.jpg",
 "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/dave-contreras-190480-unsplash.jpg",
 "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/dimon-blr-309444-unsplash.jpg",
@@ -25,11 +24,19 @@ img_files = ["https://s3-us-west-1.amazonaws.com/halftime-seed-dev/abigail-keena
 "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/geoff-scott-124251-unsplash.jpg",
 "https://s3-us-west-1.amazonaws.com/halftime-seed-dev/greyson-joralemon-546002-unsplash.jpg"]
 
-(0...9).each do |num|
-    User.create!(email:Faker::Name.unique.name,password:"password")
-    story = Story.create!(title:Faker::Lorem.unique.sentence,body:Faker::Lorem.paragraph(1000), author_id:User.all[num].id)
-    file = open(img_files.shift)
-    story.photo.attach(io: file, filename:"img_#{num}.jpg")
+default_photo = "https://halftime-seed-dev.s3-us-west-1.amazonaws.com/default-profile-picture-gmail-2.png"
+
+demo_user = User.create!(username:Faker::Name.unique.name,email:"demo user",password:"password")
+demo_file = open(default_photo)
+demo_user.photo.attach(io: demo_file, filename:"default_img0.png")
+
+(1...10).each do |num|
+    user = User.create!(username:Faker::Name.unique.name,email:Faker::Internet.unique.email,password:"password")
+    file1 = open(default_photo)
+    user.photo.attach(io: file1, filename:"default_img#{num}.png")
+    story = Story.create!(title:Faker::Lorem.unique.sentence,body:Faker::Lorem.paragraph(1000), author_id:user.id)
+    file2 = open(img_files.shift)
+    story.photo.attach(io: file2, filename:"img_#{num}.jpg")
 end
 
 

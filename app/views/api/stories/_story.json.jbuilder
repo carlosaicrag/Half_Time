@@ -1,8 +1,17 @@
 json.extract! story, :id, :title, :body, :author_id
 
-json.user do 
-    json.extract! story.user, :id, :email
+json.users do 
+    json.set! story.user.id do
+        json.partial! "api/users/home_page", user:story.user
+    end
 end
+
+if(story.user.photo.attached?)
+    json.user_photoUrl url_for(story.user.photo)
+else
+    json.user_photoUrl ""    
+end
+
 
 if(story.user.followers_id.length != 0)
     json.follows do 
@@ -34,7 +43,6 @@ if(story.likes.length != 0)
 else
     json.likes ""
 end
-
 if(story.comments.length != 0)
     json.comments do 
         story.comments.each do |comment|
@@ -43,7 +51,16 @@ if(story.comments.length != 0)
             end
         end
     end
+
+    json.users do 
+        story.comments.each do |comment|
+            json.set! comment.user.id do
+                 json.partial! "api/users/home_page", user:comment.user  
+            end
+        end
+    end
 else
     json.comments ""
 end
+
 

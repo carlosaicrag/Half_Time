@@ -711,7 +711,7 @@ function (_React$Component) {
         className: "comment-show-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-show-author-container"
-      }, "Author"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.commentAuthor.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-show-body"
       }, this.props.comment.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-show-delete",
@@ -793,7 +793,15 @@ var Header = function Header(_ref) {
       className: "profile-container"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "profile"
-    }, "Profile")));
+    }, "Profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/users/".concat(currentUser.id),
+      onClick: function onClick() {
+        return fetchUser(currentUser.id);
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "story-show-profile-pic",
+      src: currentUser.photoUrl
+    })));
   };
 
   return currentUser ? welcomeUser(currentUser, logout) : sessionLinks();
@@ -980,18 +988,14 @@ function (_React$Component) {
   _createClass(HomeFeed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      this.props.fetchStories().then(setTimeout(function () {
-        _this2.setState({
-          loading: false
-        });
-      }, 1000));
+      this.props.fetchStories(); // .then(setTimeout(() => {
+      //     this.setState({ loading: false })
+      // }, 1000))
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.props.stories.length === 1) {
         return null;
@@ -1001,23 +1005,23 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: story.id,
           story: story,
-          users: _this3.props.users
+          users: _this2.props.users
         });
-      });
-
-      if (this.state.loading) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "user-loading-screen"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__["PushSpinner"], {
-          size: 30,
-          color: "#686769",
-          loading: this.state.loading
-        }));
-      }
+      }); // if (this.state.loading) {
+      //     return (
+      //         <div className="user-loading-screen">
+      //             <PushSpinner
+      //                 size={30}
+      //                 color="#686769"
+      //                 loading={this.state.loading}
+      //             />
+      //         </div>
+      //     )
+      // }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-feed"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
         stories: stories.slice(0, 5)
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
         stories: stories.slice(5)
@@ -1117,7 +1121,7 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
   }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "users/".concat(user.id),
     className: "story-details-user"
-  }, user.email)));
+  }, user.username)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);
@@ -1434,7 +1438,7 @@ function (_React$Component) {
     value: function handleDemoUser(e) {
       e.preventDefault();
       var demoUser = {
-        email: 'demo_user@appAcademy.io',
+        email: 'demo user',
         password: "password"
       };
       this.props.action(demoUser).then(this.props.closeModal);
@@ -1452,7 +1456,6 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
       this.setState();
     }
   }, {
@@ -1615,12 +1618,27 @@ var mapStateToBanana = function mapStateToBanana(state, ownProps) {
   var likes = Object.values(state.entities.likes);
   var follows = Object.values(state.entities.follows);
   var comments = Object.values(state.entities.comments);
+  var commentAuthors = Object.assign({}, state.entities.users);
+  var author = "";
+
+  if (Object.keys(state.entities.users).length === 0) {
+    author = "";
+  } else {
+    if (story.authorId === undefined) {
+      author = state.entities.users[story.author_id];
+    } else {
+      author = state.entities.users[story.authorId];
+    }
+  }
+
   return {
     story: story,
     likes: likes,
     follows: follows,
     comments: comments,
-    currentUser: state.session.currentUser.id
+    currentUser: state.session.currentUser.id,
+    author: author,
+    commentAuthors: commentAuthors
   };
 };
 
@@ -1960,6 +1978,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _comments_comment_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/comment_show */ "./frontend/components/comments/comment_show.jsx");
 /* harmony import */ var _comments_comment_create__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/comment_create */ "./frontend/components/comments/comment_create.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1977,6 +1996,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2058,9 +2078,11 @@ function (_React$Component) {
 
       if (!this.props.story) return null;
       var comments = this.props.comments.map(function (comment) {
+        var commentAuthor = _this2.props.commentAuthors[comment.user_id];
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_show__WEBPACK_IMPORTED_MODULE_2__["default"], {
           comment: comment,
           deleteComment: _this2.props.deleteComment,
+          commentAuthor: commentAuthor,
           currentUserId: _this2.props.currentUser
         });
       });
@@ -2070,7 +2092,7 @@ function (_React$Component) {
       if (this.liked()) {
         likeDescription = "Unlike";
       } else {
-        likeDescription = "like";
+        likeDescription = "Like";
       }
 
       if (this.followed()) {
@@ -2090,22 +2112,28 @@ function (_React$Component) {
         className: "story-show-details-title"
       }, this.props.story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-author"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "story-show-profile-pic"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+        to: "/users/".concat(this.props.author.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "story-show-profile-pic",
+        src: "https://www.gravatar.com/avatar/".concat(this.props.author.email)
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-author-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-name-follow"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+        to: "/users/".concat(this.props.author.id),
+        className: "story-show-user-name-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-name"
-      }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.author.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.handleFollow,
         className: "follow-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, followDescription))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-date-star"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date"
-      }, "Date")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "story-show-image",
         src: this.props.story.photoUrl,
         alt: this.props.story.title
@@ -2165,7 +2193,7 @@ var StoryCurrentUser = function StoryCurrentUser(props) {
     src: story.photoUrl,
     alt: story.title
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/".concat(story.id),
+    to: "/stories/".concat(story.id),
     className: "story-details-user-profile"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-title-user-profile"
@@ -2310,14 +2338,10 @@ function (_React$Component) {
   _createClass(User, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
       var userId = this.props.match.params.userid;
-      this.props.fetchUser(userId).then(setTimeout(function () {
-        _this2.setState({
-          loading: false
-        });
-      }, 1000));
+      this.props.fetchUser(userId); // .then(setTimeout(() => {
+      //     this.setState({loading:false})
+      // }, 1000))
     }
   }, {
     key: "checkIfCurrentUser",
@@ -2339,18 +2363,19 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
-      if (this.state.loading) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "user-loading-screen"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners_kit__WEBPACK_IMPORTED_MODULE_4__["PushSpinner"], {
-          size: 30,
-          color: "#686769",
-          loading: this.state.loading
-        }));
-      }
-
+      // if(this.state.loading){
+      //     return(
+      //         <div className="user-loading-screen">
+      //             <PushSpinner
+      //                 size={30}
+      //                 color="#686769"
+      //                 loading={this.state.loading}
+      //                 />
+      //         </div> 
+      //     )
+      // }
       var profileType;
 
       if (this.checkIfCurrentUser()) {
@@ -2361,18 +2386,18 @@ function (_React$Component) {
 
       var stories = this.props.stories.map(function (story) {
         // let that=this;
-        if (!_this3.checkIfCurrentUser()) {
+        if (!_this2.checkIfCurrentUser()) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_user__WEBPACK_IMPORTED_MODULE_2__["default"], {
             key: story.id,
             story: story,
-            match: _this3.props.match
+            match: _this2.props.match
           });
         } else {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_current_user__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: story.id,
             story: story,
-            match: _this3.props.match,
-            deleteStory: _this3.props.deleteStory
+            match: _this2.props.match,
+            deleteStory: _this2.props.deleteStory
           });
         }
       });
@@ -2829,7 +2854,8 @@ var StoryReducer = function StoryReducer() {
         body: action.story.body,
         title: action.story.title,
         photoUrl: action.story.photoUrl,
-        authorId: action.story.author_id
+        authorId: action.story.author_id,
+        user_photoUrl: action.story.user_photoUrl
       }));
       return newState;
 
@@ -2840,19 +2866,12 @@ var StoryReducer = function StoryReducer() {
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
       return action.stories;
-
-    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COMMENT"]:
-      newState = Object.assign({}, oldState, _defineProperty({}, action.story.id, {
-        id: action.story.id,
-        body: action.story.body,
-        title: action.story.title,
-        photoUrl: action.story.photoUrl,
-        authorId: action.story.author_id
-      }));
-      return newState;
-    // case REMOVE_COMMENT:
+    // case RECEIVE_COMMENTS:
     //     newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
     //     return newState
+    // // case REMOVE_COMMENT:
+    // //     newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
+    // //     return newState
 
     default:
       return oldState;
@@ -2892,7 +2911,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/stories_actions */ "./frontend/actions/stories_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 
 
 
@@ -2904,13 +2923,16 @@ var UserReducer = function UserReducer() {
 
   switch (action.type) {
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORIES"]:
+      // newState = Object.assign({},oldState,{action})
       return action.users;
 
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORY"]:
-      newState = Object.assign({}, oldState, _defineProperty({}, action.user.id, {
-        email: action.user.email,
-        id: action.user.id
-      }));
+      // newState = Object.assign({}, oldState, { [action.user.id]: {email:action.user.email,id:action.user.id} })
+      newState = Object.assign({}, oldState, action.story.users);
+      return newState;
+
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_COMMENTS"]:
+      newState = Object.assign({}, oldState, action.story.users);
       return newState;
 
     default:

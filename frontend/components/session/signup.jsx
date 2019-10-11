@@ -34,7 +34,7 @@ class Signup extends React.Component {
     handleDemoUser(e){
         e.preventDefault();
 
-        let demoUser = { email: 'demo_user@appAcademy.io',password:"password"}
+        let demoUser = { email: 'demo user',password:"password"}
         this.props.action(demoUser).then(this.props.closeModal);
     }
 
@@ -51,7 +51,6 @@ class Signup extends React.Component {
     }
 
     componentDidUpdate(){
-        debugger
         this.setState()
     }
 

@@ -20,7 +20,6 @@ class CommentCreate extends React.Component{
         formData.append("comment[body]", this.state.body);
         formData.append("comment[user_id]",this.state.user_id);
         formData.append("comment[story_id]",this.state.story_id);
-
         this.props.action(formData)
     }
 

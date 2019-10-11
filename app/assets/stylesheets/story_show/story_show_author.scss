@@ -10,7 +10,7 @@
     display: flex; 
     justify-content: space-between;
     align-items: center;
-    width: 190px;
+    width: 220px;
     height: 100px;
     // background-color: blue;
 
@@ -32,11 +32,19 @@
         // background-color: red;
         .story-show-details-name-follow{
             display:flex;
-            width: 120px;
+            width: 145px;
             justify-content: space-between;
-    
-            .story-show-name{
+            
+            .story-show-user-name-link{
+                text-decoration: none;
+                
+                .story-show-name{
                 font-size: 16px;
+                width:70px;
+                text-decoration: none;
+                color: black;
+            }
+
             }
     
             .follow-button{
@@ -53,8 +61,8 @@
                 cursor: pointer;
                 text-align: center;
                 vertical-align: center;
-                position:relative;
-                bottom: 3px;
+                // position:relative;
+                // right: 20px;
             }
 
             .follow-button:hover{

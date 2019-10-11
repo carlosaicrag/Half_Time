@@ -9,7 +9,7 @@ import {
 } from "../actions/user_actions"
 
 import {
-    RECEIVE_COMMENT, REMOVE_COMMENT
+    RECEIVE_COMMENTS, REMOVE_COMMENT
 } from "../actions/comments_actions"
 
 const StoryReducer = (oldState = {}, action) => {
@@ -20,7 +20,7 @@ const StoryReducer = (oldState = {}, action) => {
         case RECEIVE_STORIES:
             return action.stories
         case RECEIVE_STORY:
-            newState = Object.assign({},oldState,{[action.story.id]:{id: action.story.id, body:action.story.body,title:action.story.title,photoUrl:action.story.photoUrl,authorId: action.story.author_id}})
+            newState = Object.assign({},oldState,{[action.story.id]:{id: action.story.id, body:action.story.body,title:action.story.title,photoUrl:action.story.photoUrl,authorId: action.story.author_id,user_photoUrl:action.story.user_photoUrl}})
             return newState;
         case REMOVE_STORY:
             newState = Object.assign({},oldState)
@@ -28,12 +28,12 @@ const StoryReducer = (oldState = {}, action) => {
             return newState;
         case RECEIVE_USER:
             return action.stories
-        case RECEIVE_COMMENT:
-            newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
-            return newState
-        // case REMOVE_COMMENT:
+        // case RECEIVE_COMMENTS:
         //     newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
         //     return newState
+        // // case REMOVE_COMMENT:
+        // //     newState = Object.assign({}, oldState, { [action.story.id]: { id: action.story.id, body: action.story.body, title: action.story.title, photoUrl: action.story.photoUrl, authorId: action.story.author_id } })
+        // //     return newState
         default:
             return oldState;
     }

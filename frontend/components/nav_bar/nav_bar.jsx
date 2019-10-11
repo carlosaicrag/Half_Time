@@ -7,7 +7,7 @@ const NavBar = ({currentUser, logout}) => {
     //if there isn't a current user then make sure to display a signup and login page 
     const display = currentUser ? (
         <div>
-            <p>{currentUser.email}</p>
+            <p>{currentUser.username}</p>
             <button onClick={logout}>Log Out</button>
         </div>
     ):(
