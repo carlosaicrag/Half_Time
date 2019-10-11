@@ -3,6 +3,7 @@ import { timingSafeEqual } from "crypto";
 import CommentShow from "../comments/comment_show"
 import CommentCreate from "../comments/comment_create"
 import { Link } from "react-router-dom"
+import { HeartSpinner } from "react-spinners-kit";
 
 
 class StoryShow extends React.Component {
@@ -90,11 +91,21 @@ class StoryShow extends React.Component {
         }
         return(
             <div className="story-show">
-                <div onClick={this.handleLike} className="liked-container">
+                {/* <div onClick={this.handleLike} className="liked-container">
                     <div className="liked">
                         {likeDescription}
                     </div>
-                </div>
+                </div> */}
+
+                <div onClick={this.handleLike} className="liked-container">
+                       <HeartSpinner
+                        size={30}
+                        color="#686769"
+                        loading={true}
+                        />
+               </div>
+                <div className="num-likes">+ {this.props.likes.length}</div>
+
 
                 <div className="story-show-details-title">{this.props.story.title}</div>
 

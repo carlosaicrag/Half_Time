@@ -81,6 +81,7 @@ class Signup extends React.Component {
                                 placeholder="Email"
                             />
                         </label>
+
                         <label >
                             <input
                                 className="session-inputs"
@@ -124,6 +125,17 @@ class Signup extends React.Component {
                                 placeholder="Email"
                             />
                         </label>
+
+                        <label >
+                            <input
+                                className="session-inputs"
+                                type="text"
+                                value={this.state.username}
+                                onChange={this.handleInput("username")}
+                                placeholder="Username"
+                            />
+                        </label>
+                        
                         <label >
                             <input
                                 className="session-inputs"

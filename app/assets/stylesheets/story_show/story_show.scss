@@ -27,11 +27,24 @@
         // background-color: purple;
     }
 
+    .num-likes{
+        width: 20px;
+        // height:20px;
+        // text-align: center;
+        position: relative;
+        left: 670px;
+        top: 127px;
+        // border-radius: 4px;
+        font-size: 15px;
+        // border: 1px solid rgb(85, 29, 29);
+        color: rgb(85, 29, 29);
+    }
+
     .liked-container{
         // background-color: red;
-        display:flex;
-        justify-content: center;
-        align-items: center;
+        // display:flex;
+        // justify-content: center;
+        // align-items: center;
         width: 65px;
         height:20px;
         // text-align: center;
@@ -39,17 +52,17 @@
         left: 633px;
         top: 140px;
         cursor: pointer;
-        border-radius: 4px;
-        font-size: 15px;
-        border: 1px solid rgb(85, 29, 29);
-        color: rgb(85, 29, 29);
+        // border-radius: 4px;
+        // font-size: 15px;
+        // border: 1px solid rgb(85, 29, 29);
+        // color: rgb(85, 29, 29);
 
     }
 
-    .liked-container:hover{
-        border: 1px solid rgb(29, 10, 10);
-        color: rgb(29, 10, 10);
-    }
+    // .liked-container:hover{
+    //     border: 1px solid rgb(29, 10, 10);
+    //     color: rgb(29, 10, 10);
+    // }
 }
 
 

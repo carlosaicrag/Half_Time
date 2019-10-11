@@ -3,7 +3,7 @@ import StoryHomeFeedComponent from "./story_home_feed"
 import FeaturedStories from "./featured_stories"
 import UnFeaturedStories from "./unfeatured_stories"
 import Categories from "./categories"
-import { PushSpinner } from "react-spinners-kit";
+import { HeartSpinner } from "react-spinners-kit";
 
 class HomeFeed extends React.Component {
     constructor(props){

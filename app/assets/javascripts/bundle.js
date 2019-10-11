@@ -752,12 +752,6 @@ var Header = function Header(_ref) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "login-signup"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "magnify-icon"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      "class": "fas fa-search"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "become-a-member"
-    }, "Become a member"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "login"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       src: "#",
@@ -1519,6 +1513,12 @@ function (_React$Component) {
           placeholder: "Email"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           className: "session-inputs",
+          type: "text",
+          value: this.state.username,
+          onChange: this.handleInput("username"),
+          placeholder: "Username"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "session-inputs",
           type: "password",
           value: this.state.password,
           onChange: this.handleInput("password"),
@@ -1979,6 +1979,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _comments_comment_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/comment_show */ "./frontend/components/comments/comment_show.jsx");
 /* harmony import */ var _comments_comment_create__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/comment_create */ "./frontend/components/comments/comment_create.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-spinners-kit */ "./node_modules/react-spinners-kit/lib/index.js");
+/* harmony import */ var react_spinners_kit__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1996,6 +1998,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2106,9 +2109,13 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.handleLike,
         className: "liked-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "liked"
-      }, likeDescription)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__["HeartSpinner"], {
+        size: 30,
+        color: "#686769",
+        loading: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "num-likes"
+      }, "+ ", this.props.likes.length), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-title"
       }, this.props.story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-author"
