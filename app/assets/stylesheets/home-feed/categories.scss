@@ -18,11 +18,22 @@
         
         .categories-container{
             display:flex;
-            justify-content: space-between;
+            justify-content: center;
             // justify-content: flex-start;
-            width:933.76px;
+            width:100%;
             // background-color:yellow;
             position: relative;
+
+            .searching .searching-create-title{
+                width: 700px;
+                height: 50px;
+                font-size: 35px;
+                border: none;
+                text-indent: 5px;
+                text-align: center;
+            }
         }
+
+
     
 }
