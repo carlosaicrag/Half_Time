@@ -1,7 +1,10 @@
 import * as StoriesUtil from "../utils/stories_util"
 
+import * as ApiStories from "../utils/apiStories"
+
 export const RECEIVE_STORY = "RECEIVE_STORY"
 export const RECEIVE_STORIES = "RECEIVE_STORIES"
+export const RECEIVE_API_STORIES = "RECEIVE_API_STORIES"
 export const REMOVE_STORY = "REMOVE_STORY"
 
 const receiveStory = (payload) => {
@@ -23,6 +26,14 @@ const receiveStories = (payload) => {
     })
 }
 
+const receiveApiStories = (payload) => {
+    return ({
+        type: RECEIVE_API_STORIES,
+        stories: payload,
+        users: payload.users,
+    })
+}
+
 const removeStory = (story) => {
     return({
         type: REMOVE_STORY,
@@ -37,9 +48,18 @@ export const fetchStory = (id) => (dispatch) => {
     )
 }
 
+//for my backend!!!
 export const fetchStories = () => (dispatch) => {
     return(
         StoriesUtil.fetchStories().then(stories => dispatch(receiveStories(stories)))
+    )
+}
+
+export const fetchApiStories = (url) => (dispatch) => {
+    return(
+        ApiStories.fetchApiTopStories(url).then(stories => {
+            dispatch(receiveApiStories(stories))
+        })
     )
 }
 

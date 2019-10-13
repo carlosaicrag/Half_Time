@@ -30,6 +30,7 @@
         .story-details-home-feed{
             display: flex;
             flex-direction: column;
+            width:420px;
             // height: 100px;
             justify-content: space-between;
             margin: 0 0 30px;
@@ -38,7 +39,7 @@
         }
         
         .story-details-body-home-feed{
-            width: 450px;
+            width: 420px;
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 13px;
             color: rgba(138, 138, 138, 0.82);

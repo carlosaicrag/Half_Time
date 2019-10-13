@@ -1,7 +1,8 @@
 import {
     RECEIVE_STORY,
     RECEIVE_STORIES,
-    REMOVE_STORY
+    REMOVE_STORY,
+    RECEIVE_API_STORIES
 } from "../actions/stories_actions"
 
 import {
@@ -15,10 +16,11 @@ import {
 const StoryReducer = (oldState = {}, action) => {
     Object.freeze(oldState);
     let newState;
-
     switch (action.type) {
         case RECEIVE_STORIES:
             return action.stories
+        case RECEIVE_API_STORIES:
+            return action.stories.articles
         case RECEIVE_STORY:
             newState = Object.assign({},oldState,{[action.story.id]:{id: action.story.id, body:action.story.body,title:action.story.title,photoUrl:action.story.photoUrl,authorId: action.story.author_id,user_photoUrl:action.story.user_photoUrl}})
             return newState;

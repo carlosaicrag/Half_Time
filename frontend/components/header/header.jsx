@@ -13,19 +13,19 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
                 Become a member
             </div> */}
 
-            <div className="login">
+            {/* <div className="login">
                 <a src="#" onClick={() => openModal("login")}>Sign In</a>
             </div>
 
             <div className="get-started">
                 <a onClick={() => openModal("signup")}>Get Started</a>
-            </div>
+            </div> */}
         </nav>
 )
 
     const welcomeUser = (currentUser, logout) => {
 
-        return(
+        // return(
         <div className="logout-create-story-profile">
 
             <div className="logout-container">
@@ -46,7 +46,7 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
 
 
         </div>
-        )
+        // )
     }
     return(
         currentUser ? welcomeUser(currentUser,logout) :sessionLinks() 

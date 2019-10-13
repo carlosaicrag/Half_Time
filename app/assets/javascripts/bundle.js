@@ -350,23 +350,28 @@ var logout = function logout() {
 /*!*********************************************!*\
   !*** ./frontend/actions/stories_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_STORY, RECEIVE_STORIES, REMOVE_STORY, fetchStory, fetchStories, createStory, deleteStory, updateStory */
+/*! exports provided: RECEIVE_STORY, RECEIVE_STORIES, RECEIVE_API_STORIES, REMOVE_STORY, fetchStory, fetchStories, fetchApiStories, createStory, deleteStory, updateStory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORY", function() { return RECEIVE_STORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_STORIES", function() { return RECEIVE_STORIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_API_STORIES", function() { return RECEIVE_API_STORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_STORY", function() { return REMOVE_STORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStory", function() { return fetchStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchStories", function() { return fetchStories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchApiStories", function() { return fetchApiStories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStory", function() { return createStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteStory", function() { return deleteStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateStory", function() { return updateStory; });
 /* harmony import */ var _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/stories_util */ "./frontend/utils/stories_util.js");
+/* harmony import */ var _utils_apiStories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/apiStories */ "./frontend/utils/apiStories.js");
+
 
 var RECEIVE_STORY = "RECEIVE_STORY";
 var RECEIVE_STORIES = "RECEIVE_STORIES";
+var RECEIVE_API_STORIES = "RECEIVE_API_STORIES";
 var REMOVE_STORY = "REMOVE_STORY";
 
 var receiveStory = function receiveStory(payload) {
@@ -388,6 +393,14 @@ var receiveStories = function receiveStories(payload) {
   };
 };
 
+var receiveApiStories = function receiveApiStories(payload) {
+  return {
+    type: RECEIVE_API_STORIES,
+    stories: payload,
+    users: payload.users
+  };
+};
+
 var removeStory = function removeStory(story) {
   return {
     type: REMOVE_STORY,
@@ -401,11 +414,19 @@ var fetchStory = function fetchStory(id) {
       return dispatch(receiveStory(story));
     });
   };
-};
+}; //for my backend!!!
+
 var fetchStories = function fetchStories() {
   return function (dispatch) {
     return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["fetchStories"]().then(function (stories) {
       return dispatch(receiveStories(stories));
+    });
+  };
+};
+var fetchApiStories = function fetchApiStories(url) {
+  return function (dispatch) {
+    return _utils_apiStories__WEBPACK_IMPORTED_MODULE_1__["fetchApiTopStories"](url).then(function (stories) {
+      dispatch(receiveApiStories(stories));
     });
   };
 };
@@ -751,24 +772,12 @@ var Header = function Header(_ref) {
   var sessionLinks = function sessionLinks() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "login-signup"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "login"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      src: "#",
-      onClick: function onClick() {
-        return openModal("login");
-      }
-    }, "Sign In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "get-started"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      onClick: function onClick() {
-        return openModal("signup");
-      }
-    }, "Get Started")));
+    });
   };
 
   var welcomeUser = function welcomeUser(currentUser, logout) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    // return(
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "logout-create-story-profile"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "logout-container"
@@ -795,7 +804,7 @@ var Header = function Header(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "story-show-profile-pic",
       src: currentUser.photoUrl
-    })));
+    }))); // )
   };
 
   return currentUser ? welcomeUser(currentUser, logout) : sessionLinks();
@@ -868,8 +877,51 @@ var Categories = function Categories(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "categories-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("top-headlines?country=us");
+    },
     className: "home-categories"
-  }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "OneZero"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Elemental"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Heated"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Tech"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Startups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Self"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Politics"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Health"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Design"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Human Parts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "More")));
+  }, "Top News"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=youtube.com");
+    }
+  }, "Sports"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=basketball");
+    }
+  }, "Basketball"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Tech");
+    }
+  }, "Tech"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Startups");
+    }
+  }, "Startups"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Self");
+    }
+  }, "Self"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Politics");
+    }
+  }, "Politics"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Health");
+    }
+  }, "Health"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Design");
+    }
+  }, "Design"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Human Parts");
+    }
+  }, "Human Parts"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.fetchDifferentStories("q=Random");
+    }
+  }, "Random")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Categories);
@@ -947,9 +999,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -976,30 +1028,45 @@ function (_React$Component) {
     _this.state = {
       loading: true
     };
+    _this.fetchDifferentStories = _this.fetchDifferentStories.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(HomeFeed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchStories(); // .then(setTimeout(() => {
+      var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+      this.props.fetchApiStories(url); // this.props.fetchStories()
+      // .then(setTimeout(() => {
       //     this.setState({ loading: false })
       // }, 1000))
     }
   }, {
+    key: "fetchDifferentStories",
+    value: function fetchDifferentStories(topic) {
+      var url;
+
+      if (topic === "top-headlines?country=us") {
+        url = "https://newsapi.org/v2/".concat(topic, "&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126");
+      } else {
+        url = "https://newsapi.org/v2/everything?".concat(topic, "&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126");
+      }
+
+      debugger;
+      this.props.fetchApiStories(url);
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       if (this.props.stories.length === 1) {
         return null;
       }
 
       var stories = this.props.stories.map(function (story) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          key: story.id,
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
+        , {
           story: story,
-          users: _this2.props.users
+          user: story.author
         });
       }); // if (this.state.loading) {
       //     return (
@@ -1015,7 +1082,9 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-feed"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        fetchDifferentStories: this.fetchDifferentStories
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
         stories: stories.slice(0, 5)
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
         stories: stories.slice(5)
@@ -1046,6 +1115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var mapStateToBanana = function mapStateToBanana(state) {
   return {
     stories: Object.values(state.entities.stories),
@@ -1055,6 +1125,9 @@ var mapStateToBanana = function mapStateToBanana(state) {
 
 var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
   return {
+    fetchApiStories: function fetchApiStories(url) {
+      return dispatch(Object(_actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["fetchApiStories"])(url));
+    },
     fetchStories: function fetchStories() {
       return dispatch(Object(_actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["fetchStories"])());
     }
@@ -1082,40 +1155,69 @@ __webpack_require__.r(__webpack_exports__);
 
 var StoryHomeFeed = function StoryHomeFeed(props) {
   var story = props.story,
-      users = props.users;
-  var user;
+      user = props.user; // let user;
+  // for(let i = 0; i < users.length; i++){
+  //     if(users[i].id === story.author_id || users[i].id === story.authorId){
+  //         user = users[i];
+  //     }
+  // }
+  // if (story.id === null){
+  //     return null
+  // }
 
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].id === story.author_id || users[i].id === story.authorId) {
-      user = users[i];
-    }
+  var description;
+  var urlToImage;
+
+  if (story.url.includes("https://www.youtube.com/watch?")) {
+    debugger;
+    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
+      className: "story-image-home-feed",
+      width: "560",
+      height: "315",
+      src: story.url.slice(0, 24) + "embed/" + story.url.slice(32),
+      frameborder: "0",
+      allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
+      allowfullscreen: true
+    });
+  } else {
+    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "story-image-home-feed",
+      src: story.urlToImage,
+      alt: story.title
+    });
   }
 
-  if (story.id === null) {
-    return null;
+  if (story.description === null) {
+    description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "_blank",
+      href: story.url,
+      className: "story-details-body-home-feed"
+    }, "...");
+  } else {
+    description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "_blank",
+      href: story.url,
+      className: "story-details-body-home-feed"
+    }, story.description.slice(0, 100), "...");
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/stories/".concat(story.id),
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: story.url,
     className: "story-image-home-feed-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "story-image-home-feed",
-    src: story.photoUrl,
-    alt: story.title
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, urlToImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/stories/".concat(story.id),
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: story.url,
     className: "story-details-title-home-feed"
-  }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/stories/".concat(story.id),
-    className: "story-details-body-home-feed"
-  }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "users/".concat(user.id),
+  }, story.title), description, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: story.url,
     className: "story-details-user"
-  }, user.username)));
+  }, user)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);
@@ -2855,6 +2957,9 @@ var StoryReducer = function StoryReducer() {
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORIES"]:
       return action.stories;
 
+    case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_API_STORIES"]:
+      return action.stories.articles;
+
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORY"]:
       newState = Object.assign({}, oldState, _defineProperty({}, action.story.id, {
         id: action.story.id,
@@ -3003,6 +3108,28 @@ var thunk = function thunk(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (thunk);
+
+/***/ }),
+
+/***/ "./frontend/utils/apiStories.js":
+/*!**************************************!*\
+  !*** ./frontend/utils/apiStories.js ***!
+  \**************************************/
+/*! exports provided: fetchApiTopStories */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchApiTopStories", function() { return fetchApiTopStories; });
+var fetchApiTopStories = function fetchApiTopStories(url) {
+  debugger;
+  return $.ajax({
+    method: "GET",
+    url: url,
+    // contentType:"application/json",
+    dataType: "json"
+  });
+};
 
 /***/ }),
 

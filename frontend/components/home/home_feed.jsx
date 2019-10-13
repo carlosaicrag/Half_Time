@@ -9,13 +9,31 @@ class HomeFeed extends React.Component {
     constructor(props){
         super(props);
         this.state = {loading: true}
+        this.fetchDifferentStories = this.fetchDifferentStories.bind(this)
     }
 
     componentDidMount(){
-        this.props.fetchStories()
+        let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+            this.props.fetchApiStories(url)
+
+        // this.props.fetchStories()
         // .then(setTimeout(() => {
         //     this.setState({ loading: false })
         // }, 1000))
+
+
+    }
+
+    fetchDifferentStories(topic){
+        let url;
+
+        if (topic ==="top-headlines?country=us"){
+            url = `https://newsapi.org/v2/${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
+        }else{
+            url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
+        }
+        debugger
+        this.props.fetchApiStories(url)
     }
 
     render(){
@@ -25,11 +43,12 @@ class HomeFeed extends React.Component {
         }
         
         let stories = this.props.stories.map((story)=>{
+
             return(
                 <StoryHomeFeedComponent 
-                key={story.id}
+                // key={story.id}
                 story={story}
-                users={this.props.users}
+                user={story.author}
                 />
                 )
             })
@@ -47,7 +66,10 @@ class HomeFeed extends React.Component {
         // }
         return(
             <div className="home-feed">
-                {/* <Categories></Categories> */}
+                <Categories
+                fetchDifferentStories = {this.fetchDifferentStories}
+                />
+
                 <FeaturedStories stories={stories.slice(0, 5)}/>
                 <UnFeaturedStories stories={stories.slice(5)}/>
             </div>
