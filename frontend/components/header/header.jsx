@@ -25,7 +25,7 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
 
     const welcomeUser = (currentUser, logout) => {
 
-        // return(
+        return(
         <div className="logout-create-story-profile">
 
             <div className="logout-container">
@@ -46,7 +46,7 @@ const Header = ({ currentUser, logout, openModal,fetchUser }) => {
 
 
         </div>
-        // )
+        )
     }
     return(
         currentUser ? welcomeUser(currentUser,logout) :sessionLinks() 

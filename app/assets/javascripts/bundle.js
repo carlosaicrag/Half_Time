@@ -776,8 +776,7 @@ var Header = function Header(_ref) {
   };
 
   var welcomeUser = function welcomeUser(currentUser, logout) {
-    // return(
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "logout-create-story-profile"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "logout-container"
@@ -804,7 +803,7 @@ var Header = function Header(_ref) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "story-show-profile-pic",
       src: currentUser.photoUrl
-    }))); // )
+    })));
   };
 
   return currentUser ? welcomeUser(currentUser, logout) : sessionLinks();
@@ -1231,7 +1230,7 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
     target: "_blank",
     href: story.url,
     className: "story-details-title-home-feed"
-  }, story.title), description, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, story.title.slice(0, 50), "..."), description, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     target: "_blank",
     href: story.url,
     className: "story-details-user"
