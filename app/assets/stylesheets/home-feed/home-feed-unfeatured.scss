@@ -4,7 +4,7 @@
     justify-content: center;
     justify-content: space-between;
     // background-color: green;
-    width: 1038px;
+    width: 600px;
 
     .unfeatured-stories{
         width:650px;
@@ -13,8 +13,7 @@
         .story-home-feed{
             display: flex;
             flex-direction: row-reverse;
-            justify-content: flex-end;
-            align-content: space-between;
+            justify-content: space-between;
             // background-color:yellow;
         }
         
@@ -24,7 +23,7 @@
             height: 150px;
             position: relative;
             object-fit: cover;
-            left: 30px;
+            // left: 30px;
         }
         
         .story-details-home-feed{

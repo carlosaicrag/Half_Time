@@ -4,6 +4,7 @@ import FeaturedStories from "./featured_stories"
 import UnFeaturedStories from "./unfeatured_stories"
 import Categories from "./categories"
 import { HeartSpinner } from "react-spinners-kit";
+import {embedTwitterList} from "../../utils/embedding_twitter"
 
 class HomeFeed extends React.Component {
     constructor(props){
@@ -14,7 +15,14 @@ class HomeFeed extends React.Component {
 
     componentDidMount(){
         let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
-            this.props.fetchApiStories(url)
+        this.props.fetchApiStories(url).then(()=>{
+            setInterval(()=>{
+                debugger
+                embedTwitterList(); 
+            },600000)
+            embedTwitterList();
+        })
+        
 
         // this.props.fetchStories()
         // .then(setTimeout(() => {
@@ -25,14 +33,16 @@ class HomeFeed extends React.Component {
     }
 
     fetchDifferentStories(topic){
-        let url;
+        // let url;
 
-        if (topic ==="top-headlines?country=us"){
-            url = `https://newsapi.org/v2/${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
-        }else{
-            url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
-        }
-        debugger
+        // if (topic ==="top-headlines?country=us"){
+        //     url = `https://newsapi.org/v2/${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
+        // }else{
+        //     url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
+        // }
+
+        let url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
+
         this.props.fetchApiStories(url)
     }
 
@@ -68,10 +78,16 @@ class HomeFeed extends React.Component {
             <div className="home-feed">
                 <Categories
                 fetchDifferentStories = {this.fetchDifferentStories}
-                />
-
+                />  
+                <div className="twitterF"></div>
                 <FeaturedStories stories={stories.slice(0, 5)}/>
-                <UnFeaturedStories stories={stories.slice(5)}/>
+                <div className="twitter-unfeatured">
+                    <div className="twitter">
+                        <a class="twitter-timeline" data-width="500" data-height="1000" href="https://twitter.com/carlosgarcia95_/lists/feed?ref_src=twsrc%5Etfw">A Twitter List by carlosgarcia95_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                    
+                    </div>
+                    
+                    <UnFeaturedStories stories={stories.slice(5)}/>
+                </div>
             </div>
         )
     }

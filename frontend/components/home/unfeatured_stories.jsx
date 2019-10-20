@@ -9,9 +9,9 @@ const StoryHomeFeed = props => {
                 {stories}
             </div>
 
-            <UnfeaturedPopular 
+            {/* <UnfeaturedPopular 
                 stories ={stories}
-            />
+            /> */}
         </div>
     )
 }

@@ -6,6 +6,16 @@
     font-family: 'Playfair Display', serif;
     // background-color: purple;
 
+    .twitter-unfeatured{
+        // background-color: purple;
+        display:flex;
+        width: 1440px;
+        justify-content: space-between;
+        padding:0,300,0,300;
+        
+
+    }
+
 }
 
 .featured{
@@ -14,7 +24,7 @@
     justify-content: space-between;
     margin: 0px 115px 80px 115px;
     // background-color: blue;
-    height: 700px;
+    height: 600px;
     width: 1300px;
     border-bottom: 1px solid lightgray
 }

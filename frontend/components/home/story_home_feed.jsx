@@ -17,7 +17,6 @@ const StoryHomeFeed = props => {
     let description;
     let urlToImage;
     if (story.url.includes("https://www.youtube.com/watch?")){
-        debugger
         urlToImage = <iframe className="story-image-home-feed" width="560" height="315" src={story.url.slice(0, 24) + "embed/" + story.url.slice(32)} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     }else{
         urlToImage = <img className="story-image-home-feed" src={story.urlToImage} alt={story.title} />
