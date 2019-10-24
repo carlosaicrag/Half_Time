@@ -1,7 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { Redirect, Route, withRouter } from "react-router-dom"
 
 const StoryHomeFeed = props => {
+    if(props.location.pathname === "/news"){
+        
+    }else{
+
     let {story,user} = props;
     // let user;
     
@@ -14,6 +19,7 @@ const StoryHomeFeed = props => {
     // if (story.id === null){
     //     return null
     // }
+    debugger
     let description;
     let urlToImage;
     if (story.url.includes("https://www.youtube.com/watch?")){
@@ -44,6 +50,7 @@ const StoryHomeFeed = props => {
 
         </div>
     )
+    }
 }
 
-export default StoryHomeFeed
+export default withRouter(StoryHomeFeed)

@@ -1180,73 +1180,77 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var StoryHomeFeed = function StoryHomeFeed(props) {
-  var story = props.story,
-      user = props.user; // let user;
-  // for(let i = 0; i < users.length; i++){
-  //     if(users[i].id === story.author_id || users[i].id === story.authorId){
-  //         user = users[i];
-  //     }
-  // }
-  // if (story.id === null){
-  //     return null
-  // }
+  if (props.location.pathname === "/news") {} else {
+    var story = props.story,
+        user = props.user; // let user;
+    // for(let i = 0; i < users.length; i++){
+    //     if(users[i].id === story.author_id || users[i].id === story.authorId){
+    //         user = users[i];
+    //     }
+    // }
+    // if (story.id === null){
+    //     return null
+    // }
 
-  var description;
-  var urlToImage;
+    debugger;
+    var description;
+    var urlToImage;
 
-  if (story.url.includes("https://www.youtube.com/watch?")) {
-    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
-      className: "story-image-home-feed",
-      width: "560",
-      height: "315",
-      src: story.url.slice(0, 24) + "embed/" + story.url.slice(32),
-      frameborder: "0",
-      allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
-      allowfullscreen: true
-    });
-  } else {
-    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "story-image-home-feed",
-      src: story.urlToImage,
-      alt: story.title
-    });
-  }
+    if (story.url.includes("https://www.youtube.com/watch?")) {
+      urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
+        className: "story-image-home-feed",
+        width: "560",
+        height: "315",
+        src: story.url.slice(0, 24) + "embed/" + story.url.slice(32),
+        frameborder: "0",
+        allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
+        allowfullscreen: true
+      });
+    } else {
+      urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "story-image-home-feed",
+        src: story.urlToImage,
+        alt: story.title
+      });
+    }
 
-  if (story.description === null) {
-    description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    if (story.description === null) {
+      description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
+        href: story.url,
+        className: "story-details-body-home-feed"
+      }, "...");
+    } else {
+      description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
+        href: story.url,
+        className: "story-details-body-home-feed"
+      }, story.description.slice(0, 100), "...");
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "story-home-feed"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       target: "_blank",
       href: story.url,
-      className: "story-details-body-home-feed"
-    }, "...");
-  } else {
-    description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      className: "story-image-home-feed-container"
+    }, urlToImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "story-details-home-feed"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       target: "_blank",
       href: story.url,
-      className: "story-details-body-home-feed"
-    }, story.description.slice(0, 100), "...");
+      className: "story-details-title-home-feed"
+    }, story.title.slice(0, 50), "..."), description, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "_blank",
+      href: story.url,
+      className: "story-details-user"
+    }, user)));
   }
-
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "story-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    target: "_blank",
-    href: story.url,
-    className: "story-image-home-feed-container"
-  }, urlToImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "story-details-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    target: "_blank",
-    href: story.url,
-    className: "story-details-title-home-feed"
-  }, story.title.slice(0, 50), "..."), description, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    target: "_blank",
-    href: story.url,
-    className: "story-details-user"
-  }, user)));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeed);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(StoryHomeFeed));
 
 /***/ }),
 
