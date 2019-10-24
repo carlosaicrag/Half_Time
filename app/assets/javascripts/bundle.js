@@ -1059,7 +1059,8 @@ function (_React$Component) {
     value: function componentDidMount() {
       debugger;
 
-      if (this.props.location === "/") {
+      if (this.props.location.pathname === "/") {
+        debugger;
         this.props.fetchStories();
       } else {
         var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
@@ -1086,9 +1087,10 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      debugger;
       var stories;
 
-      if (this.props.location === "/") {
+      if (this.props.location.pathname === "/") {
         if (this.props.stories.length === 1) {
           return null;
         }
@@ -1100,11 +1102,18 @@ function (_React$Component) {
             users: _this2.props.users
           });
         });
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "home-feed"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          stories: stories.slice(0, 5)
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          stories: stories.slice(5)
+        }));
       } else {
-        if (this.props.stories.length === 1) {
-          return null;
-        }
-
+        // if (this.props.stories.length === 1) {
+        //     return null;
+        // }
+        debugger;
         stories = this.props.stories.map(function (story) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
           , {

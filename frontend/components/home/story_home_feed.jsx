@@ -16,7 +16,6 @@ const StoryHomeFeed = props => {
         if (story.id === null) {
             return null
         }
-
         return (
 
             <div className="story-home-feed">

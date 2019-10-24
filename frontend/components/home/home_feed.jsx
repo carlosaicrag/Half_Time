@@ -15,7 +15,8 @@ class HomeFeed extends React.Component {
 
     componentDidMount(){
         debugger
-        if(this.props.location === "/"){
+        if(this.props.location.pathname === "/"){
+            debugger
             this.props.fetchStories()
         }else{
             let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
@@ -44,11 +45,16 @@ class HomeFeed extends React.Component {
     }
 
     render(){
+
+        debugger
         let stories;
-        if (this.props.location === "/") {
+
+        if (this.props.location.pathname === "/") {
             if (this.props.stories.length === 1) {
                 return null;
             }
+
+
 
             stories = this.props.stories.map((story) => {
                 return (
@@ -59,12 +65,20 @@ class HomeFeed extends React.Component {
                     />
                 )
             })
+            return (
+                <div className="home-feed">
+                    {/* <Categories></Categories> */}
+                    <FeaturedStories stories={stories.slice(0, 5)} />
+                    <UnFeaturedStories stories={stories.slice(5)} />
+                </div>
+            )
             
         } else {
-            if (this.props.stories.length === 1) {
-                return null;
-            }
 
+            // if (this.props.stories.length === 1) {
+            //     return null;
+            // }
+            debugger
             stories = this.props.stories.map((story) => {
 
                 return (
