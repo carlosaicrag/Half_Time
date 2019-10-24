@@ -1084,9 +1084,23 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var stories;
 
-      if (this.props.location === "/") {} else {
+      if (this.props.location === "/") {
+        if (this.props.stories.length === 1) {
+          return null;
+        }
+
+        stories = this.props.stories.map(function (story) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: story.id,
+            story: story,
+            users: _this2.props.users
+          });
+        });
+      } else {
         if (this.props.stories.length === 1) {
           return null;
         }
@@ -1098,32 +1112,31 @@ function (_React$Component) {
             user: story.author
           });
         });
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "home-feed"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          fetchDifferentStories: this.fetchDifferentStories
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "twitterF"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          stories: stories.slice(0, 5)
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "twitter-unfeatured"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "twitter"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          "class": "twitter-timeline",
+          "data-width": "500",
+          "data-height": "1000",
+          href: "https://twitter.com/carlosgarcia95_/lists/feed?ref_src=twsrc%5Etfw"
+        }, "A Twitter List by carlosgarcia95_"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
+          async: true,
+          src: "https://platform.twitter.com/widgets.js",
+          charset: "utf-8"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          stories: stories.slice(5)
+        })));
       }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "home-feed"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        fetchDifferentStories: this.fetchDifferentStories
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "twitterF"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        stories: stories.slice(0, 5)
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "twitter-unfeatured"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "twitter"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        "class": "twitter-timeline",
-        "data-width": "500",
-        "data-height": "1000",
-        href: "https://twitter.com/carlosgarcia95_/lists/feed?ref_src=twsrc%5Etfw"
-      }, "A Twitter List by carlosgarcia95_"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
-        async: true,
-        src: "https://platform.twitter.com/widgets.js",
-        charset: "utf-8"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        stories: stories.slice(5)
-      })));
     }
   }]);
 
