@@ -1054,27 +1054,27 @@ function (_React$Component) {
   _createClass(HomeFeed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
-      this.props.fetchApiStories(url).then(function () {
-        setInterval(function () {
-          debugger;
+      debugger;
+
+      if (this.props.location === "/") {
+        this.props.fetchStories();
+      } else {
+        var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+        this.props.fetchApiStories(url).then(function () {
+          setInterval(function () {
+            debugger;
+            Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_6__["embedTwitterList"])();
+          }, 600000);
           Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_6__["embedTwitterList"])();
-        }, 600000);
-        Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_6__["embedTwitterList"])();
-      }); // this.props.fetchStories()
-      // .then(setTimeout(() => {
+        });
+      } // .then(setTimeout(() => {
       //     this.setState({ loading: false })
       // }, 1000))
+
     }
   }, {
     key: "fetchDifferentStories",
     value: function fetchDifferentStories(topic) {
-      // let url;
-      // if (topic ==="top-headlines?country=us"){
-      //     url = `https://newsapi.org/v2/${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
-      // }else{
-      //     url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
-      // }
       var url = "https://newsapi.org/v2/everything?".concat(topic, "&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126");
       this.props.fetchApiStories(url);
     }
@@ -1091,18 +1091,7 @@ function (_React$Component) {
           story: story,
           user: story.author
         });
-      }); // if (this.state.loading) {
-      //     return (
-      //         <div className="user-loading-screen">
-      //             <PushSpinner
-      //                 size={30}
-      //                 color="#686769"
-      //                 loading={this.state.loading}
-      //             />
-      //         </div>
-      //     )
-      // }
-
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-feed"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories__WEBPACK_IMPORTED_MODULE_4__["default"], {

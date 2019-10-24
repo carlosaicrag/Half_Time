@@ -14,17 +14,21 @@ class HomeFeed extends React.Component {
     }
 
     componentDidMount(){
-        let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
-        this.props.fetchApiStories(url).then(()=>{
-            setInterval(()=>{
-                debugger
-                embedTwitterList(); 
-            },600000)
-            embedTwitterList();
-        })
+        debugger
+        if(this.props.location === "/"){
+            this.props.fetchStories()
+        }else{
+            let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+            this.props.fetchApiStories(url).then(()=>{
+                setInterval(()=>{
+                    debugger
+                    embedTwitterList(); 
+                },600000)
+                embedTwitterList();
+            })
+        }
         
 
-        // this.props.fetchStories()
         // .then(setTimeout(() => {
         //     this.setState({ loading: false })
         // }, 1000))
@@ -33,13 +37,6 @@ class HomeFeed extends React.Component {
     }
 
     fetchDifferentStories(topic){
-        // let url;
-
-        // if (topic ==="top-headlines?country=us"){
-        //     url = `https://newsapi.org/v2/${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
-        // }else{
-        //     url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
-        // }
 
         let url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
 
@@ -61,19 +58,8 @@ class HomeFeed extends React.Component {
                 user={story.author}
                 />
                 )
-            })
-            
-        // if (this.state.loading) {
-        //     return (
-        //         <div className="user-loading-screen">
-        //             <PushSpinner
-        //                 size={30}
-        //                 color="#686769"
-        //                 loading={this.state.loading}
-        //             />
-        //         </div>
-        //     )
-        // }
+        })
+        
         return(
             <div className="home-feed">
                 <Categories
