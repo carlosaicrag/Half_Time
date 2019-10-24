@@ -1084,17 +1084,22 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.stories.length === 1) {
-        return null;
+      var stories;
+
+      if (this.props.location === "/") {} else {
+        if (this.props.stories.length === 1) {
+          return null;
+        }
+
+        stories = this.props.stories.map(function (story) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
+          , {
+            story: story,
+            user: story.author
+          });
+        });
       }
 
-      var stories = this.props.stories.map(function (story) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
-        , {
-          story: story,
-          user: story.author
-        });
-      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-feed"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories__WEBPACK_IMPORTED_MODULE_4__["default"], {
