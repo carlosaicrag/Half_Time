@@ -1,12 +1,14 @@
 import React from "react"
-import StoryHomeFeedComponent from "./story_home_feed"
-import FeaturedStories from "./featured_stories"
-import UnFeaturedStories from "./unfeatured_stories"
-import Categories from "./categories"
-import { HeartSpinner } from "react-spinners-kit";
+// import StoryHomeFeedComponent from "./story_home_feed"
+import StoryHomeFeedComponent from "../home/story_home_feed"
+// import FeaturedStories from "./featured_stories"
+import FeaturedStories from "../home/featured_stories"
+import UnFeaturedStories from "../home/unfeatured_stories"
+import Categories from "../home/categories"
+// import { HeartSpinner } from "react-spinners-kit";
 import { embedTwitterList } from "../../utils/embedding_twitter"
 
-class HomeFeed extends React.Component {
+class News extends React.Component {
     constructor(props) {
         super(props);
         this.state = { loading: true }
@@ -14,15 +16,12 @@ class HomeFeed extends React.Component {
     }
 
     componentDidMount() {
-        debugger
         if (this.props.location.pathname === "/") {
-            debugger
             this.props.fetchStories()
         } else {
             let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
             this.props.fetchApiStories(url).then(() => {
                 setInterval(() => {
-                    debugger
                     embedTwitterList();
                 }, 600000)
                 embedTwitterList();
@@ -46,9 +45,8 @@ class HomeFeed extends React.Component {
 
     render() {
 
-        debugger
         let stories;
-
+        debugger
         if (this.props.location.pathname === "/") {
             if (this.props.stories.length === 1) {
                 return null;
@@ -79,6 +77,7 @@ class HomeFeed extends React.Component {
             //     return null;
             // }
             debugger
+
             stories = this.props.stories.map((story) => {
 
                 return (
@@ -109,4 +108,4 @@ class HomeFeed extends React.Component {
     }
 }
 
-export default HomeFeed;
+export default News;

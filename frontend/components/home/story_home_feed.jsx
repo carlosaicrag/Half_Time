@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import { Redirect, Route, withRouter } from "react-router-dom"
 
 const StoryHomeFeed = props => {
+
+
+    debugger
     if(props.location.pathname === "/"){
         let { story, users } = props;
         let user;
@@ -14,6 +17,10 @@ const StoryHomeFeed = props => {
         }
 
         if (story.id === null) {
+            return null
+        }
+
+        if(story.id === undefined){
             return null
         }
         return (
@@ -51,8 +58,13 @@ const StoryHomeFeed = props => {
     // if (story.id === null){
     //     return null
     // }
+    if(!story.url){
+        return null
+    }
+    
     let description;
     let urlToImage;
+    debugger
     if (story.url.includes("https://www.youtube.com/watch?")){
         urlToImage = <iframe className="story-image-home-feed" width="560" height="315" src={story.url.slice(0, 24) + "embed/" + story.url.slice(32)} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     }else{

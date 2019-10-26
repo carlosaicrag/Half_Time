@@ -14,15 +14,12 @@ class HomeFeed extends React.Component {
     }
 
     componentDidMount(){
-        debugger
         if(this.props.location.pathname === "/"){
-            debugger
             this.props.fetchStories()
         }else{
             let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
             this.props.fetchApiStories(url).then(()=>{
                 setInterval(()=>{
-                    debugger
                     embedTwitterList(); 
                 },600000)
                 embedTwitterList();
@@ -46,7 +43,6 @@ class HomeFeed extends React.Component {
 
     render(){
 
-        debugger
         let stories;
 
         if (this.props.location.pathname === "/") {
@@ -78,7 +74,7 @@ class HomeFeed extends React.Component {
             // if (this.props.stories.length === 1) {
             //     return null;
             // }
-            debugger
+
             stories = this.props.stories.map((story) => {
 
                 return (

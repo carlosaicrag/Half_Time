@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { fetchStories } from "../../actions/stories_actions"
 import { fetchApiStories } from "../../actions/stories_actions"
-import HomeFeed from "./home_feed"
+import News from "./news_component"
 
 
 const mapStateToBanana = state => {
@@ -18,4 +18,4 @@ const mapDispatchToBanana = dispatch => {
     })
 }
 
-export default connect(mapStateToBanana, mapDispatchToBanana)(HomeFeed);
+export default connect(mapStateToBanana, mapDispatchToBanana)(News);

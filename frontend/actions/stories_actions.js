@@ -58,6 +58,7 @@ export const fetchStories = () => (dispatch) => {
 export const fetchApiStories = (url) => (dispatch) => {
     return(
         ApiStories.fetchApiTopStories(url).then(stories => {
+            debugger
             dispatch(receiveApiStories(stories))
         })
     )
