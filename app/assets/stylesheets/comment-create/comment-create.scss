@@ -4,15 +4,17 @@
     border-color: Transparent; 
     overflow: auto;
     display: flex;
-    width: 600px;
-    height: 300px;
+    width: 900px;
+    height: 450px;
     flex-direction: column;
     margin-bottom: 50px;
     margin-top: 50px;
     box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);
+    font-size: 35px;
 
     .create-comment-body{
         height: 100%;
+        width: 900px;
         width:595px;
         border-style: none; 
         border-color: Transparent; 

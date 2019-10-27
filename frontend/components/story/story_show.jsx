@@ -91,19 +91,19 @@ class StoryShow extends React.Component {
         }
         return(
             <div className="story-show">
-                {/* <div onClick={this.handleLike} className="liked-container">
+                <div onClick={this.handleLike} className="liked-container">
                     <div className="liked">
                         {likeDescription}
                     </div>
-                </div> */}
+                </div>
 
-                <div onClick={this.handleLike} className="liked-container">
+                {/* <div onClick={this.handleLike} className="liked-container">
                        <HeartSpinner
                         size={30}
                         color="#686769"
                         loading={true}
                         />
-               </div>
+               </div> */}
                 <div className="num-likes">+ {this.props.likes.length}</div>
 
 

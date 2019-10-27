@@ -13,6 +13,10 @@ class CommentShow extends React.Component {
 
     render(){
 
+        if(this.props.commentAuthor === undefined){
+            return null
+        }
+
         let deleteDescription;
         if(this.props.comment.user_id === parseInt(this.props.currentUserId)){
             deleteDescription = "Delete"

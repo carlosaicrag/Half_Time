@@ -651,6 +651,9 @@ function (_React$Component) {
         onSubmit: this.handleSubmit,
         className: "create-comment-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        style: {
+          width: 900
+        },
         className: "create-comment-body",
         value: this.state.body,
         onChange: this.update("body"),
@@ -726,6 +729,10 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      if (this.props.commentAuthor === undefined) {
+        return null;
+      }
+
       var deleteDescription;
 
       if (this.props.comment.user_id === parseInt(this.props.currentUserId)) {
@@ -778,7 +785,20 @@ var Header = function Header(_ref) {
   var sessionLinks = function sessionLinks() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "login-signup"
-    });
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "login"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      src: "#",
+      onClick: function onClick() {
+        return openModal("login");
+      }
+    }, "Sign In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "get-started"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      onClick: function onClick() {
+        return openModal("signup");
+      }
+    }, "Get Started")));
   };
 
   var welcomeUser = function welcomeUser(currentUser, logout) {
@@ -1244,7 +1264,7 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/stories/".concat(story.id),
       className: "story-details-title-home-feed"
-    }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, story.title.slice(0, 50), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/stories/".concat(story.id),
       className: "story-details-body-home-feed"
     }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -2511,11 +2531,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.handleLike,
         className: "liked-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners_kit__WEBPACK_IMPORTED_MODULE_5__["HeartSpinner"], {
-        size: 30,
-        color: "#686769",
-        loading: true
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "liked"
+      }, likeDescription)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "num-likes"
       }, "+ ", this.props.likes.length), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-title"

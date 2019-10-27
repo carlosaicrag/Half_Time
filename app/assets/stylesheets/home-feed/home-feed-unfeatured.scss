@@ -40,7 +40,7 @@
         .story-details-body-home-feed{
             width: 420px;
             font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: 13px;
+            font-size: 16px;
             color: rgba(138, 138, 138, 0.82);
             position: relative;
             bottom: 20px;
@@ -50,13 +50,14 @@
         
         .story-details-title-home-feed{
             font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: 16px;
+            font-size: 20px;
             text-decoration: none;
             color:black
             // background-color:purple;
         }
         
         .story-details-user{
+            font-size: 16px;
             position: relative;
             bottom: 40px;
         }

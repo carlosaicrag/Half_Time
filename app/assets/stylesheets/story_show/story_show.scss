@@ -4,65 +4,65 @@
     // background-color: green;
     position: relative;
     top: 100px;
-    width: 700px;
-    margin:auto;
+    width: 1000px;
+    margin:0 auto;
 
     .story-show-details-title{
-        font-size: 35px;
+        font-size: 55px;
         // background-color:purple;
-        height:50px;  
+        height:100px;  
     }
 
     .story-show-image{
         object-fit: cover;
         height: 500px;
-        width: 700px;
+        width: 1000px;
         // background-color: yellow;
     }
 
     .story-show-details-body{
         margin: 55px 0 0 0;
-        font-size: 20px;
+        font-size: 35px;
         line-height: 1.6;
         // background-color: purple;
     }
 
     .num-likes{
-        width: 20px;
+        width: 30px;
         // height:20px;
         // text-align: center;
         position: relative;
-        left: 670px;
-        top: 127px;
+        left: 995px;
+        top: 180px;
         // border-radius: 4px;
-        font-size: 15px;
+        font-size: 20px;
         // border: 1px solid rgb(85, 29, 29);
         color: rgb(85, 29, 29);
     }
 
     .liked-container{
         // background-color: red;
-        // display:flex;
-        // justify-content: center;
-        // align-items: center;
-        width: 65px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
         height:20px;
-        // text-align: center;
+        text-align: center;
         position: relative;
-        left: 633px;
-        top: 140px;
+        left:  900px;
+        top: 200px;
         cursor: pointer;
-        // border-radius: 4px;
-        // font-size: 15px;
-        // border: 1px solid rgb(85, 29, 29);
-        // color: rgb(85, 29, 29);
+        border-radius: 4px;
+        font-size: 20px;
+        border: 1px solid rgb(85, 29, 29);
+        color: rgb(85, 29, 29);
 
     }
 
-    // .liked-container:hover{
-    //     border: 1px solid rgb(29, 10, 10);
-    //     color: rgb(29, 10, 10);
-    // }
+    .liked-container:hover{
+        border: 1px solid rgb(29, 10, 10);
+        color: rgb(29, 10, 10);
+    }
 }
 
 

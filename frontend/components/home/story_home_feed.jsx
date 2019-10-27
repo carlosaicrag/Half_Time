@@ -33,7 +33,7 @@ const StoryHomeFeed = props => {
 
 
                 <div className="story-details-home-feed">
-                    <Link to={`/stories/${story.id}`} className="story-details-title-home-feed">{story.title}</Link>
+                    <Link to={`/stories/${story.id}`} className="story-details-title-home-feed">{story.title.slice(0,50)}...</Link>
                     <Link to={`/stories/${story.id}`} className="story-details-body-home-feed">{story.body.slice(0, 100)}...</Link>
                     <Link to={`users/${user.id}`} className="story-details-user">{user.username}</Link>
                 </div>

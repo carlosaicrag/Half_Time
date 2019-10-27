@@ -9,7 +9,7 @@
     .twitter-unfeatured{
         // background-color: purple;
         display:flex;
-        width: 1440px;
+        width: 1250px;
         justify-content: space-between;
         padding:0,300,0,300;
         
@@ -24,9 +24,10 @@
     justify-content: space-between;
     margin: 0px 115px 80px 115px;
     // background-color: blue;
-    height: 600px;
+    height: 700px;
     width: 1300px;
-    border-bottom: 1px solid lightgray
+    border-bottom: 1px solid lightgray;
+    padding: 0 0 40px 0;
 }
 
 
