@@ -1,10 +1,16 @@
-.header-link{
-    display: block;
-    text-decoration: none;
-    // font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: 30px;
-    outline: none;
-    color: black;
-    
+.home-news{
+    width: 300px;
+    height:50px;
+    display:flex;
+    justify-content: space-between;
+
+    .header-link{
+        display: block;
+        text-decoration: none;
+        // font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        font-size: 30px;
+        outline: none;
+        color: black;
+    }
 }

@@ -14,9 +14,17 @@ const App = () => (
     <div>
         <Modal />
         <header className="header">
-            <Link to="/" className="header-link">
-                TheOcho
-            </Link>
+
+            <div className="home-news">
+                <Link to="/" className="header-link">
+                    TheOcho
+                </Link>
+                
+                <Link to="/news" className="header-link">
+                    News Api
+                </Link>
+            </div>
+
             <HeaderContainer />
         </header>
         <Switch>
