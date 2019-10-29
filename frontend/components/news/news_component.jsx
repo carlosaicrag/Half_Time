@@ -13,6 +13,7 @@ class News extends React.Component {
         super(props);
         this.state = { loading: true }
         this.fetchDifferentStories = this.fetchDifferentStories.bind(this)
+        this.interval;
     }
 
     componentDidMount() {
@@ -21,7 +22,9 @@ class News extends React.Component {
         } else {
             let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
             this.props.fetchApiStories(url).then(() => {
-                setInterval(() => {
+                this.interval = setInterval(() => {
+                    debugger
+                    this.props.fetchApiStories(url)
                     embedTwitterList();
                 }, 600000)
                 embedTwitterList();
@@ -36,6 +39,11 @@ class News extends React.Component {
 
     }
 
+    componentWillUnmount() {
+        debugger
+        clearInterval(this.interval)
+    }
+
     fetchDifferentStories(topic) {
 
         let url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
@@ -46,7 +54,6 @@ class News extends React.Component {
     render() {
 
         let stories;
-        debugger
         if (this.props.location.pathname === "/") {
             if (this.props.stories.length === 1) {
                 return null;
@@ -76,7 +83,6 @@ class News extends React.Component {
             // if (this.props.stories.length === 1) {
             //     return null;
             // }
-            debugger
 
             stories = this.props.stories.map((story) => {
 

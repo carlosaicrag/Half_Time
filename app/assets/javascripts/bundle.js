@@ -426,7 +426,6 @@ var fetchStories = function fetchStories() {
 var fetchApiStories = function fetchApiStories(url) {
   return function (dispatch) {
     return _utils_apiStories__WEBPACK_IMPORTED_MODULE_1__["fetchApiTopStories"](url).then(function (stories) {
-      debugger;
       dispatch(receiveApiStories(stories));
     });
   };
@@ -1093,14 +1092,20 @@ function (_React$Component) {
   _createClass(HomeFeed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       if (this.props.location.pathname === "/") {
         this.props.fetchStories();
       } else {
+        debugger;
         var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
         this.props.fetchApiStories(url).then(function () {
           setInterval(function () {
+            debugger;
             Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_6__["embedTwitterList"])();
-          }, 600000);
+
+            _this2.props.fetchApiStories(url);
+          }, 3000);
           Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_6__["embedTwitterList"])();
         });
       } // .then(setTimeout(() => {
@@ -1117,7 +1122,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var stories;
 
@@ -1130,7 +1135,7 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: story.id,
             story: story,
-            users: _this2.props.users
+            users: _this3.props.users
           });
         });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1242,8 +1247,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var StoryHomeFeed = function StoryHomeFeed(props) {
-  debugger;
-
   if (props.location.pathname === "/") {
     var story = props.story,
         users = props.users;
@@ -1302,7 +1305,6 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
 
     var description;
     var urlToImage;
-    debugger;
 
     if (_story.url.includes("https://www.youtube.com/watch?")) {
       urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
@@ -1576,18 +1578,25 @@ function (_React$Component) {
       loading: true
     };
     _this.fetchDifferentStories = _this.fetchDifferentStories.bind(_assertThisInitialized(_this));
+    _this.interval;
     return _this;
   }
 
   _createClass(News, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       if (this.props.location.pathname === "/") {
         this.props.fetchStories();
       } else {
         var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
         this.props.fetchApiStories(url).then(function () {
-          setInterval(function () {
+          _this2.interval = setInterval(function () {
+            debugger;
+
+            _this2.props.fetchApiStories(url);
+
             Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
           }, 600000);
           Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
@@ -1598,6 +1607,12 @@ function (_React$Component) {
 
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      debugger;
+      clearInterval(this.interval);
+    }
+  }, {
     key: "fetchDifferentStories",
     value: function fetchDifferentStories(topic) {
       var url = "https://newsapi.org/v2/everything?".concat(topic, "&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126");
@@ -1606,10 +1621,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var stories;
-      debugger;
 
       if (this.props.location.pathname === "/") {
         if (this.props.stories.length === 1) {
@@ -1620,7 +1634,7 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: story.id,
             story: story,
-            users: _this2.props.users
+            users: _this3.props.users
           });
         });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1634,7 +1648,6 @@ function (_React$Component) {
         // if (this.props.stories.length === 1) {
         //     return null;
         // }
-        debugger;
         stories = this.props.stories.map(function (story) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
           , {

@@ -17,11 +17,14 @@ class HomeFeed extends React.Component {
         if(this.props.location.pathname === "/"){
             this.props.fetchStories()
         }else{
+            debugger
             let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
             this.props.fetchApiStories(url).then(()=>{
                 setInterval(()=>{
+                    debugger
                     embedTwitterList(); 
-                },600000)
+                    this.props.fetchApiStories(url)
+                },3000)
                 embedTwitterList();
             })
         }
