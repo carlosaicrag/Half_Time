@@ -31,6 +31,23 @@ class News extends React.Component {
             })
         }
 
+        let x = setInterval(function () {
+            var deadline = new Date("Dec 6, 2019 18:00:00").getTime();
+            var now = new Date().getTime();
+            var t = deadline - now;
+            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((t % (1000 * 60)) / 1000);
+            debugger
+            document.getElementById("demo").innerHTML = days + "d "
+                + hours + "h " + minutes + "m " + seconds + "s ";
+            if (t < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
 
         // .then(setTimeout(() => {
         //     this.setState({ loading: false })
@@ -42,6 +59,7 @@ class News extends React.Component {
     componentWillUnmount() {
         debugger
         clearInterval(this.interval)
+ 
     }
 
     fetchDifferentStories(topic) {
@@ -94,11 +112,15 @@ class News extends React.Component {
                     />
                 )
             })
+
+
             return (
                 <div className="home-feed">
-                    <Categories
+                    {/* <Categories
                         fetchDifferentStories={this.fetchDifferentStories}
-                    />
+                    /> */}
+                    <div id="demo"></div>
+
                     <div className="twitterF"></div>
                     <FeaturedStories stories={stories.slice(0, 5)} />
                     <div className="twitter-unfeatured">

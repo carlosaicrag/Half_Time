@@ -1601,10 +1601,26 @@ function (_React$Component) {
           }, 600000);
           Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
         });
-      } // .then(setTimeout(() => {
+      }
+
+      var x = setInterval(function () {
+        var deadline = new Date("Dec 6, 2019 18:00:00").getTime();
+        var now = new Date().getTime();
+        var t = deadline - now;
+        var days = Math.floor(t / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(t % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+        var minutes = Math.floor(t % (1000 * 60 * 60) / (1000 * 60));
+        var seconds = Math.floor(t % (1000 * 60) / 1000);
+        debugger;
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        if (t < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+      }, 1000); // .then(setTimeout(() => {
       //     this.setState({ loading: false })
       // }, 1000))
-
     }
   }, {
     key: "componentWillUnmount",
@@ -1657,8 +1673,8 @@ function (_React$Component) {
         });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "home-feed"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_categories__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          fetchDifferentStories: this.fetchDifferentStories
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "demo"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "twitterF"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
