@@ -17,20 +17,6 @@ class News extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.location.pathname === "/") {
-            this.props.fetchStories()
-        } else {
-            let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
-            this.props.fetchApiStories(url).then(() => {
-                this.interval = setInterval(() => {
-                    debugger
-                    this.props.fetchApiStories(url)
-                    embedTwitterList();
-                }, 600000)
-                embedTwitterList();
-            })
-        }
-
         let x = setInterval(function () {
             var deadline = new Date("Dec 6, 2019 18:00:00").getTime();
             var now = new Date().getTime();
@@ -47,6 +33,19 @@ class News extends React.Component {
                 document.getElementById("demo").innerHTML = "EXPIRED";
             }
         }, 1000);
+
+        if (this.props.location.pathname === "/") {
+            this.props.fetchStories()
+        } else {
+            let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+            this.props.fetchApiStories(url).then(() => {
+                this.interval = setInterval(() => {
+                    this.props.fetchApiStories(url)
+                    embedTwitterList();
+                }, 600000)
+                embedTwitterList();
+            })
+        }
 
 
         // .then(setTimeout(() => {

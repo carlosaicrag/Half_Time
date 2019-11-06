@@ -9,6 +9,7 @@ class Signup extends React.Component {
             password: "",
             signup: false,
             signin: false,
+            errors: this.props.errors
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,6 +40,7 @@ class Signup extends React.Component {
     }
 
     renderErrors(){
+        debugger
         return(
             <ul>
                 {this.props.errors.map((error, i) => (
@@ -50,8 +52,9 @@ class Signup extends React.Component {
         )
     }
 
-    componentDidUpdate(){
-        this.setState()
+    componentDidMount(){
+        debugger
+        this.props.removeErrors();
     }
 
     changeModal(){

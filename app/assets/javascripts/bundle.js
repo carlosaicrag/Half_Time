@@ -278,7 +278,7 @@ var closeModal = function closeModal() {
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, RECEIVE_USER, receiveCurrentUser, logoutCurrentUser, receiveErrors, createNewUser, logIn, logout */
+/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, RECEIVE_USER, REMOVE_ERRORS, receiveCurrentUser, logoutCurrentUser, removeErrors, receiveErrors, createNewUser, logIn, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -287,8 +287,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_ERRORS", function() { return REMOVE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentUser", function() { return receiveCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutCurrentUser", function() { return logoutCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeErrors", function() { return removeErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewUser", function() { return createNewUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logIn", function() { return logIn; });
@@ -299,6 +301,7 @@ var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 var RECEIVE_USER = "RECEIVE_USER";
+var REMOVE_ERRORS = "REMOVE_ERRORS";
 var receiveCurrentUser = function receiveCurrentUser(payload) {
   return {
     type: RECEIVE_CURRENT_USER,
@@ -309,6 +312,11 @@ var receiveCurrentUser = function receiveCurrentUser(payload) {
 var logoutCurrentUser = function logoutCurrentUser() {
   return {
     type: LOGOUT_CURRENT_USER
+  };
+};
+var removeErrors = function removeErrors() {
+  return {
+    type: REMOVE_ERRORS
   };
 };
 var receiveErrors = function receiveErrors(errors) {
@@ -1097,11 +1105,9 @@ function (_React$Component) {
       if (this.props.location.pathname === "/") {
         this.props.fetchStories();
       } else {
-        debugger;
         var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
         this.props.fetchApiStories(url).then(function () {
           setInterval(function () {
-            debugger;
             Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_6__["embedTwitterList"])();
 
             _this2.props.fetchApiStories(url);
@@ -1587,22 +1593,6 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      if (this.props.location.pathname === "/") {
-        this.props.fetchStories();
-      } else {
-        var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
-        this.props.fetchApiStories(url).then(function () {
-          _this2.interval = setInterval(function () {
-            debugger;
-
-            _this2.props.fetchApiStories(url);
-
-            Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
-          }, 600000);
-          Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
-        });
-      }
-
       var x = setInterval(function () {
         var deadline = new Date("Dec 6, 2019 18:00:00").getTime();
         var now = new Date().getTime();
@@ -1618,9 +1608,24 @@ function (_React$Component) {
           clearInterval(x);
           document.getElementById("demo").innerHTML = "EXPIRED";
         }
-      }, 1000); // .then(setTimeout(() => {
+      }, 1000);
+
+      if (this.props.location.pathname === "/") {
+        this.props.fetchStories();
+      } else {
+        var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+        this.props.fetchApiStories(url).then(function () {
+          _this2.interval = setInterval(function () {
+            _this2.props.fetchApiStories(url);
+
+            Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
+          }, 600000);
+          Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
+        });
+      } // .then(setTimeout(() => {
       //     this.setState({ loading: false })
       // }, 1000))
+
     }
   }, {
     key: "componentWillUnmount",
@@ -1807,6 +1812,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
+    },
+    removeErrors: function removeErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["removeErrors"])());
     }
   };
 };
@@ -1864,7 +1872,8 @@ function (_React$Component) {
       email: "",
       password: "",
       signup: false,
-      signin: false
+      signin: false,
+      errors: _this.props.errors
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemoUser = _this.handleDemoUser.bind(_assertThisInitialized(_this));
@@ -1904,6 +1913,7 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "error-".concat(i),
@@ -1912,9 +1922,10 @@ function (_React$Component) {
       }));
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.setState();
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+      this.props.removeErrors();
     }
   }, {
     key: "changeModal",
@@ -2029,6 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  debugger;
   return {
     formType: "Join HalfTime.",
     errors: state.errors.session
@@ -2045,6 +2057,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
+    },
+    removeErrors: function removeErrors() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["removeErrors"])());
     }
   };
 };
@@ -3240,6 +3255,9 @@ var SessionErrorsReducer = function SessionErrorsReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
       return action.errors;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ERRORS"]:
+      return [];
 
     default:
       return oldState;
