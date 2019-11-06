@@ -1768,21 +1768,31 @@ var StoryNews = function StoryNews(props) {
   var urlToImage;
 
   if (story.url.includes("https://www.youtube.com/watch?")) {
-    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
+    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      target: "_blank",
+      className: "story-image-home-feed-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
       className: "story-image-home-feed",
-      width: "560",
-      height: "315",
+      width: "760",
+      height: "515",
       src: story.url.slice(0, 24) + "embed/" + story.url.slice(32),
       frameborder: "0",
       allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
       allowfullscreen: true
-    });
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "youtube-fullscreen",
+      onClick: props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))
+    }, "fullscreen"));
   } else {
-    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "_blank",
+      src: story.url,
+      className: "story-image-home-feed-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "story-image-home-feed",
       src: story.urlToImage,
       alt: story.title
-    });
+    }));
   }
 
   if (story.description === null) {
@@ -1801,11 +1811,7 @@ var StoryNews = function StoryNews(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    target: "_blank",
-    onClick: props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32)),
-    className: "story-image-home-feed-container"
-  }, urlToImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, urlToImage, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-home-feed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     target: "_blank",

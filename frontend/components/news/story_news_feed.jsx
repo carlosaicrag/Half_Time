@@ -14,9 +14,14 @@ const StoryNews = function(props){
     let urlToImage;
 
     if (story.url.includes("https://www.youtube.com/watch?")) {
-        urlToImage = <iframe className="story-image-home-feed" width="560" height="315" src={story.url.slice(0, 24) + "embed/" + story.url.slice(32)} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        urlToImage = <div target="_blank" className="story-image-home-feed-container">
+                        <iframe className="story-image-home-feed" width="760" height="515" src={story.url.slice(0, 24) + "embed/" + story.url.slice(32)} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div id="youtube-fullscreen" onClick={props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))}>fullscreen</div>
+                     </div>
     } else {
-        urlToImage = <img className="story-image-home-feed" src={story.urlToImage} alt={story.title} />
+        urlToImage = <a target="_blank" src={story.url} className="story-image-home-feed-container">
+                        <img className="story-image-home-feed" src={story.urlToImage} alt={story.title} />
+                     </a>
     }
 
     if (story.description === null) {
@@ -29,9 +34,7 @@ const StoryNews = function(props){
 
         <div className="story-home-feed">
 
-            <div target="_blank" onClick={props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))} className="story-image-home-feed-container">
-                {urlToImage}
-            </div>
+            {urlToImage}
 
 
             <div className="story-details-home-feed">
