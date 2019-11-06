@@ -3,8 +3,9 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session/signIn_container'
 import SignupFormContainer from '../session/signup_container';
+import Youtube from "../news/youtube"
 
-function Modal({ modal, closeModal }) {
+function Modal({ modal, closeModal, url }) {
     if (!modal) {
         return null;
     }
@@ -15,6 +16,10 @@ function Modal({ modal, closeModal }) {
             break;
         case 'signup':
             component = <SignupFormContainer />;
+            break;
+        case "youtube":
+            debugger
+            component = <Youtube url={url}/>;
             break;
         default:
             return null;
@@ -31,9 +36,21 @@ function Modal({ modal, closeModal }) {
 }
 
 const mapStateToProps = (state) => {
-    
+    debugger
+    let modal;
+    let url; 
+
+    if (!state.ui.modal){
+        modal = ""
+        url = ""
+    }else{
+        modal = state.ui.modal.modal
+        url = state.ui.modal.url
+    }
+
     return {
-        modal: state.ui.modal
+        modal: modal,
+        url:url
     };
 };
 

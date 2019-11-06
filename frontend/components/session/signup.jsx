@@ -40,7 +40,6 @@ class Signup extends React.Component {
     }
 
     renderErrors(){
-        debugger
         return(
             <ul>
                 {this.props.errors.map((error, i) => (
@@ -53,7 +52,6 @@ class Signup extends React.Component {
     }
 
     componentDidMount(){
-        debugger
         this.props.removeErrors();
     }
 

@@ -35,17 +35,14 @@ class User extends React.Component{
     }
 
     render(){
-        // if(this.state.loading){
-        //     return(
-        //         <div className="user-loading-screen">
-        //             <PushSpinner
-        //                 size={30}
-        //                 color="#686769"
-        //                 loading={this.state.loading}
-        //                 />
-        //         </div> 
-        //     )
-        // }
+        debugger
+        if(this.props.stories[0]){
+            if(this.props.stories[0].urlToImage){
+                return (
+                    <div></div>
+                )
+            }
+        }
 
         let profileType;
         

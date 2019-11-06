@@ -254,10 +254,16 @@ __webpack_require__.r(__webpack_exports__);
 var OPEN_MODAL = 'OPEN_MODAL';
 var CLOSE_MODAL = 'CLOSE_MODAL';
 var CHANGE_MODAL = 'CHANGE_MODAL';
-var openModal = function openModal(modal) {
+var openModal = function openModal(modal, url) {
+  if (!url) {
+    url = "";
+  }
+
+  debugger;
   return {
     type: OPEN_MODAL,
-    modal: modal
+    modal: modal,
+    url: url
   };
 };
 var changeModal = function changeModal(modal) {
@@ -1295,15 +1301,7 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
     }, user.username)));
   } else {
     var _story = props.story,
-        _user = props.user; // let user;
-    // for(let i = 0; i < users.length; i++){
-    //     if(users[i].id === story.author_id || users[i].id === story.authorId){
-    //         user = users[i];
-    //     }
-    // }
-    // if (story.id === null){
-    //     return null
-    // }
+        _user = props.user;
 
     if (!_story.url) {
       return null;
@@ -1346,9 +1344,9 @@ var StoryHomeFeed = function StoryHomeFeed(props) {
 
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "story-home-feed"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       target: "_blank",
-      href: _story.url,
+      onClick: props.youtubeModal(_story.url.slice(0, 24) + "embed/" + _story.url.slice(32)),
       className: "story-image-home-feed-container"
     }, urlToImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "story-details-home-feed"
@@ -1465,6 +1463,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_signIn_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../session/signIn_container */ "./frontend/components/session/signIn_container.js");
 /* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session/signup_container */ "./frontend/components/session/signup_container.js");
+/* harmony import */ var _news_youtube__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../news/youtube */ "./frontend/components/news/youtube.jsx");
+
 
 
 
@@ -1473,7 +1473,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Modal(_ref) {
   var modal = _ref.modal,
-      closeModal = _ref.closeModal;
+      closeModal = _ref.closeModal,
+      url = _ref.url;
 
   if (!modal) {
     return null;
@@ -1488,6 +1489,13 @@ function Modal(_ref) {
 
     case 'signup':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+      break;
+
+    case "youtube":
+      debugger;
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_news_youtube__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        url: url
+      });
       break;
 
     default:
@@ -1508,8 +1516,21 @@ function Modal(_ref) {
 }
 
 var mapStateToProps = function mapStateToProps(state) {
+  debugger;
+  var modal;
+  var url;
+
+  if (!state.ui.modal) {
+    modal = "";
+    url = "";
+  } else {
+    modal = state.ui.modal.modal;
+    url = state.ui.modal.url;
+  }
+
   return {
-    modal: state.ui.modal
+    modal: modal,
+    url: url
   };
 };
 
@@ -1585,6 +1606,7 @@ function (_React$Component) {
     };
     _this.fetchDifferentStories = _this.fetchDifferentStories.bind(_assertThisInitialized(_this));
     _this.interval;
+    _this.youtubeModal = _this.youtubeModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1593,7 +1615,8 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var x = setInterval(function () {
+      //countdown 
+      this.interval1 = setInterval(function () {
         var deadline = new Date("Dec 6, 2019 18:00:00").getTime();
         var now = new Date().getTime();
         var t = deadline - now;
@@ -1601,14 +1624,13 @@ function (_React$Component) {
         var hours = Math.floor(t % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
         var minutes = Math.floor(t % (1000 * 60 * 60) / (1000 * 60));
         var seconds = Math.floor(t % (1000 * 60) / 1000);
-        debugger;
         document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
         if (t < 0) {
           clearInterval(x);
           document.getElementById("demo").innerHTML = "EXPIRED";
         }
-      }, 1000);
+      }, 1000); //api stories
 
       if (this.props.location.pathname === "/") {
         this.props.fetchStories();
@@ -1622,16 +1644,13 @@ function (_React$Component) {
           }, 600000);
           Object(_utils_embedding_twitter__WEBPACK_IMPORTED_MODULE_5__["embedTwitterList"])();
         });
-      } // .then(setTimeout(() => {
-      //     this.setState({ loading: false })
-      // }, 1000))
-
+      }
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      debugger;
       clearInterval(this.interval);
+      clearInterval(this.interval1);
     }
   }, {
     key: "fetchDifferentStories",
@@ -1640,9 +1659,21 @@ function (_React$Component) {
       this.props.fetchApiStories(url);
     }
   }, {
+    key: "youtubeModal",
+    value: function youtubeModal(videoId) {
+      var _this3 = this;
+
+      debugger;
+      return function () {
+        debugger;
+
+        _this3.props.openModal("youtube", videoId);
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var stories;
 
@@ -1655,7 +1686,7 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: story.id,
             story: story,
-            users: _this3.props.users
+            users: _this4.props.users
           });
         });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1673,7 +1704,8 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
           , {
             story: story,
-            user: story.author
+            user: story.author,
+            youtubeModal: _this4.youtubeModal
           });
         });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1723,6 +1755,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/stories_actions */ "./frontend/actions/stories_actions.js");
 /* harmony import */ var _news_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./news_component */ "./frontend/components/news/news_component.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -1742,11 +1776,44 @@ var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
     },
     fetchStories: function fetchStories() {
       return dispatch(Object(_actions_stories_actions__WEBPACK_IMPORTED_MODULE_1__["fetchStories"])());
+    },
+    openModal: function openModal(modal, url) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal, url));
     }
   };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToBanana, mapDispatchToBanana)(_news_component__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/news/youtube.jsx":
+/*!**********************************************!*\
+  !*** ./frontend/components/news/youtube.jsx ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Youtube = function Youtube(props) {
+  debugger;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
+    className: "story-image-home-feed",
+    width: "560",
+    height: "315",
+    src: props.url,
+    frameborder: "0",
+    allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
+    allowfullscreen: true
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Youtube);
 
 /***/ }),
 
@@ -1913,7 +1980,6 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "error-".concat(i),
@@ -1924,7 +1990,6 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       this.props.removeErrors();
     }
   }, {
@@ -2040,7 +2105,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     formType: "Join HalfTime.",
     errors: state.errors.session
@@ -2849,17 +2913,14 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      // if(this.state.loading){
-      //     return(
-      //         <div className="user-loading-screen">
-      //             <PushSpinner
-      //                 size={30}
-      //                 color="#686769"
-      //                 loading={this.state.loading}
-      //                 />
-      //         </div> 
-      //     )
-      // }
+      debugger;
+
+      if (this.props.stories[0]) {
+        if (this.props.stories[0].urlToImage) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+        }
+      }
+
       var profileType;
 
       if (this.checkIfCurrentUser()) {
@@ -3192,10 +3253,14 @@ __webpack_require__.r(__webpack_exports__);
 function modalReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:
-      return action.modal;
+      debugger;
+      nextState.modal = action.modal;
+      nextState.url = action.url;
+      return action;
 
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_MODAL"]:
       return null;

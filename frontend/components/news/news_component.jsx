@@ -14,10 +14,13 @@ class News extends React.Component {
         this.state = { loading: true }
         this.fetchDifferentStories = this.fetchDifferentStories.bind(this)
         this.interval;
+        this.youtubeModal = this.youtubeModal.bind(this)
     }
 
     componentDidMount() {
-        let x = setInterval(function () {
+
+        //countdown 
+        this.interval1 = setInterval(function () {
             var deadline = new Date("Dec 6, 2019 18:00:00").getTime();
             var now = new Date().getTime();
             var t = deadline - now;
@@ -25,7 +28,6 @@ class News extends React.Component {
             var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((t % (1000 * 60)) / 1000);
-            debugger
             document.getElementById("demo").innerHTML = days + "d "
                 + hours + "h " + minutes + "m " + seconds + "s ";
             if (t < 0) {
@@ -34,6 +36,7 @@ class News extends React.Component {
             }
         }, 1000);
 
+        //api stories
         if (this.props.location.pathname === "/") {
             this.props.fetchStories()
         } else {
@@ -46,18 +49,11 @@ class News extends React.Component {
                 embedTwitterList();
             })
         }
-
-
-        // .then(setTimeout(() => {
-        //     this.setState({ loading: false })
-        // }, 1000))
-
-
     }
 
     componentWillUnmount() {
-        debugger
         clearInterval(this.interval)
+        clearInterval(this.interval1)
  
     }
 
@@ -66,6 +62,16 @@ class News extends React.Component {
         let url = `https://newsapi.org/v2/everything?${topic}&pageSize=100&apiKey=6b12490eb1b04cf285ece565249d6126`
 
         this.props.fetchApiStories(url)
+    }
+
+    youtubeModal(videoId){
+        debugger
+        return(
+            ()=>{
+                debugger
+                this.props.openModal("youtube",videoId)
+            }
+        )
     }
 
     render() {
@@ -108,6 +114,7 @@ class News extends React.Component {
                         // key={story.id}
                         story={story}
                         user={story.author}
+                        youtubeModal={this.youtubeModal}
                     />
                 )
             })

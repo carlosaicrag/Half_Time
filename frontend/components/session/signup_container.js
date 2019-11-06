@@ -4,7 +4,6 @@ import { closeModal, openModal } from '../../actions/modal_actions';
 import Signup from "./signup"
 
 const mapStateToProps = state => {
-    debugger
     return({
         formType: "Join HalfTime.",
         errors: state.errors.session

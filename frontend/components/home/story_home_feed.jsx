@@ -46,17 +46,7 @@ const StoryHomeFeed = props => {
     }else{
 
     let {story,user} = props;
-    // let user;
-    
-    // for(let i = 0; i < users.length; i++){
-    //     if(users[i].id === story.author_id || users[i].id === story.authorId){
-    //         user = users[i];
-    //     }
-    // }
 
-    // if (story.id === null){
-    //     return null
-    // }
     if(!story.url){
         return null
     }
@@ -78,9 +68,9 @@ const StoryHomeFeed = props => {
         
         <div className="story-home-feed">
         
-            <a target="_blank" href={story.url} className="story-image-home-feed-container">
+            <div target="_blank" onClick={props.youtubeModal( story.url.slice(0, 24) + "embed/" + story.url.slice(32) )} className="story-image-home-feed-container">
                 {urlToImage}
-            </a>
+            </div>
 
             
             <div className="story-details-home-feed">
