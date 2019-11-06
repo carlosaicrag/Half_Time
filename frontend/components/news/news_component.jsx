@@ -77,35 +77,6 @@ class News extends React.Component {
     render() {
 
         let stories;
-        if (this.props.location.pathname === "/") {
-            if (this.props.stories.length === 1) {
-                return null;
-            }
-
-
-
-            stories = this.props.stories.map((story) => {
-                return (
-                    <StoryHomeFeedComponent
-                        key={story.id}
-                        story={story}
-                        users={this.props.users}
-                    />
-                )
-            })
-            return (
-                <div className="home-feed">
-                    {/* <Categories></Categories> */}
-                    <FeaturedStories stories={stories.slice(0, 5)} />
-                    <UnFeaturedStories stories={stories.slice(5)} />
-                </div>
-            )
-
-        } else {
-
-            // if (this.props.stories.length === 1) {
-            //     return null;
-            // }
 
             stories = this.props.stories.map((story) => {
 
@@ -120,25 +91,25 @@ class News extends React.Component {
             })
 
 
-            return (
-                <div className="home-feed">
-                    {/* <Categories
-                        fetchDifferentStories={this.fetchDifferentStories}
-                    /> */}
-                    <div id="demo"></div>
+        return (
+            <div className="home-feed">
+                {/* <Categories
+                    fetchDifferentStories={this.fetchDifferentStories}
+                /> */}
+                <div id="demo"></div>
 
-                    <div className="twitterF"></div>
-                    <FeaturedStories stories={stories.slice(0, 5)} />
-                    <div className="twitter-unfeatured">
-                        <div className="twitter">
-                            <a class="twitter-timeline" data-width="500" data-height="1000" href="https://twitter.com/carlosgarcia95_/lists/feed?ref_src=twsrc%5Etfw">A Twitter List by carlosgarcia95_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </div>
-
-                        <UnFeaturedStories stories={stories.slice(5)} />
+                <div className="twitterF"></div>
+                <FeaturedStories stories={stories.slice(0, 5)} />
+                <div className="twitter-unfeatured">
+                    <div className="twitter">
+                        <a class="twitter-timeline" data-width="500" data-height="1000" href="https://twitter.com/carlosgarcia95_/lists/feed?ref_src=twsrc%5Etfw">A Twitter List by carlosgarcia95_</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
+
+                    <UnFeaturedStories stories={stories.slice(5)} />
                 </div>
-            )
-        }
+            </div>
+        )
+        
     }
 }
 

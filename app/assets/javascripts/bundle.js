@@ -1254,115 +1254,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _news_story_news_feed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../news/story_news_feed */ "./frontend/components/news/story_news_feed.jsx");
+/* harmony import */ var _story_home_feed_the_ocho__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./story_home_feed_the_ocho */ "./frontend/components/home/story_home_feed_the_ocho.jsx");
+
+
 
 
 
 
 var StoryHomeFeed = function StoryHomeFeed(props) {
   if (props.location.pathname === "/") {
-    var story = props.story,
-        users = props.users;
-    var user;
-
-    for (var i = 0; i < users.length; i++) {
-      if (users[i].id === story.author_id || users[i].id === story.authorId) {
-        user = users[i];
-      }
-    }
-
-    if (story.id === null) {
-      return null;
-    }
-
-    if (story.id === undefined) {
-      return null;
-    }
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "story-home-feed"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/stories/".concat(story.id),
-      className: "story-image-home-feed-container"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "story-image-home-feed",
-      src: story.photoUrl,
-      alt: story.title
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "story-details-home-feed"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/stories/".concat(story.id),
-      className: "story-details-title-home-feed"
-    }, story.title.slice(0, 50), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/stories/".concat(story.id),
-      className: "story-details-body-home-feed"
-    }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "users/".concat(user.id),
-      className: "story-details-user"
-    }, user.username)));
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_story_home_feed_the_ocho__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      story: props.story,
+      users: props.users
+    });
   } else {
-    var _story = props.story,
-        _user = props.user;
-
-    if (!_story.url) {
-      return null;
-    }
-
-    var description;
-    var urlToImage;
-
-    if (_story.url.includes("https://www.youtube.com/watch?")) {
-      urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
-        className: "story-image-home-feed",
-        width: "560",
-        height: "315",
-        src: _story.url.slice(0, 24) + "embed/" + _story.url.slice(32),
-        frameborder: "0",
-        allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
-        allowfullscreen: true
-      });
-    } else {
-      urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "story-image-home-feed",
-        src: _story.urlToImage,
-        alt: _story.title
-      });
-    }
-
-    if (_story.description === null) {
-      description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        target: "_blank",
-        href: _story.url,
-        className: "story-details-body-home-feed"
-      }, "...");
-    } else {
-      description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        target: "_blank",
-        href: _story.url,
-        className: "story-details-body-home-feed"
-      }, _story.description.slice(0, 100), "...");
-    }
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "story-home-feed"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      target: "_blank",
-      onClick: props.youtubeModal(_story.url.slice(0, 24) + "embed/" + _story.url.slice(32)),
-      className: "story-image-home-feed-container"
-    }, urlToImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "story-details-home-feed"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      target: "_blank",
-      href: _story.url,
-      className: "story-details-title-home-feed"
-    }, _story.title.slice(0, 50), "..."), description, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      target: "_blank",
-      href: _story.url,
-      className: "story-details-user"
-    }, _user)));
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_news_story_news_feed__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      youtubeModal: props.youtubeModal,
+      story: props.story,
+      user: props.users
+    });
   }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(StoryHomeFeed));
+
+/***/ }),
+
+/***/ "./frontend/components/home/story_home_feed_the_ocho.jsx":
+/*!***************************************************************!*\
+  !*** ./frontend/components/home/story_home_feed_the_ocho.jsx ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+var StoryHomeFeedOcho = function StoryHomeFeedOcho(props) {
+  var story = props.story,
+      users = props.users;
+  var user;
+  debugger;
+
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].id === story.author_id || users[i].id === story.authorId) {
+      user = users[i];
+    }
+  }
+
+  if (story.id === null) {
+    return null;
+  }
+
+  if (story.id === undefined) {
+    return null;
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/stories/".concat(story.id),
+    className: "story-image-home-feed-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "story-image-home-feed",
+    src: story.photoUrl,
+    alt: story.title
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/stories/".concat(story.id),
+    className: "story-details-title-home-feed"
+  }, story.title.slice(0, 50), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/stories/".concat(story.id),
+    className: "story-details-body-home-feed"
+  }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "users/".concat(user.id),
+    className: "story-details-user"
+  }, user.username)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeedOcho);
 
 /***/ }),
 
@@ -1676,63 +1654,38 @@ function (_React$Component) {
       var _this4 = this;
 
       var stories;
-
-      if (this.props.location.pathname === "/") {
-        if (this.props.stories.length === 1) {
-          return null;
-        }
-
-        stories = this.props.stories.map(function (story) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: story.id,
-            story: story,
-            users: _this4.props.users
-          });
+      stories = this.props.stories.map(function (story) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
+        , {
+          story: story,
+          user: story.author,
+          youtubeModal: _this4.youtubeModal
         });
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "home-feed"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          stories: stories.slice(0, 5)
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          stories: stories.slice(5)
-        }));
-      } else {
-        // if (this.props.stories.length === 1) {
-        //     return null;
-        // }
-        stories = this.props.stories.map(function (story) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_story_home_feed__WEBPACK_IMPORTED_MODULE_1__["default"] // key={story.id}
-          , {
-            story: story,
-            user: story.author,
-            youtubeModal: _this4.youtubeModal
-          });
-        });
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "home-feed"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "demo"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "twitterF"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          stories: stories.slice(0, 5)
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "twitter-unfeatured"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "twitter"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          "class": "twitter-timeline",
-          "data-width": "500",
-          "data-height": "1000",
-          href: "https://twitter.com/carlosgarcia95_/lists/feed?ref_src=twsrc%5Etfw"
-        }, "A Twitter List by carlosgarcia95_"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
-          async: true,
-          src: "https://platform.twitter.com/widgets.js",
-          charset: "utf-8"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          stories: stories.slice(5)
-        })));
-      }
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "home-feed"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "demo"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twitterF"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_featured_stories__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        stories: stories.slice(0, 5)
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twitter-unfeatured"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twitter"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        "class": "twitter-timeline",
+        "data-width": "500",
+        "data-height": "1000",
+        href: "https://twitter.com/carlosgarcia95_/lists/feed?ref_src=twsrc%5Etfw"
+      }, "A Twitter List by carlosgarcia95_"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
+        async: true,
+        src: "https://platform.twitter.com/widgets.js",
+        charset: "utf-8"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        stories: stories.slice(5)
+      })));
     }
   }]);
 
@@ -1784,6 +1737,88 @@ var mapDispatchToBanana = function mapDispatchToBanana(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToBanana, mapDispatchToBanana)(_news_component__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/news/story_news_feed.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/news/story_news_feed.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+var StoryNews = function StoryNews(props) {
+  var story = props.story,
+      user = props.user;
+
+  if (!story.url) {
+    return null;
+  }
+
+  var description;
+  var urlToImage;
+
+  if (story.url.includes("https://www.youtube.com/watch?")) {
+    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
+      className: "story-image-home-feed",
+      width: "560",
+      height: "315",
+      src: story.url.slice(0, 24) + "embed/" + story.url.slice(32),
+      frameborder: "0",
+      allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
+      allowfullscreen: true
+    });
+  } else {
+    urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "story-image-home-feed",
+      src: story.urlToImage,
+      alt: story.title
+    });
+  }
+
+  if (story.description === null) {
+    description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "_blank",
+      href: story.url,
+      className: "story-details-body-home-feed"
+    }, "...");
+  } else {
+    description = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "_blank",
+      href: story.url,
+      className: "story-details-body-home-feed"
+    }, story.description.slice(0, 100), "...");
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    target: "_blank",
+    onClick: props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32)),
+    className: "story-image-home-feed-container"
+  }, urlToImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-home-feed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: story.url,
+    className: "story-details-title-home-feed"
+  }, story.title.slice(0, 50), "..."), description, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    target: "_blank",
+    href: story.url,
+    className: "story-details-user"
+  }, user)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StoryNews);
 
 /***/ }),
 
