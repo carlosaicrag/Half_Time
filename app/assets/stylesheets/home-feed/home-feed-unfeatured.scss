@@ -16,15 +16,24 @@
             justify-content: space-between;
             // background-color:yellow;
         }
-        
-        .story-home-feed .story-image-home-feed{
-            // background-color: yellow;
-            width: 150px;
-            height: 150px;
-            position: relative;
-            object-fit: cover;
-            // left: 30px;
-        }
+            .story-image-home-feed-container{
+                height: 150px; /* [1.1] Set it as per your need */
+                overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+
+                .story-image-home-feed{
+                    // background-color: yellow;
+                    width: 150px;
+                    height: 150px;
+                    position: relative;
+                    object-fit: cover;
+                    transition: transform .5s ease;
+                    // left: 30px;
+                }
+
+                .story-image-home-feed:hover{
+                    transform: scale(1.5);
+                }
+            }
         
         .story-details-home-feed{
             display: flex;
@@ -77,3 +86,18 @@
     }
 }
 
+
+.img-hover-zoom {
+  height: 300px; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
