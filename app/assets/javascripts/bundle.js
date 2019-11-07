@@ -1778,9 +1778,10 @@ var StoryNews = function StoryNews(props) {
       onClick: props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))
     }, "fullscreen"));
   } else {
+    debugger;
     urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       target: "_blank",
-      src: story.url,
+      href: story.url,
       className: "story-image-home-feed-container"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "story-image-home-feed",

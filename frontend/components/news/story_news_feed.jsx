@@ -19,7 +19,8 @@ const StoryNews = function(props){
                         <div id="youtube-fullscreen" onClick={props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))}>fullscreen</div>
                      </div>
     } else {
-        urlToImage = <a target="_blank" src={story.url} className="story-image-home-feed-container">
+        debugger
+        urlToImage = <a target="_blank" href={story.url} className="story-image-home-feed-container">
                         <img className="story-image-home-feed" src={story.urlToImage} alt={story.title} />
                      </a>
     }
