@@ -65,10 +65,8 @@ class News extends React.Component {
     }
 
     youtubeModal(videoId){
-        debugger
         return(
             ()=>{
-                debugger
                 this.props.openModal("youtube",videoId)
             }
         )

@@ -35,7 +35,6 @@ class User extends React.Component{
     }
 
     render(){
-        debugger
         if(this.props.stories[0]){
             if(this.props.stories[0].urlToImage){
                 return (

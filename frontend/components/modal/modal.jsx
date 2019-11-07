@@ -18,7 +18,6 @@ function Modal({ modal, closeModal, url }) {
             component = <SignupFormContainer />;
             break;
         case "youtube":
-            debugger
             component = <Youtube url={url}/>;
             break;
         default:
@@ -36,7 +35,6 @@ function Modal({ modal, closeModal, url }) {
 }
 
 const mapStateToProps = (state) => {
-    debugger
     let modal;
     let url; 
 

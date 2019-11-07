@@ -5,7 +5,6 @@ import { Redirect, Route, withRouter } from "react-router-dom"
 const StoryHomeFeedOcho = function(props){
         let { story, users } = props;
         let user;
-        debugger
         for (let i = 0; i < users.length; i++) {
             if (users[i].id === story.author_id || users[i].id === story.authorId) {
                 user = users[i];

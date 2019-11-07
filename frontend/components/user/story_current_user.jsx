@@ -20,11 +20,11 @@ const StoryCurrentUser = (props) => {
                 <div className="story-details-body-user-profile">{story.body.slice(0, 100)}...</div>
             </Link>
 
-            <Link>
-                <div onClick={() => deleteStory(story.id)}>delete</div>
-            </Link>
+            <div className="story-delete-user-profile">
+                <div onClick={() => deleteStory(story.id)}>Delete</div>
+            </div>
 
-            <Link to={`/stories/edit/${story.id}`}>
+            <Link className="story-update-user-profile" to={`/stories/edit/${story.id}`}>
                 <div>Update</div>
             </Link>
 

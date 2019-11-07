@@ -6,7 +6,6 @@ export const openModal = (modal,url) => {
     if(!url){
         url = ""
     }
-    debugger
     return({
         type: OPEN_MODAL,
         modal: modal,

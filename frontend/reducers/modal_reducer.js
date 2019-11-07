@@ -4,7 +4,6 @@ export default function modalReducer(state=null, action){
     let nextState = Object.assign({},state)
     switch (action.type) {
         case OPEN_MODAL:
-            debugger
             nextState.modal = action.modal
             nextState.url = action.url
             return action;

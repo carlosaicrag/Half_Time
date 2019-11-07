@@ -259,7 +259,6 @@ var openModal = function openModal(modal, url) {
     url = "";
   }
 
-  debugger;
   return {
     type: OPEN_MODAL,
     modal: modal,
@@ -1301,7 +1300,6 @@ var StoryHomeFeedOcho = function StoryHomeFeedOcho(props) {
   var story = props.story,
       users = props.users;
   var user;
-  debugger;
 
   for (var i = 0; i < users.length; i++) {
     if (users[i].id === story.author_id || users[i].id === story.authorId) {
@@ -1470,7 +1468,6 @@ function Modal(_ref) {
       break;
 
     case "youtube":
-      debugger;
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_news_youtube__WEBPACK_IMPORTED_MODULE_5__["default"], {
         url: url
       });
@@ -1494,7 +1491,6 @@ function Modal(_ref) {
 }
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   var modal;
   var url;
 
@@ -1641,10 +1637,7 @@ function (_React$Component) {
     value: function youtubeModal(videoId) {
       var _this3 = this;
 
-      debugger;
       return function () {
-        debugger;
-
         _this3.props.openModal("youtube", videoId);
       };
     }
@@ -1842,7 +1835,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Youtube = function Youtube(props) {
-  debugger;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
     className: "story-image-home-feed",
     width: "560",
@@ -2788,11 +2780,14 @@ var StoryCurrentUser = function StoryCurrentUser(props) {
     className: "story-details-title-user-profile"
   }, story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-body-user-profile"
-  }, story.body.slice(0, 100), "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, story.body.slice(0, 100), "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-delete-user-profile"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: function onClick() {
       return deleteStory(story.id);
     }
-  }, "delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "story-update-user-profile",
     to: "/stories/edit/".concat(story.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Update")));
 };
@@ -2953,8 +2948,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
-
-      debugger;
 
       if (this.props.stories[0]) {
         if (this.props.stories[0].urlToImage) {
@@ -3298,7 +3291,6 @@ function modalReducer() {
 
   switch (action.type) {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:
-      debugger;
       nextState.modal = action.modal;
       nextState.url = action.url;
       return action;
