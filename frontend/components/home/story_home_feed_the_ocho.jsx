@@ -18,6 +18,7 @@ const StoryHomeFeedOcho = function(props){
         if (story.id === undefined) {
             return null
         }
+
         return (
 
             <div className="story-home-feed">

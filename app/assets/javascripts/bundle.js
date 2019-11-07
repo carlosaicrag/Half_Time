@@ -431,7 +431,6 @@ var fetchStory = function fetchStory(id) {
 
 var fetchStories = function fetchStories() {
   return function (dispatch) {
-    debugger;
     return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["fetchStories"]().then(function (stories) {
       return dispatch(receiveStories(stories));
     });
@@ -1778,7 +1777,6 @@ var StoryNews = function StoryNews(props) {
       onClick: props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))
     }, "fullscreen"));
   } else {
-    debugger;
     urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       target: "_blank",
       href: story.url,
@@ -2682,6 +2680,12 @@ function (_React$Component) {
         followDescription = "Follow";
       }
 
+      debugger;
+      var body_paragraphs = this.props.story.body.split("\n").map(function (el) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "body-paragraphs"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, el));
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2722,7 +2726,7 @@ function (_React$Component) {
         alt: this.props.story.title
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-body"
-      }, this.props.story.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, body_paragraphs), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-conner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_create__WEBPACK_IMPORTED_MODULE_3__["default"], {
         storyId: this.props.story.id,
@@ -3577,7 +3581,6 @@ var thunk = function thunk(_ref) {
   return function (next) {
     return function (action) {
       if (typeof action === 'function') {
-        debugger;
         return action(dispatch, getState);
       }
 

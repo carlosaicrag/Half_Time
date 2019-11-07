@@ -89,6 +89,15 @@ class StoryShow extends React.Component {
         }else{
             followDescription = "Follow"
         }
+        debugger
+
+        let body_paragraphs = this.props.story.body.split("\n").map((el) =>{
+            return(
+                <div className="body-paragraphs">
+                    <p>{el}</p> 
+                </div>
+            )
+        })
         return(
             <div className="story-show">
                 <div onClick={this.handleLike} className="liked-container">
@@ -128,7 +137,7 @@ class StoryShow extends React.Component {
                 </div>
 
                 <img className="story-show-image" src={this.props.story.photoUrl} alt={this.props.story.title} />
-                <div className="story-show-details-body">{this.props.story.body}</div>
+                <div className="story-show-details-body">{body_paragraphs}</div>
                 
                 <div className="comments-conner">
                     <CommentCreate 
