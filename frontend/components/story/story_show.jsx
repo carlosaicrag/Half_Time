@@ -98,40 +98,44 @@ class StoryShow extends React.Component {
                 </div>
             )
         })
+
         return(
             <div className="story-show">
-                <div onClick={this.handleLike} className="liked-container">
+                {/* <div onClick={this.handleLike} className="liked-container">
                     <div className="liked">
                         {likeDescription}
                     </div>
-                </div>
+                </div> */}
 
-                {/* <div onClick={this.handleLike} className="liked-container">
-                       <HeartSpinner
-                        size={30}
-                        color="#686769"
-                        loading={true}
-                        />
-               </div> */}
-                <div className="num-likes">+ {this.props.likes.length}</div>
+                
 
+                <div className="story-show-details-container">
+                    <div className="story-show-details-title-container">
+                        <div className="story-show-details-title">{this.props.story.title}</div>
+                    </div>
+                    <div className="story-show-details-author-follow-like-container">
+                        <div className="story-show-author">
+                            <Link to={`/users/${this.props.author.id}`}>
+                                <img className="story-show-profile-pic" src={`https://www.gravatar.com/avatar/${this.props.author.email}`}/>
+                            </Link> 
 
-                <div className="story-show-details-title">{this.props.story.title}</div>
-
-                <div className="story-show-author">
-                    <Link to={`/users/${this.props.author.id}`}>
-                        <img className="story-show-profile-pic" src={`https://www.gravatar.com/avatar/${this.props.author.email}`}/>
-                    </Link> 
-
-                    <div className="story-show-author-details">
-                        <div className="story-show-details-name-follow">
-                            <Link to={`/users/${this.props.author.id}`} className="story-show-user-name-link">
-                                <div className="story-show-name">{this.props.author.username}</div>
-                            </Link>
-                            <div onClick={this.handleFollow} className="follow-button"><div>{followDescription}</div></div>
+                            <div className="story-show-author-details">
+                                {/* <div className="story-show-details-name-follow"> */}
+                                    <Link to={`/users/${this.props.author.id}`} className="story-show-user-name-link">
+                                        <div className="story-show-name">{this.props.author.username}</div>
+                                    </Link>
+                                    <div onClick={this.handleFollow} className="follow-button"><div>{followDescription}</div></div>
+                                {/* </div> */}
+                            </div>
                         </div>
-                        <div className="story-show-details-date-star">
-                            <div className="date"></div>
+
+                        <div className="liked-container">
+                            <div onClick={this.handleLike} className="liked-description-container">
+                                <div className="liked">
+                                    {likeDescription}
+                                </div>
+                            </div>
+                            <div className="num-likes">+ {this.props.likes.length}</div>
                         </div>
                     </div>
                 </div>

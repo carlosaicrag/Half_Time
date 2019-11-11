@@ -35,16 +35,16 @@
         width: 30px;
         // height:20px;
         // text-align: center;
-        position: relative;
-        left: 995px;
-        top: 180px;
+        // position: relative;
+        // left: 995px;
+        // top: 180px;
         // border-radius: 4px;
         font-size: 20px;
         // border: 1px solid rgb(85, 29, 29);
         color: rgb(85, 29, 29);
     }
 
-    .liked-container{
+    .liked-description-container{
         // background-color: red;
         display:flex;
         justify-content: center;
@@ -52,7 +52,7 @@
         width: 80px;
         height:20px;
         text-align: center;
-        position: relative;
+        // position: relative;
         left:  900px;
         top: 200px;
         cursor: pointer;
@@ -63,7 +63,7 @@
 
     }
 
-    .liked-container:hover{
+    .liked-description-container:hover{
         border: 1px solid rgb(29, 10, 10);
         color: rgb(29, 10, 10);
     }

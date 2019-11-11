@@ -399,6 +399,7 @@ var receiveStory = function receiveStory(payload) {
 };
 
 var receiveStories = function receiveStories(payload) {
+  debugger;
   return {
     type: RECEIVE_STORIES,
     stories: payload.stories,
@@ -431,6 +432,7 @@ var fetchStory = function fetchStory(id) {
 
 var fetchStories = function fetchStories() {
   return function (dispatch) {
+    debugger;
     return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["fetchStories"]().then(function (stories) {
       return dispatch(receiveStories(stories));
     });
@@ -1107,6 +1109,8 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      debugger;
+
       if (this.props.location.pathname === "/") {
         this.props.fetchStories();
       } else {
@@ -1135,6 +1139,7 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      debugger;
       var stories;
 
       if (this.props.location.pathname === "/") {
@@ -2689,15 +2694,14 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleLike,
-        className: "liked-container"
+        className: "story-show-details-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "liked"
-      }, likeDescription)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "num-likes"
-      }, "+ ", this.props.likes.length), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "story-show-details-title-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-details-title"
-      }, this.props.story.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.story.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "story-show-details-author-follow-like-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-author"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
         to: "/users/".concat(this.props.author.id)
@@ -2706,8 +2710,6 @@ function (_React$Component) {
         src: "https://www.gravatar.com/avatar/".concat(this.props.author.email)
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-show-author-details"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "story-show-details-name-follow"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
         to: "/users/".concat(this.props.author.id),
         className: "story-show-user-name-link"
@@ -2716,11 +2718,16 @@ function (_React$Component) {
       }, this.props.author.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.handleFollow,
         className: "follow-button"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, followDescription))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "story-show-details-date-star"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, followDescription)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "liked-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "date"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        onClick: this.handleLike,
+        className: "liked-description-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "liked"
+      }, likeDescription)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "num-likes"
+      }, "+ ", this.props.likes.length)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "story-show-image",
         src: this.props.story.photoUrl,
         alt: this.props.story.title
@@ -3437,6 +3444,7 @@ var StoryReducer = function StoryReducer() {
 
   switch (action.type) {
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_STORIES"]:
+      debugger;
       return action.stories;
 
     case _actions_stories_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_API_STORIES"]:
@@ -3580,6 +3588,8 @@ var thunk = function thunk(_ref) {
       getState = _ref.getState;
   return function (next) {
     return function (action) {
+      debugger;
+
       if (typeof action === 'function') {
         return action(dispatch, getState);
       }
@@ -8593,6 +8603,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteStory", function() { return deleteStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateStory", function() { return updateStory; });
 var fetchStories = function fetchStories() {
+  debugger;
   return $.ajax({
     method: "GET",
     url: "api/stories"

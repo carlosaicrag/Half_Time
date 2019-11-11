@@ -14,6 +14,7 @@ class HomeFeed extends React.Component {
     }
 
     componentDidMount(){
+        debugger
         if(this.props.location.pathname === "/"){
             this.props.fetchStories()
         }else{
@@ -43,7 +44,7 @@ class HomeFeed extends React.Component {
     }
 
     render(){
-
+        debugger
         let stories;
 
         if (this.props.location.pathname === "/") {

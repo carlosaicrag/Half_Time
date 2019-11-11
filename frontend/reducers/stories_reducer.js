@@ -18,6 +18,7 @@ const StoryReducer = (oldState = {}, action) => {
     let newState;
     switch (action.type) {
         case RECEIVE_STORIES:
+            debugger
             return action.stories
         case RECEIVE_API_STORIES:
             return action.stories.articles
