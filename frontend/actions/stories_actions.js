@@ -19,7 +19,6 @@ const receiveStory = (payload) => {
 }
 
 const receiveStories = (payload) => {
-    debugger
     return ({
         type: RECEIVE_STORIES,
         stories: payload.stories,
@@ -51,7 +50,6 @@ export const fetchStory = (id) => (dispatch) => {
 
 //for my backend!!!
 export const fetchStories = () => (dispatch) => {
-    debugger
     return(
         StoriesUtil.fetchStories().then(stories => dispatch(receiveStories(stories)))
     )

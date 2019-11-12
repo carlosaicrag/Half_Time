@@ -11,9 +11,21 @@ class CommentShow extends React.Component {
         let commentId = this.props.comment.id
         this.props.deleteComment(commentId)
     }
-
+    
     render(){
 
+        let body_paragraphs = this.props.comment.body.split("\n\n").map((el) => {
+            return (
+                <div className="comment-show-body">
+                    <p>
+                        {el}    
+                    </p>
+                </div>
+            )
+        })
+
+        debugger
+        
         if(this.props.commentAuthor === undefined){
             return null
         }
@@ -30,8 +42,10 @@ class CommentShow extends React.Component {
                     <img src={this.props.commentAuthor.photoUrl} alt=""/>
                     <div className="comment-show-author-container">{this.props.commentAuthor.username}</div>
                 </Link>
-                    <div className="comment-show-body">{this.props.comment.body}</div>
-                    <div className="comment-show-delete" onClick={this.handleDelete}>{deleteDescription}</div>
+                <div className="comment-show-body-container">
+                    {body_paragraphs}
+                </div>
+                <div className="comment-show-delete" onClick={this.handleDelete}>{deleteDescription}</div>
             </div>
         )
     }

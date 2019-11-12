@@ -1,4 +1,4 @@
-json.extract! story, :id, :title, :body, :author_id
+json.extract! story, :id, :title, :body, :author_id, :created_at
 
 json.users do 
     json.set! story.user.id do
@@ -28,7 +28,7 @@ end
 if(story.photo.attached?)
     json.photoUrl url_for(story.photo)
 else
-    json.photoUrl ""    
+    json.photoUrl "/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg"    
 end
 
 if(story.likes.length != 0)
@@ -62,5 +62,6 @@ if(story.comments.length != 0)
 else
     json.comments ""
 end
+
 
 

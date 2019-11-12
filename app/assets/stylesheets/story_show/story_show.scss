@@ -4,25 +4,25 @@
     // background-color: green;
     position: relative;
     top: 100px;
-    width: 1000px;
+    width: 700px;
     margin:0 auto;
     
     .story-show-details-title{
-        font-size: 55px;
+        font-size: 35px;
         // background-color:purple;
         height:100px;  
     }
 
     .story-show-image{
         object-fit: cover;
-        height: 500px;
-        width: 1000px;
+        height: 300px;
+        width: 100%;
         // background-color: yellow;
     }
 
     .story-show-details-body{
         margin: 55px 0 0 0;
-        font-size: 35px;
+        font-size: 16px;
         line-height: 1.6;
         // background-color: purple;
 

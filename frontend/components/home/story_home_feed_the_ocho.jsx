@@ -18,6 +18,10 @@ const StoryHomeFeedOcho = function(props){
         if (story.id === undefined) {
             return null
         }
+        let date = new Date(`${story.created_at}`)
+        debugger
+        let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
+        // let readingTime = ["0","4","7","10","20","30"]
 
         return (
 
@@ -31,7 +35,10 @@ const StoryHomeFeedOcho = function(props){
                 <div className="story-details-home-feed">
                     <Link to={`/stories/${story.id}`} className="story-details-title-home-feed">{story.title.slice(0, 50)}...</Link>
                     <Link to={`/stories/${story.id}`} className="story-details-body-home-feed">{story.body.slice(0, 100)}...</Link>
-                    <Link to={`users/${user.id}`} className="story-details-user">{user.username}</Link>
+                    <div className="story-details-home-feed-name-date">
+                        <Link to={`users/${user.id}`} className="story-details-user">{user.username}</Link>
+                        <div className="story-date">{`${months[date.getMonth()]} ${date.getFullYear()}`}</div>
+                    </div>
                 </div>
 
 

@@ -25,3 +25,4 @@ if(@user.photo.attached?)
 else
     json.photoUrl "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest current_user.email}"    
 end
+

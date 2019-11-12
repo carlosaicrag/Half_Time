@@ -89,9 +89,8 @@ class StoryShow extends React.Component {
         }else{
             followDescription = "Follow"
         }
-        debugger
 
-        let body_paragraphs = this.props.story.body.split("\n").map((el) =>{
+        let body_paragraphs = this.props.story.body.split("\n\n").map((el) =>{
             return(
                 <div className="body-paragraphs">
                     <p>{el}</p> 

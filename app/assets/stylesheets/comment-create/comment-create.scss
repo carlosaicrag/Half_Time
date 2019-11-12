@@ -4,13 +4,13 @@
     border-color: Transparent; 
     overflow: auto;
     display: flex;
-    width: 600px;
-    height: 300px;
+    width: 300px;
+    height: 150px;
     flex-direction: column;
     margin-bottom: 50px;
     margin-top: 50px;
     box-shadow: -1px 1px 5px 5px rgba(184, 184, 184, 0.75);
-    font-size: 35px;
+    font-size: 12px;
     padding: 50px;
     border-radius: 50px;
 
@@ -21,6 +21,13 @@
         border-style: none; 
         border-color: Transparent; 
         overflow: auto;
+    }
+
+    .get-started-comment{
+        text-decoration: none;
+        color: #03a87c;
+        font-size: 16px;
+        cursor: pointer;
     }
 
     .create-comment-submit-container{

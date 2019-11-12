@@ -24,10 +24,9 @@
     justify-content: space-between;
     margin: 0px 115px 80px 115px;
     // background-color: blue;
-    height: 700px;
+    height: 400px;
     width: 1300px;
     border-bottom: 1px solid lightgray;
-    padding: 0 0 40px 0;
 }
 
 
@@ -50,7 +49,7 @@
     text-decoration: none;
     color: black;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 13px;
+    font-size: 12px;
     // background-color:blue;
 }
 
@@ -58,4 +57,15 @@
 .left-featured{
     display: flex;
 
+}
+.story-details-home-feed-name-date{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+}
+
+.story-date{
+    color: rgb(157, 157, 157);
+    font-family: 'Source Sans Pro', sans-serif;
 }

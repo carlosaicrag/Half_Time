@@ -399,7 +399,6 @@ var receiveStory = function receiveStory(payload) {
 };
 
 var receiveStories = function receiveStories(payload) {
-  debugger;
   return {
     type: RECEIVE_STORIES,
     stories: payload.stories,
@@ -432,7 +431,6 @@ var fetchStory = function fetchStory(id) {
 
 var fetchStories = function fetchStories() {
   return function (dispatch) {
-    debugger;
     return _utils_stories_util__WEBPACK_IMPORTED_MODULE_0__["fetchStories"]().then(function (stories) {
       return dispatch(receiveStories(stories));
     });
@@ -660,7 +658,9 @@ function (_React$Component) {
       formData.append("comment[body]", this.state.body);
       formData.append("comment[user_id]", this.state.user_id);
       formData.append("comment[story_id]", this.state.story_id);
-      this.props.action(formData);
+      this.props.action(formData).then(function () {
+        window.scrollTo(0, document.body.scrollHeight);
+      });
     }
   }, {
     key: "render",
@@ -671,7 +671,7 @@ function (_React$Component) {
         className: "create-comment-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         style: {
-          width: 600
+          width: 300
         },
         className: "create-comment-body",
         value: this.state.body,
@@ -679,9 +679,9 @@ function (_React$Component) {
         placeholder: "Write a Response..."
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-comment-submit-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "get-started-comment",
-        type: "submit"
+        onClick: this.handleSubmit
       }, "Submit")));
     }
   }]);
@@ -750,6 +750,13 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var body_paragraphs = this.props.comment.body.split("\n\n").map(function (el) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-show-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, el));
+      });
+      debugger;
+
       if (this.props.commentAuthor === undefined) {
         return null;
       }
@@ -773,8 +780,8 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-show-author-container"
       }, this.props.commentAuthor.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-show-body"
-      }, this.props.comment.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-show-body-container"
+      }, body_paragraphs), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-show-delete",
         onClick: this.handleDelete
       }, deleteDescription));
@@ -1017,13 +1024,13 @@ var FeaturedStories = function FeaturedStories(props) {
 
   var leftFeatured = function leftFeatured(story) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "left-featured"
+      className: "left-right-featured"
     }, story);
   };
 
   var rightFeatured = function rightFeatured(story) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "right-featured"
+      className: "left-right-featured"
     }, story);
   };
 
@@ -1109,8 +1116,6 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
-
       if (this.props.location.pathname === "/") {
         this.props.fetchStories();
       } else {
@@ -1139,7 +1144,6 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
       var stories;
 
       if (this.props.location.pathname === "/") {
@@ -1320,6 +1324,10 @@ var StoryHomeFeedOcho = function StoryHomeFeedOcho(props) {
     return null;
   }
 
+  var date = new Date("".concat(story.created_at));
+  debugger;
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]; // let readingTime = ["0","4","7","10","20","30"]
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1337,10 +1345,14 @@ var StoryHomeFeedOcho = function StoryHomeFeedOcho(props) {
   }, story.title.slice(0, 50), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/stories/".concat(story.id),
     className: "story-details-body-home-feed"
-  }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, story.body.slice(0, 100), "..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-details-home-feed-name-date"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "users/".concat(user.id),
     className: "story-details-user"
-  }, user.username)));
+  }, user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "story-date"
+  }, "".concat(months[date.getMonth()], " ").concat(date.getFullYear())))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StoryHomeFeedOcho);
@@ -2685,8 +2697,7 @@ function (_React$Component) {
         followDescription = "Follow";
       }
 
-      debugger;
-      var body_paragraphs = this.props.story.body.split("\n").map(function (el) {
+      var body_paragraphs = this.props.story.body.split("\n\n").map(function (el) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "body-paragraphs"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, el));
@@ -3588,8 +3599,6 @@ var thunk = function thunk(_ref) {
       getState = _ref.getState;
   return function (next) {
     return function (action) {
-      debugger;
-
       if (typeof action === 'function') {
         return action(dispatch, getState);
       }
@@ -8603,7 +8612,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteStory", function() { return deleteStory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateStory", function() { return updateStory; });
 var fetchStories = function fetchStories() {
-  debugger;
   return $.ajax({
     method: "GET",
     url: "api/stories"

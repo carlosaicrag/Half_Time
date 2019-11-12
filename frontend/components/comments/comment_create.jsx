@@ -20,7 +20,9 @@ class CommentCreate extends React.Component{
         formData.append("comment[body]", this.state.body);
         formData.append("comment[user_id]",this.state.user_id);
         formData.append("comment[story_id]",this.state.story_id);
-        this.props.action(formData)
+        this.props.action(formData).then(() =>{
+            window.scrollTo(0, document.body.scrollHeight);
+        })
     }
 
     render(){
@@ -29,9 +31,9 @@ class CommentCreate extends React.Component{
 
         return(
             <form onSubmit={this.handleSubmit} className="create-comment-form">
-                <textarea style={{width:600}} className="create-comment-body" value={this.state.body} onChange={this.update("body")} placeholder="Write a Response..." />
+                <textarea style={{width:300}} className="create-comment-body" value={this.state.body} onChange={this.update("body")} placeholder="Write a Response..." />
                 <div className="create-comment-submit-container">
-                    <button className="get-started-comment" type="submit">Submit</button>
+                    <div className="get-started-comment" onClick={this.handleSubmit}>Submit</div>
                 </div>
             </form>
         )
