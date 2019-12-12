@@ -20,21 +20,6 @@ class News extends React.Component {
     componentDidMount() {
 
         //countdown 
-        this.interval1 = setInterval(function () {
-            var deadline = new Date("Dec 6, 2019 18:00:00").getTime();
-            var now = new Date().getTime();
-            var t = deadline - now;
-            var days = Math.floor(t / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((t % (1000 * 60)) / 1000);
-            document.getElementById("demo").innerHTML = days + "d "
-                + hours + "h " + minutes + "m " + seconds + "s ";
-            if (t < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
 
         //api stories
         if (this.props.location.pathname === "/") {
@@ -53,8 +38,7 @@ class News extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.interval)
-        clearInterval(this.interval1)
- 
+
     }
 
     fetchDifferentStories(topic) {
