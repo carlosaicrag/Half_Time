@@ -38,7 +38,6 @@ const StoryNews = function(props){
         <div className="story-home-feed">
 
             {urlToImage}
-            {youtubeFullScreen}
 
             <div className="story-details-home-feed">
                 <a target="_blank" href={story.url} className="story-details-title-home-feed">{story.title.slice(0, 50)}...</a>

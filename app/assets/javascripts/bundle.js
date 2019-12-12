@@ -1825,7 +1825,7 @@ var StoryNews = function StoryNews(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
-  }, urlToImage, youtubeFullScreen, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, urlToImage, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-home-feed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     target: "_blank",
