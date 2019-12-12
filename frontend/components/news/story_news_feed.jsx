@@ -12,16 +12,19 @@ const StoryNews = function(props){
 
     let description;
     let urlToImage;
+    let youtubeFullScreen;
 
     if (story.url.includes("https://www.youtube.com/watch?")) {
         urlToImage = <div target="_blank" className="story-image-home-feed-container">
                         <iframe className="story-image-home-feed" width="760" height="515" src={story.url.slice(0, 24) + "embed/" + story.url.slice(32)} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div id="youtube-fullscreen" onClick={props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))}>fullscreen</div>
                      </div>
+        youtubeFullScreen = <div id="youtube-fullscreen" onClick={props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))}>fullscreen</div>
     } else {
         urlToImage = <a target="_blank" href={story.url} className="story-image-home-feed-container">
                         <img className="story-image-home-feed" src={story.urlToImage} alt={story.title} />
                      </a>
+        youtubeFullScreen = ""
     }
 
     if (story.description === null) {
@@ -35,7 +38,7 @@ const StoryNews = function(props){
         <div className="story-home-feed">
 
             {urlToImage}
-
+            {youtubeFullScreen}
 
             <div className="story-details-home-feed">
                 <a target="_blank" href={story.url} className="story-details-title-home-feed">{story.title.slice(0, 50)}...</a>

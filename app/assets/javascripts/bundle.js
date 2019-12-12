@@ -1494,17 +1494,31 @@ function Modal(_ref) {
       return null;
   }
 
+  var modalBackground;
+
+  if (modal === "youtube") {
+    debugger;
+    modalBackground = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "yoututbe",
+      onClick: function onClick(e) {
+        return e.stopPropagation();
+      }
+    }, component);
+  } else {
+    modalBackground = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "modal-child",
+      onClick: function onClick(e) {
+        return e.stopPropagation();
+      }
+    }, component);
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-background",
     onClick: closeModal
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cover"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-child",
-    onClick: function onClick(e) {
-      return e.stopPropagation();
-    }
-  }, component)));
+  }, modalBackground));
 }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -1760,6 +1774,7 @@ var StoryNews = function StoryNews(props) {
 
   var description;
   var urlToImage;
+  var youtubeFullScreen;
 
   if (story.url.includes("https://www.youtube.com/watch?")) {
     urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1777,6 +1792,10 @@ var StoryNews = function StoryNews(props) {
       id: "youtube-fullscreen",
       onClick: props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))
     }, "fullscreen"));
+    youtubeFullScreen = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "youtube-fullscreen",
+      onClick: props.youtubeModal(story.url.slice(0, 24) + "embed/" + story.url.slice(32))
+    }, "fullscreen");
   } else {
     urlToImage = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       target: "_blank",
@@ -1787,6 +1806,7 @@ var StoryNews = function StoryNews(props) {
       src: story.urlToImage,
       alt: story.title
     }));
+    youtubeFullScreen = "";
   }
 
   if (story.description === null) {
@@ -1805,7 +1825,7 @@ var StoryNews = function StoryNews(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-home-feed"
-  }, urlToImage, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, urlToImage, youtubeFullScreen, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "story-details-home-feed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     target: "_blank",
