@@ -16,6 +16,7 @@
             justify-content: space-between;
             // background-color:yellow;
         }
+
             .story-image-home-feed-container{
                 height: 170px; /* [1.1] Set it as per your need */
                 overflow: hidden; /* [1.2] Hide the overflowing of child elements */
@@ -32,6 +33,12 @@
 
                 .story-image-home-feed:hover{
                     transform: scale(1.5);
+                }
+
+                #youtube-fullscreen{
+                    text-align: center;
+                    cursor: pointer;
+                    color: #03a87c;
                 }
             }
         
