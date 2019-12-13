@@ -1690,7 +1690,9 @@ function (_React$Component) {
         charset: "utf-8"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_home_unfeatured_stories__WEBPACK_IMPORTED_MODULE_3__["default"], {
         stories: stories.slice(5)
-      })));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://newsapi.org/"
+      }, " Powered By News API")));
     }
   }]);
 
@@ -35138,7 +35140,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

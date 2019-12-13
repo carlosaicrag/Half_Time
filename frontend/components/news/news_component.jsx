@@ -89,6 +89,9 @@ class News extends React.Component {
 
                     <UnFeaturedStories stories={stories.slice(5)} />
                 </div>
+                <footer>
+                    <a href="https://newsapi.org/"> Powered By News API</a>
+                </footer>
             </div>
         )
         
