@@ -14,6 +14,12 @@
                 object-fit: cover;
             }
 
+            #youtube-fullscreen{
+                    text-align: center;
+                    cursor: pointer;
+                    color: #03a87c;
+            }
+
         }
 
         .story-details-home-feed{
@@ -73,6 +79,12 @@
                 height:100%;
                 object-fit: cover;
                 position: relative;
+            }
+
+            #youtube-fullscreen{
+                    text-align: center;
+                    cursor: pointer;
+                    color: #03a87c;
             }
         }
         .story-details-home-feed{
