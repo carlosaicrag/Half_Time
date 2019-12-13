@@ -1617,12 +1617,10 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      //countdown 
-      //api stories
       if (this.props.location.pathname === "/") {
         this.props.fetchStories();
       } else {
-        var url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+        var url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=".concat(window.newsApiKey);
         this.props.fetchApiStories(url).then(function () {
           _this2.interval = setInterval(function () {
             _this2.props.fetchApiStories(url);
@@ -35140,7 +35138,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

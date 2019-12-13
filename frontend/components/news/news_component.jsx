@@ -18,14 +18,10 @@ class News extends React.Component {
     }
 
     componentDidMount() {
-
-        //countdown 
-
-        //api stories
         if (this.props.location.pathname === "/") {
             this.props.fetchStories()
         } else {
-            let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=6b12490eb1b04cf285ece565249d6126';
+            let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${window.newsApiKey}`;
             this.props.fetchApiStories(url).then(() => {
                 this.interval = setInterval(() => {
                     this.props.fetchApiStories(url)
