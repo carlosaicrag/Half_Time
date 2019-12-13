@@ -24,8 +24,6 @@ class CommentShow extends React.Component {
             )
         })
 
-        debugger
-        
         if(this.props.commentAuthor === undefined){
             return null
         }

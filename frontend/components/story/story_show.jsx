@@ -1,9 +1,7 @@
 import React from "react"
-import { timingSafeEqual } from "crypto";
 import CommentShow from "../comments/comment_show"
 import CommentCreate from "../comments/comment_create"
 import { Link } from "react-router-dom"
-import { HeartSpinner } from "react-spinners-kit";
 
 
 class StoryShow extends React.Component {
@@ -21,7 +19,6 @@ class StoryShow extends React.Component {
     }
 
     handleLike(){
-        // let currentUser = this.props.story.authorId;
         let storyId = this.props.story.id;
 
         if(this.liked()){
@@ -63,10 +60,12 @@ class StoryShow extends React.Component {
 
     render(){
         if(!this.props.story) return null;
-        let comments = this.props.comments.map((comment) => {
+        let comments = this.props.comments.map((comment,idx) => {
             let commentAuthor = this.props.commentAuthors[comment.user_id]
+            debugger
             return(
                 <CommentShow
+                    key={idx*this.props.story.id*Math.random()}
                     comment={comment}
                     deleteComment = {this.props.deleteComment}
                     commentAuthor = {commentAuthor}
@@ -100,14 +99,6 @@ class StoryShow extends React.Component {
 
         return(
             <div className="story-show">
-                {/* <div onClick={this.handleLike} className="liked-container">
-                    <div className="liked">
-                        {likeDescription}
-                    </div>
-                </div> */}
-
-                
-
                 <div className="story-show-details-container">
                     <div className="story-show-details-title-container">
                         <div className="story-show-details-title">{this.props.story.title}</div>
@@ -144,6 +135,7 @@ class StoryShow extends React.Component {
                 
                 <div className="comments-conner">
                     <CommentCreate 
+                        key = {this.props.story.id}
                         storyId = {this.props.story.id}
                         currentUserId = {this.props.currentUser}
                         action = {this.props.createComment}

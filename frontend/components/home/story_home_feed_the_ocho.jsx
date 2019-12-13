@@ -19,7 +19,6 @@ const StoryHomeFeedOcho = function(props){
             return null
         }
         let date = new Date(`${story.created_at}`)
-        debugger
         let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
         // let readingTime = ["0","4","7","10","20","30"]
 

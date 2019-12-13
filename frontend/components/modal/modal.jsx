@@ -27,7 +27,6 @@ function Modal({ modal, closeModal, url }) {
     let modalBackground;
 
     if(modal === "youtube"){
-        debugger
         modalBackground = <div className="yoututbe" onClick={e => e.stopPropagation()}>
             {component}
         </div>
