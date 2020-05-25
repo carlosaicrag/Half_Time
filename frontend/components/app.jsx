@@ -20,9 +20,9 @@ const App = () => (
                     TheOcho
                 </Link>
                 
-                <Link to="/news" className="header-link">
+                {/* <Link to="/news" className="header-link">
                     News Api
-                </Link>
+                </Link> */}
             </div>
 
             <HeaderContainer />
