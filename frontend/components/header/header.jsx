@@ -2,8 +2,10 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 const Header = ({ currentUser, logout, openModal,fetchUser }) => {
+    //some comment 
     const sessionLinks = () => (
         <nav className ="login-signup">
+            
              {/* <div>Become a member</div>  */}
             {/* <div className="magnify-icon">
                 <i class="fas fa-search"></i>
