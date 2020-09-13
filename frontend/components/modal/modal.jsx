@@ -3,7 +3,6 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session/signIn_container'
 import SignupFormContainer from '../session/signup_container';
-import Youtube from "../news/youtube"
 
 function Modal({ modal, closeModal, url }) {
     if (!modal) {
@@ -16,9 +15,6 @@ function Modal({ modal, closeModal, url }) {
             break;
         case 'signup':
             component = <SignupFormContainer />;
-            break;
-        case "youtube":
-            component = <Youtube url={url}/>;
             break;
         default:
             return null;

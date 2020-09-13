@@ -62,7 +62,6 @@ class StoryShow extends React.Component {
         if(!this.props.story) return null;
         let comments = this.props.comments.map((comment,idx) => {
             let commentAuthor = this.props.commentAuthors[comment.user_id]
-            debugger
             return(
                 <CommentShow
                     key={idx*this.props.story.id*Math.random()}

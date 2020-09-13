@@ -1,71 +1,63 @@
-.home-feed{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Playfair Display', serif;
+.home-feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Playfair Display", serif;
+  // background-color: purple;
+
+  .twitter-unfeatured {
     // background-color: purple;
-
-    .twitter-unfeatured{
-        // background-color: purple;
-        display:flex;
-        width: 1250px;
-        justify-content: space-between;
-        padding:0,300,0,300;
-        
-
-    }
-
-}
-
-.featured{
     display: flex;
-    justify-content: center;
+    width: 1250px;
     justify-content: space-between;
-    margin: 0px 115px 80px 115px;
-    // background-color: blue;
-    height: 400px;
-    width: 1300px;
-    border-bottom: 1px solid lightgray;
+    padding: 0, 300, 0, 300;
+  }
 }
 
-
-.home-categories{
-    color: black;
+.featured {
+  // background: yellow;
+  display: grid;
+  grid-template-columns: 35% 30% 35%;
+  margin: 0px 115px 80px 115px;
+  height: 45%;
+  width: 95%;
+  border-bottom: 1px solid lightgray;
 }
 
-.story-details-home-feed{
-    cursor:pointer; 
-    text-decoration: none;
-    color: black;
+.home-categories {
+  color: black;
 }
 
-.story-image-home-feed{
-    cursor:pointer;
-    text-decoration: none;
+.story-details-home-feed {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
-.story-details-user{
-    text-decoration: none;
-    color: black;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 12px;
-    // background-color:blue;
+.story-image-home-feed {
+  cursor: pointer;
+  text-decoration: none;
 }
 
-
-.left-featured{
-    display: flex;
-
-}
-.story-details-home-feed-name-date{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-
+.story-details-user {
+  text-decoration: none;
+  color: black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 12px;
+  // background-color:blue;
 }
 
-.story-date{
-    color: rgb(157, 157, 157);
-    font-family: 'Source Sans Pro', sans-serif;
+.left-featured {
+  display: flex;
+}
+.story-details-home-feed-name-date {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.story-date {
+  color: rgb(157, 157, 157);
+  font-family: "Source Sans Pro", sans-serif;
 }

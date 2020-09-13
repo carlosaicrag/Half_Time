@@ -2,19 +2,8 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 const Header = ({ currentUser, logout, openModal,fetchUser }) => {
-    //some comment 
     const sessionLinks = () => (
         <nav className ="login-signup">
-            
-             {/* <div>Become a member</div>  */}
-            {/* <div className="magnify-icon">
-                <i class="fas fa-search"></i>
-            </div> */}
-
-            {/* <div className="become-a-member">
-                Become a member
-            </div>  */}
-
             <div className="login">
                 <a src="#" onClick={() => openModal("login")}>Sign In</a>
             </div>

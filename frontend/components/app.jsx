@@ -8,7 +8,6 @@ import StoryShowContainer from "../components/story/story_container"
 import CreateStoryContainer from "../components/story/story_create_container"
 import EditStoryContainer from "../components/story/story_edit_container"
 import UserContainer from "./user/user_container"
-import NewsContainer from "./news/news_container"
 
 const App = () => (
     <div>
@@ -19,17 +18,11 @@ const App = () => (
                 <Link to="/" className="header-link">
                     TheOcho
                 </Link>
-                
-                {/* <Link to="/news" className="header-link">
-                    News Api
-                </Link> */}
             </div>
-
             <HeaderContainer />
         </header>
         <Switch>
             <Route exact path="/" component={HomeFeedContainer}/>
-            <Route path="/news" component={NewsContainer}/>
             <ProtectedRoute path="/new" component={CreateStoryContainer}/>
             <ProtectedRoute path="/users/:userid" component={UserContainer}/>
             <ProtectedRoute path="/stories/edit/:storyId" component={EditStoryContainer}/>
