@@ -5,7 +5,7 @@ const FeaturedStories = props => {
     let { stories } = props;
     const leftFeatured = (story) => {
         return(
-            <div className="left-right-featured left-featured">
+            <div className="left-right-featured">
                 {story}
             </div>
         )
@@ -13,7 +13,7 @@ const FeaturedStories = props => {
 
     const rightFeatured = (story) => {
         return (
-            <div className="left-right-featured right-featured">
+            <div className="left-right-featured">
                 {story}
             </div>
         )

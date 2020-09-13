@@ -1,77 +1,67 @@
-.unfeatured-container{
-    display: flex;
-    justify-content: center;
-    justify-content: space-between;
-    width: 600px;
+.unfeatured-container {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  width: 600px;
 
-    .unfeatured-stories{
-        width:650px;
+  .unfeatured-stories {
+    width: 650px;
 
-        .story-home-feed{
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: space-between;
-        }
-
-            .story-image-home-feed-container{
-                height: 150px; 
-
-                .story-image-home-feed{
-                    width: 150px;
-                    height: 150px;
-                    position: relative;
-                    object-fit: cover;
-                }
-
-                #youtube-fullscreen{
-                    text-align: center;
-                    cursor: pointer;
-                    color: #03a87c;
-                }
-            }
-        
-        .story-details-home-feed{
-            display: flex;
-            flex-direction: column;
-            width:420px;
-            // height: 100px;
-            justify-content: space-between;
-            margin: 0 0 30px;
-            // background-color: red;
-            height: 150px;
-        }
-        
-        .story-details-body-home-feed{
-            width: 420px;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 16px;
-            color: rgba(138, 138, 138, 0.82);
-            position: relative;
-            bottom: 20px;
-            text-decoration: none;
-            // background-color: yellow;
-        }
-        
-        .story-details-title-home-feed{
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 20px;
-            text-decoration: none;
-            color:black
-        }
-        
-        .story-details-user{
-            font-size: 13px;
-        }
+    .story-home-feed {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
     }
 
-    .unfeatured-popular{
-        width: 328px;
-        height:700px;
+    .story-image-home-feed-container {
+      height: 150px;
+      background: blue;
 
-        .title-container{
-            font-size: 24px;
-            padding: 0 0 16px;
-            margin: 32px;
-        }
+      .story-image-home-feed {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        object-fit: cover;
+      }
+
+      #youtube-fullscreen {
+        text-align: center;
+        cursor: pointer;
+        color: #03a87c;
+      }
     }
+
+    .story-details-home-feed {
+      display: flex;
+      flex-direction: column;
+      width: 420px;
+      // height: 100px;
+      justify-content: space-between;
+      margin: 0 0 30px;
+      // background-color: red;
+      height: 150px;
+    }
+
+    .story-details-body-home-feed {
+      width: 420px;
+      font-family: "Source Sans Pro", sans-serif;
+      font-size: 16px;
+      color: rgba(138, 138, 138, 0.82);
+      position: relative;
+      bottom: 20px;
+      text-decoration: none;
+      // background-color: yellow;
+    }
+
+    .story-details-title-home-feed {
+      font-family: "Source Sans Pro", sans-serif;
+      font-size: 20px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .story-details-user {
+      font-size: 13px;
+    }
+  }
 }

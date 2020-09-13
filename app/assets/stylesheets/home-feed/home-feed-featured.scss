@@ -1,101 +1,107 @@
-.left-right-featured {
-  height: 80%;
-  width: 100%;
-  // background: blue;
-
-  .story-home-feed {
-    display: grid;
-    grid-template: 45% 10% 45% / 10% 60% 30%;
-    width: 100%;
+@media screen and (min-width: 1000px){
+  .left-right-featured {
     height: 100%;
-    // background-color: red;
+    width: 100%;
+    // background: blue;
 
-    .story-image-home-feed-container {
-      grid-column: 1 / 4;
-      grid-row: 1/2;
+    .story-home-feed {
+      display: grid;
+      grid-template: 45% 10% 1fr / 10% 60% 30%;
       width: 100%;
       height: 100%;
-      .story-image-home-feed {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
+      // background-color: red;
 
-    .story-details-home-feed {
-      grid-column: 2/3;
-      grid-row: 3/4;
-      display: flex;
-      flex-direction: column;
-
-      .story-details-title-home-feed {
-        font-family: "Source Sans Pro", sans-serif;
-        font-size: 20px;
-        text-decoration: none;
-        color: black;
-        margin-bottom: 10px;
+      .story-image-home-feed-container {
+        grid-column: 1 / 4;
+        grid-row: 1/2;
+        width:100% !important;
+        height: 100% !important;
+        .story-image-home-feed {
+          width:100% !important;
+          height: 100% !important;
+          object-fit: cover;
+        }
       }
 
-      .story-details-body-home-feed {
-        font-family: "Source Sans Pro", sans-serif;
-        font-size: 16px;
-        color: rgba(138, 138, 138, 0.82);
-        text-decoration: none;
-        margin-bottom: 10px;
+      .story-details-home-feed {
+        grid-column: 2/3;
+        grid-row: 3/4;
+        display: flex;
+        flex-direction: column;
+
+        .story-details-title-home-feed {
+          font-family: "Source Sans Pro", sans-serif;
+          font-size: 20px;
+          text-decoration: none;
+          color: black;
+          margin-bottom: 10px;
+        }
+
+        .story-details-body-home-feed {
+          font-family: "Source Sans Pro", sans-serif;
+          font-size: 16px;
+          color: rgba(138, 138, 138, 0.82);
+          text-decoration: none;
+          margin-bottom: 10px;
+        }
       }
     }
   }
-}
 
-.mid-featured {
-  margin-left: 20px;
-  margin-right: 20px;
-  display: grid;
-  // grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(3, 33.333%);
-
-  .story-home-feed {
+  .mid-featured {
+    margin-left: 20px;
+    margin-right: 20px;
     display: grid;
-    grid-template-columns: 35% 65%;
-    grid-template-rows: repeat(2, 50%);
-    grid-column: 1/3;
+    // grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(3, 33.333%);
 
-    .story-image-home-feed-container {
-      width: 100%;
-      height: 100%;
+    .story-home-feed {
+      display: grid;
+      grid-template-columns: 35% 65%;
+      grid-template-rows: repeat(2, 50%);
+      grid-column: 1/3;
 
-      .story-image-home-feed {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .story-image-home-feed-container {
+        background: blue;
+        width: 100% !important;
+        height: 100% !important;
+        .story-image-home-feed {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover;
+        }
       }
-    }
-    .story-details-home-feed {
-      grid-row-start: 1;
-      grid-row-end: 3;
-      grid-column: 2/3; 
-      margin-left: 10px;
-      display: flex;
-      flex-direction: column;
+      .story-details-home-feed {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column: 2/3; 
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
 
-      .story-details-title-home-feed {
-        font-family: "Source Sans Pro", sans-serif;
-        font-size: 12px;
-        text-decoration: none;
-        color: black;
-        margin-bottom: 10px;
-      }
+        .story-details-title-home-feed {
+          font-family: "Source Sans Pro", sans-serif;
+          font-size: 12px;
+          text-decoration: none;
+          color: black;
+          margin-bottom: 10px;
+        }
 
-      .story-details-body-home-feed {
-        font-family: "Source Sans Pro", sans-serif;
-        font-size: 12px;
-        color: rgba(138, 138, 138, 0.82);
-        text-decoration: none;
-        margin-bottom: 10px;
-      }
+        .story-details-body-home-feed {
+          font-family: "Source Sans Pro", sans-serif;
+          font-size: 12px;
+          color: rgba(138, 138, 138, 0.82);
+          text-decoration: none;
+          margin-bottom: 10px;
+        }
 
-      .story-details-user {
-        font-size: 12px;
+        .story-details-home-feed-name-date{
+          margin-bottom: 10px;
+        }
+
+        .story-details-user {
+          font-size: 12px;
+        }
       }
     }
   }

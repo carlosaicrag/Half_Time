@@ -1,45 +1,58 @@
-.home-feed {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: "Playfair Display", serif;
-  // background-color: purple;
-
-  .twitter-unfeatured {
-    // background-color: purple;
+@media screen and (min-width: 1000px) {
+  .home-feed {
     display: flex;
-    width: 1250px;
-    justify-content: space-between;
-    padding: 0, 300, 0, 300;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+    // background-color: purple;
+
+    .twitter-unfeatured {
+      // background-color: purple;
+      display: flex;
+      width: 1250px;
+      justify-content: space-between;
+      padding: 0, 300, 0, 300;
+    }
   }
-}
 
-.featured {
-  // background: yellow;
-  display: grid;
-  grid-template-columns: 35% 30% 35%;
-  margin: 0px 115px 80px 115px;
-  height: 45%;
-  width: 95%;
-  border-bottom: 1px solid lightgray;
-}
+  .featured {
+    // background: yellow;
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+    margin: 0px 115px 80px 115px;
+    height: 45%;
+    width: 95%;
+    border-bottom: 1px solid lightgray;
+  }
 
-.home-categories {
-  color: black;
-}
+  .home-categories {
+    color: black;
+  }
 
-.story-details-home-feed {
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-}
+  .story-details-home-feed {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+  }
 
-.story-image-home-feed {
-  cursor: pointer;
-  text-decoration: none;
-}
+  .story-image-home-feed {
+    cursor: pointer;
+    text-decoration: none;
+  }
 
+  
+  .story-details-home-feed-name-date {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+  }
+  
+}
+.story-date {
+  color: rgb(157, 157, 157);
+  font-family: "Source Sans Pro", sans-serif;
+}
 .story-details-user {
   text-decoration: none;
   color: black;
@@ -48,16 +61,136 @@
   // background-color:blue;
 }
 
-.left-featured {
-  display: flex;
-}
-.story-details-home-feed-name-date {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-}
+@media screen and (max-width: 1000px) {
+  .unfeatured-container {
+    width: 100%;
+    .unfeatured-stories {
+      width: 100%;
+    }
+  }
 
-.story-date {
-  color: rgb(157, 157, 157);
-  font-family: "Source Sans Pro", sans-serif;
+  .story-home-feed{
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+
+  .featured {
+    .left-right-featured {
+      .story-home-feed {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+
+      .story-image-home-feed-container {
+        height: 150px;
+        background: blue;
+
+        .story-image-home-feed {
+          width: 150px;
+          height: 150px;
+          position: relative;
+          object-fit: cover;
+        }
+
+        #youtube-fullscreen {
+          text-align: center;
+          cursor: pointer;
+          color: #03a87c;
+        }
+      }
+
+      .story-details-home-feed {
+        display: flex;
+        flex-direction: column;
+        width: 420px;
+        // height: 100px;
+        justify-content: space-between;
+        margin: 0 0 30px;
+        // background-color: red;
+        height: 150px;
+      }
+
+      .story-details-body-home-feed {
+        width: 420px;
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 16px;
+        color: rgba(138, 138, 138, 0.82);
+        position: relative;
+        bottom: 20px;
+        text-decoration: none;
+        // background-color: yellow;
+      }
+
+      .story-details-title-home-feed {
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 20px;
+        text-decoration: none;
+        color: black;
+      }
+
+      .story-details-user {
+        font-size: 13px;
+      }
+    }
+
+    .mid-featured {
+      .story-home-feed {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+
+      .story-image-home-feed-container {
+        height: 150px;
+        background: blue;
+
+        .story-image-home-feed {
+          width: 150px;
+          height: 150px;
+          position: relative;
+          object-fit: cover;
+        }
+
+        #youtube-fullscreen {
+          text-align: center;
+          cursor: pointer;
+          color: #03a87c;
+        }
+      }
+
+      .story-details-home-feed {
+        display: flex;
+        flex-direction: column;
+        width: 420px;
+        // height: 100px;
+        justify-content: space-between;
+        margin: 0 0 30px;
+        // background-color: red;
+        height: 150px;
+      }
+
+      .story-details-body-home-feed {
+        width: 420px;
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 16px;
+        color: rgba(138, 138, 138, 0.82);
+        position: relative;
+        bottom: 20px;
+        text-decoration: none;
+        // background-color: yellow;
+      }
+
+      .story-details-title-home-feed {
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 20px;
+        text-decoration: none;
+        color: black;
+      }
+
+      .story-details-user {
+        font-size: 13px;
+      }
+    }
+  }
 }

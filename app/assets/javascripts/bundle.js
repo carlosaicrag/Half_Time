@@ -927,13 +927,13 @@ var FeaturedStories = function FeaturedStories(props) {
 
   var leftFeatured = function leftFeatured(story) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "left-right-featured left-featured"
+      className: "left-right-featured"
     }, story);
   };
 
   var rightFeatured = function rightFeatured(story) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "left-right-featured right-featured"
+      className: "left-right-featured"
     }, story);
   };
 
