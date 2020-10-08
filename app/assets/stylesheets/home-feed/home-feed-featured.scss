@@ -2,14 +2,12 @@
   .left-right-featured {
     height: 100%;
     width: 100%;
-    // background: blue;
 
     .story-home-feed {
       display: grid;
       grid-template: 45% 10% 1fr / 10% 60% 30%;
       width: 100%;
       height: 100%;
-      // background-color: red;
 
       .story-image-home-feed-container {
         grid-column: 1 / 4;
